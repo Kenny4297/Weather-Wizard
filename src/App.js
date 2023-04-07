@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import DisplayWeather from "./components/DisplayWeather";
+import DisplayForecast from "./components/DisplayForecast";
+import IntroPage from "./components/IntroPage";
 
 function App() {
+  const [city, setCity] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={<IntroPage setCity={setCity} />}
+        />
+        <Route
+          path="/displayWeather/:city"
+          element={
+            <WeatherResultsPage city={city} setCity={setCity} />
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function WeatherResultsPage({ city, setCity }) {
+  return (
+    <div>
+      <DisplayWeather city={city} />
+      <DisplayForecast city={city} />
+      <IntroPage setCity={setCity} />
     </div>
   );
 }
