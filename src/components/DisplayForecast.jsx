@@ -22,29 +22,33 @@ const DisplayForecast = () => {
   }, [city]);
 
   return (
-    <div className="col future-information-section future-forecast">
-      {forecastData &&
-        forecastData.list
-          .filter((data, index) => index % 8 === 3)
-          .map((data) => (
-            <div className="row card future-forecast-css" key={data.dt}>
-              <p>
-                <u>{data.dt_txt.substring(0, 10)}</u>
-              </p>
-              <p>Temperature: {data.main.temp}&deg;F</p>
-              <img
-                className="icon-images"
-                style={{width: '100px'}}
-                src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
-                alt={data.weather[0].description}
-              />
-              <p className="skies-description">Skies: {data.weather[0].description}</p>
-              <p>Wind Speed: {data.wind.speed} mph</p>
-              <p>Humidity: {data.main.humidity}%</p>
-            </div>
-          ))}
+    <div className="col future-information-section future-forecast d-flex justify-content-around">
+      <div className="row justify-content-center">
+        {forecastData &&
+          forecastData.list
+            .filter((data, index) => index % 8 === 3)
+            .map((data) => (
+              <div className="col-sm-12 col-md-6 col-lg-2 card future-forecast-css" key={data.dt}>
+                <p className="future-date"><u>{data.dt_txt.substring(0, 10)}</u></p>
+                <p className="future-temp">Temperature: {data.main.temp}&deg;F</p>
+                <img
+                  className="icon-images"
+                  style={{width: '100px'}}
+                  src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                  alt={data.weather[0].description}
+                />
+                <p className="skies-description">Skies: {data.weather[0].description}</p>
+                <p className="wind-speed">Wind Speed: {data.wind.speed} mph</p>
+                <p className="humidity">Humidity: {data.main.humidity}%</p>
+              </div>
+            ))}
+      </div>
     </div>
   );
+  
+  
+  
+
 };
 
 export default DisplayForecast;

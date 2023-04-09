@@ -11,6 +11,8 @@ const IntroPage = ({ setCity }) => {
     return savedHistory ? JSON.parse(savedHistory) : [];
   });
 
+  const [selectedCity, setSelectedCity] = useState(null);
+
   useEffect(() => {
     // save history to localStorage whenever it changes
     localStorage.setItem("weatherHistory", JSON.stringify(history));
@@ -23,6 +25,7 @@ const IntroPage = ({ setCity }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setCity(inputValue);
+    setSelectedCity(inputValue);
     navigate(`/displayWeather/${inputValue}`);
     setInputValue("");
 
@@ -33,39 +36,46 @@ const IntroPage = ({ setCity }) => {
   };
 
   const handleHistoryClick = (city) => {
+    setSelectedCity(city);
     setCity(city);
     navigate(`/displayWeather/${city}`);
   };
 
   return (
     <>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center form-container">
         <div className="row input-column w-auto text-center">
           <form id="form" onSubmit={handleSubmit}>
-            <h2>Enter the city and country name</h2>
+            <h2 className="form-heading">Enter the city and country name</h2>
             <p>
-              <em>Example: Caguas, Puerto Rico</em>
+              <em className="form-subheading">Example: Caguas, Puerto Rico</em>
             </p>
             <input
               type="text"
               id="cityInput"
+              className="form-input"
               value={inputValue}
               onChange={handleInputChange}
             />
             <p>
-              <button type="submit" id="submit">
+              <button type="submit" id="submit" className="form-button">
                 Today's Weather
               </button>
             </p>
           </form>
         </div>
       </div>
-
+  
       <div className="row history-row text-center">
-        <p>Recent History</p>
+        <p className="history-heading">Recent History</p>
         <div className="col-12 history">
           {history.map((city) => (
-            <button key={city} onClick={() => handleHistoryClick(city)}>
+            <button
+              key={city}
+              onClick={() => handleHistoryClick(city)}
+              className="history-button"
+              disabled={city === selectedCity}
+            >
               {city}
             </button>
           ))}
