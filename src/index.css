@@ -11,8 +11,19 @@ code {
     monospace;
 }
 
-.weather-icon {
-  width: 100px;
+#weather-icon {
+  width: 200px;
+}
+
+.todays-weather { 
+  color: var(--red2); 
+  font-size: 1.5rem;
+}
+
+.todays-numbers {
+  color: var(--red1);
+  font-size: 2rem;
+  margin-left: 1rem;
 }
 
 :root {
@@ -158,4 +169,8 @@ code {
 
 .card.future-forecast-css {
   width: 250px;
+}
+
+.max-min {
+  cursor: pointer;
 }
