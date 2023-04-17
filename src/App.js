@@ -30,7 +30,7 @@ function WeatherResultsPage({ city, setCity }) {
   return (
     <div style={{ margin: '50px' }}>
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-5">
           <DisplayWeather city={city} />
         </div>
         <div className="col-md-6">
