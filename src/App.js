@@ -28,19 +28,19 @@ function App() {
 
 function WeatherResultsPage({ city, setCity }) {
   return (
-    <div style={{ margin: '50px' }}>
-      <div className="row">
-        <div className="col-md-5">
+    <div className="row" style={{margin: '1.5rem', border:"2px solid orange"}}>
+        <div className="col-md-6">
           <DisplayWeather city={city} />
         </div>
         <div className="col-md-6">
           <IntroPage setCity={setCity} />
         </div>
+
+      <div className="row" style={{border: '2px solid blue'}}>
+        <DisplayForecast city={city} />
       </div>
-      <DisplayForecast city={city} />
     </div>
   );
-  
 }
 
 export default App;

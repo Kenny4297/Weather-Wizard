@@ -48,12 +48,12 @@ const DisplayForecast = () => {
             forecastData.list
               .filter((data, index) => index % 8 === 3)
               .map((data) => (
-                <div className="col-sm-12 col-md-6 col-lg-2 card future-forecast-css" key={data.dt}>
+                <div className= "card future-forecast-css" style={{width: '10rem', fontSize:'.5rem', lineHeight:"0.1rem", marginTop: "1rem"}} key={data.dt}>
                   <p className="future-date"><u>{getFormattedDate(data.dt_txt)}</u></p>
                   <p className="future-temp">Temperature: {data.main.temp}&deg;F</p>
                   <img
                     className="icon-images"
-                    style={{width: '100px'}}
+                    style={{width: '3rem'}}
                     src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
                     alt={data.weather[0].description}
                   />

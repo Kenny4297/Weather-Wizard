@@ -53,26 +53,29 @@ const DisplayCurrentWeather = () => {
     }, [city]);
 
     return (
-        <div className="row mx-auto future-information-section">
+        <div>
             {console.log(`Weather data is:${JSON.stringify(weatherData)}`)}
             {!weatherData ? (
-                <p>Test test</p>
+                <p style={{color:'var(--Red1)'}}>Loading...</p>
                 ) : weatherData.cod === "404" ? (
                 <ErrorMessage message="Sorry, your request was inadequate. The city you entered does not exist in our database. If it is spelt correctly, try entering another city that is close by. " />
                 ) : (
-            <div className="col">
+            <div className="row" style={{height: '100%'}}>
                 <div
-                className="row row-weather text-center current-forecast-css"
+                className="col text-center"
                 style={{
                     borderRadius: "20px",
                     boxShadow: "0 0 10px var(--red2)",
-                    padding: "20px",
                     backgroundColor: "var(--red5)",
-                    width: "30vw",
+                    width: "100%",
+                    margin: '1rem'
+                    // height: '60%',
+                    // marginTop: '1rem',
+                    // marginBottom: 'rem'
                 }}
                 >
                 {console.log("weatherData is not null, rendering content...")}
-                <div className="col todays-weather-specs h-25 w-100">
+                <div className="col w-100" style={{color: 'blue', fontSize: '.5rem', lineHeight:'.5rem'}}>
                     <h2>
                     <strong>
                         <span
@@ -101,15 +104,15 @@ const DisplayCurrentWeather = () => {
                     </p>
                     ) : null}
                     <p>
-                    <span className="todays-numbers" id="display-skies">
-                        {weatherData.weather[0].description}
-                    </span>
+                        <span className="todays-numbers" id="display-skies">
+                            {weatherData.weather[0].description}
+                        </span>
                     </p>
                     <p>
-                    <span id="display-temperature">
-                        <span className="todays-weather">Current Temperature:</span>
-                        <span className="todays-numbers">
-                        {`${weatherData.main.temp}`}&deg;F
+                        <span id="display-temperature">
+                            <span className="todays-weather">Current Temperature:</span>
+                            <span className="todays-numbers">
+                            {`${weatherData.main.temp}`}&deg;F
                         </span>
                     </span>
                     </p>
@@ -144,6 +147,7 @@ const DisplayCurrentWeather = () => {
                 </div>
             </div>
             )}
+        
         </div>
     );
 };

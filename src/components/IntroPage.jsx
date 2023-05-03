@@ -42,31 +42,37 @@ const IntroPage = ({ setCity }) => {
   };
 
   return (
-    <>
-      <div className="d-flex justify-content-center form-container">
-        <div className="row input-column w-auto text-center">
-          <form id="form" onSubmit={handleSubmit}>
-            <h2 className="form-heading">Enter the city and country name</h2>
-            <p>
-              <em className="form-subheading">Example: Caguas, Puerto Rico</em>
-            </p>
-            <input
-              type="text"
-              id="cityInput"
-              className="form-input"
-              value={inputValue}
-              onChange={handleInputChange}
-            />
-            <p>
-              <button type="submit" id="submit" className="form-button">
-                Today's Weather
-              </button>
-            </p>
-          </form>
-        </div>
-      </div>
+    <div className="row" style={{height:'100%'}}>
+        {/* <div className="row text-center d-flex justify-content-center align-items-center " style={{border:'2px solid purple', height:'100%'}} > */}
+              <form id="form" className="col d-flex justify-content-center flex-column align-items-center" onSubmit={handleSubmit} style={{
+                    borderRadius: "20px",
+                    boxShadow: "0 0 10px var(--red2)",
+                    backgroundColor: "var(--red5)",
+                    width: "100%",
+                    // height: "100%",
+                    margin: '1rem'
+                }} >
+                <h2 className="form-heading">Enter the city and country name</h2>
+                <p>
+                  <em className="form-subheading">Example: Caguas, Puerto Rico</em>
+                </p>
+                <input
+                  type="text"
+                  id="cityInput"
+                  className="form-input"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                />
+                <p>
+                  <button type="submit" id="submit" className="form-button">
+                    Today's Weather
+                  </button>
+                </p>
+              </form>
+        {/* </div> */}
+      
   
-      <div className="row history-row text-center">
+      {/* <div className="row history-row text-center" style={{height: "20vh", border: '2px solid blue', marginTop: '-2rem'}}>
         <p className="history-heading">Recent History</p>
         <div className="col-12 history">
           {history.map((city) => (
@@ -80,8 +86,8 @@ const IntroPage = ({ setCity }) => {
             </button>
           ))}
         </div>
-      </div>
-    </>
+      </div> */}
+    </div>
   );
 };
 
