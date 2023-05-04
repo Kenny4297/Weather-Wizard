@@ -41,7 +41,7 @@ const DisplayForecast = () => {
 
   try {
     return (
-      <div>
+      <div style={{border:'2px solid orange', height:'40vh'}}>
         {!forecastData ? <><p>No forecast data</p> <FiAlertCircle /> </> : (
         <div className="future-forecast">
           {/* Conditionally render the error message if it exists */}

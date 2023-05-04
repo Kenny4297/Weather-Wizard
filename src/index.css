@@ -12,13 +12,13 @@ code {
     monospace;
 }
 
-/* .rw {
+.rw {
   border: 2px solid red;
 }
 
 .cl {
   border: 2px solid blue;
-} */
+} 
 
 
 
@@ -110,8 +110,8 @@ code {
 }
 
 .future-forecast {
-  height: 35vh;
-  border: 2px solid blue;
+  height:40vh;
+  border: 2px solid green;
   display: flex;
   flex-wrap: wrap; /* wrap child elements to new line */
   justify-content: center;
@@ -127,9 +127,9 @@ code {
   flex-direction: column;
   margin: 10px;
   padding: 20px;
-  height: 10rem;
-  font-size: .7rem; 
-  line-height: 0.1rem;
+  height: 70%;
+  font-size: 1rem; 
+  line-height: 1rem;
   min-width: 5rem;
   max-width: 40%;
   margin-top: .68rem;

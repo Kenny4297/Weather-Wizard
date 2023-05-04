@@ -54,8 +54,7 @@ const DisplayCurrentWeather = () => {
     }, [city]);
 
     return (
-        <div className="rw">
-            <div>
+            <div style={{height:'100%'}}>
                 {console.log(`Weather data is:${JSON.stringify(weatherData)}`)}
                 {!weatherData ? (
                 <p style={{color:'var(--Red1)', display:'flex', justifyContent:'center', alignItems:'center'}}>Loading...</p>
@@ -80,12 +79,15 @@ const DisplayCurrentWeather = () => {
                 </>
                 ) : (
                 <div
-                className="cl"
+                className=""
                 style={{
                     boxShadow: "0 0 10px var(--red2)",
                     backgroundColor: "var(--red5)",
+                    position: 'relative',
                     textAlign:'center',
-                    paddingTop:'1rem'
+                    // paddingTop:'1rem',
+                    border:'2px solid green',
+                    height:'100%'
                 }}
                 >
                     {console.log("weatherData is not null, rendering content...")}
@@ -108,17 +110,21 @@ const DisplayCurrentWeather = () => {
                         <p className="todays-numbers">{time} Local time</p>
 
                         <div className="rw" style={{
-                                display:'flex'
-                                // width:'100%',  
-                                // position:'relative', 
+                                display:'flex',
+                                width:'100%',
+                                height:'60%',  
+                                position:'absolute',
+                                bottom:'0', 
                                 // top:'1.5rem',
                                 // left:'.74rem', 
+                                border:'2px solid blue'
                                 }}>
                             <div style={{
                                 boxShadow: "0 0 10px var(--red2)", 
                                 width:'50%', 
                                 margin: '1rem', 
                                 marginTop: '0rem',
+
                                 borderRadius:'1rem'
                                 }} >
                                 {weatherData ? (
@@ -145,7 +151,7 @@ const DisplayCurrentWeather = () => {
                                     paddingTop:'1rem',
                                     margin:'1rem',
                                     boxShadow: "0 0 10px var(--red2)",
-                                    marginTop: '0rem',
+                                    marginTop: '1rem',
                                     borderRadius:'1rem'
                                     // borderRadius: '1rem',
                                     // backgroundColor: 'var(--red5)',
@@ -194,19 +200,6 @@ const DisplayCurrentWeather = () => {
             )}
                 
             </div>
-
-            {/* <div className="rw" style={{display:'flex'}}>      
-                <div className="cl" style={{width:'50%'}}>
-                    <p>col1</p>
-                </div>
-
-                <div className="cl" style={{width:'50%'}}>
-                    <p>col2</p>
-                </div>
-            </div> */}
-
-
-        </div>
     );
 };
 export default DisplayCurrentWeather;
