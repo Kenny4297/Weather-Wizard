@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import dayjs from "dayjs";
 import { useParams } from "react-router-dom";
 import { FiAlertCircle } from 'react-icons/fi';
+import dayjs from 'dayjs';
 
 
 const DisplayCurrentWeather = () => {
@@ -54,14 +54,15 @@ const DisplayCurrentWeather = () => {
     }, [city]);
 
     return (
-        <div style={{border:'2px solid purple'}}>
-            {console.log(`Weather data is:${JSON.stringify(weatherData)}`)}
-            {!weatherData ? (
-                <p style={{color:'var(--Red1)'}}>Loading...</p>
+        <div className="rw">
+            <div>
+                {console.log(`Weather data is:${JSON.stringify(weatherData)}`)}
+                {!weatherData ? (
+                <p style={{color:'var(--Red1)', display:'flex', justifyContent:'center', alignItems:'center'}}>Loading...</p>
                 ) : weatherData.cod === "404" ? (
                     <>
-                        <div style={{
-                            color: 'var(--red1)',
+                    <div style={{
+                            color: 'blue',
                             display:'flex',
                             border:'2px solid green',
                             justifyContent:'center',
@@ -69,7 +70,7 @@ const DisplayCurrentWeather = () => {
                             position: 'relative',
                             flexDirection:'column',
                             textAlign:'center',
-                            top: '1rem',
+                            // top: '1rem',
                             maxHeight:'300px'
                         }}>
                             <p >Sorry, but your request was inadequate. The city you entered does not exist in our database. If it is spelt correctly, try entering another city that is close by. </p>
@@ -78,28 +79,17 @@ const DisplayCurrentWeather = () => {
                     </div>
                 </>
                 ) : (
-            <div className="row" style={{height: '100%'}}>
                 <div
-                className="col text-center"
+                className="cl"
                 style={{
-                    borderRadius: "20px",
                     boxShadow: "0 0 10px var(--red2)",
                     backgroundColor: "var(--red5)",
-                    width: "100%",
-                    margin: '1rem',
-                    height: '20rem'
-                    // height: '60%',
-                    // marginTop: '1rem',
-                    // marginBottom: 'rem'
+                    textAlign:'center',
+                    paddingTop:'1rem'
                 }}
                 >
                     {console.log("weatherData is not null, rendering content...")}
-                    <div className="col" style={{
-                            maxHeight: '6.25rem', 
-                            fontSize: '1.3rem',
-                            // marginBottom:'2rem',
-                            // overflow:'hidden', 
-                            lineHeight:'1rem'}}>
+                        
                         <h4>
                             <strong>
                                 <span
@@ -117,8 +107,20 @@ const DisplayCurrentWeather = () => {
                         </p>
                         <p className="todays-numbers">{time} Local time</p>
 
-                        <div className="row" style={{border:'2px solid red', height: '14rem'}}>
-                            <div className="col" style={{border:'2px solid blue'}}>
+                        <div className="rw" style={{
+                                display:'flex'
+                                // width:'100%',  
+                                // position:'relative', 
+                                // top:'1.5rem',
+                                // left:'.74rem', 
+                                }}>
+                            <div style={{
+                                boxShadow: "0 0 10px var(--red2)", 
+                                width:'50%', 
+                                margin: '1rem', 
+                                marginTop: '0rem',
+                                borderRadius:'1rem'
+                                }} >
                                 {weatherData ? (
                                 <p>
                                     <span id="weather-icon">
@@ -131,20 +133,27 @@ const DisplayCurrentWeather = () => {
                                 </p>
                                 ) : null}
                                 <p>
-                                    <span className="todays-numbers" id="display-skies">
+                                    <span id="display-skies" style={{color: "var(--red1)", fontWeight:'600'}}>
                                         {weatherData.weather[0].description}
                                     </span>
                                 </p>
                             </div>
                                 
-                            <div className="col d-flex flex-column justify-content-center align-items-center" style={{
-                                    border:'2px solid blue',
-                                    lineHeight:'1.7rem'
+                            <div style={{
+                                    lineHeight:'1.7rem',
+                                    width:'50%',
+                                    paddingTop:'1rem',
+                                    margin:'1rem',
+                                    boxShadow: "0 0 10px var(--red2)",
+                                    marginTop: '0rem',
+                                    borderRadius:'1rem'
+                                    // borderRadius: '1rem',
+                                    // backgroundColor: 'var(--red5)',
                                     }}>
                                 <p>
                                     <span id="display-temperature">
-                                        <span className="todays-weather">Temp: </span>
-                                        <span className="todays-numbers">
+                                        <span style={{color:"var(--red3)"}}>Temp: </span>
+                                        <span style={{color:"var(--red2)"}}>
                                         {`${weatherData.main.temp}`}&deg;F
                                     </span>
                                 </span>
@@ -153,12 +162,12 @@ const DisplayCurrentWeather = () => {
                                 <span id="display-high-temp">
                                     <span
                                     className="todays-numbers max-min"
-                                    title="min"
+                                    title="low"
                                     >{`${weatherData.main.temp_min}`}&deg;F</span>
                                     <span className="todays-numbers"> / </span>
                                     <span
                                     className="todays-numbers max-min"
-                                    title="max"
+                                    title="high"
                                     >{`${weatherData.main.temp_max}`}&deg;F</span>
                                     
                                     
@@ -166,25 +175,37 @@ const DisplayCurrentWeather = () => {
                                 </p>
                                 <p>
                                 <span id="display-humidity">
-                                    <span className="todays-weather">Humidity: </span>
-                                    <span className="todays-numbers">
+                                    <span style={{color:"var(--red2)"}}>Humidity: </span>
+                                    <span style={{color:"var(--red3)"}}>
                                     {`${weatherData.main.humidity}%`}
                                     </span>
                                 </span>
                                 </p>
                                 <p>
                                 <span id="wind-speed">
-                                    <span className="todays-weather">Wind Speed: </span>
-                                    <span className="todays-numbers">{`${weatherData.wind.speed}mph`}</span>
+                                    <span style={{color:"var(--red2)"}}>Wind Speed: </span>
+                                    <span style={{color:"var(--red3)"}}>{`${weatherData.wind.speed}mph`}</span>
                                 </span>
                                 </p>
                             </div>
                                 
                         </div>
                     </div>
-                </div>
-            </div>
             )}
+                
+            </div>
+
+            {/* <div className="rw" style={{display:'flex'}}>      
+                <div className="cl" style={{width:'50%'}}>
+                    <p>col1</p>
+                </div>
+
+                <div className="cl" style={{width:'50%'}}>
+                    <p>col2</p>
+                </div>
+            </div> */}
+
+
         </div>
     );
 };

@@ -41,22 +41,18 @@ const DisplayForecast = () => {
 
   try {
     return (
-      <div className="col future-information-section future-forecast d-flex justify-content-around">
+      <div>
         {!forecastData ? <><p>No forecast data</p> <FiAlertCircle /> </> : (
-        <div className="row justify-content-center">
+        <div className="future-forecast">
           {/* Conditionally render the error message if it exists */}
           {errorMessage && <ErrorMessage message={errorMessage} />}
           {forecastData &&
             forecastData.list
               .filter((data, index) => index % 8 === 3)
               .map((data) => (
-                <div className= "card d-flex align-items-center future-forecast-css" style={{
-                    width: '10rem', 
-                    fontSize:'.7rem', 
-                    lineHeight:"0.1rem", 
-                    marginTop: ".68rem"}} key={data.dt}>
+                <div className="future-forecast-css" key={data.dt}>
                   <p className="future-date"><u>{getFormattedDate(data.dt_txt)}</u></p>
-                  <p className="future-temp">Temperature: {data.main.temp}&deg;F</p>
+                  <p className="future-temp">{data.main.temp}&deg;F</p>
                   <img
                     className="icon-images"
                     style={{width: '3rem'}}
@@ -64,8 +60,8 @@ const DisplayForecast = () => {
                     alt={data.weather[0].description}
                   />
                   <p className="skies-description">{data.weather[0].description}</p>
-                  <p className="wind-speed">Wind Speed: {data.wind.speed} mph</p>
-                  <p className="humidity">Humidity: {data.main.humidity}%</p>
+                  <p className="wind-speed">{data.wind.speed} mph</p>
+                  <p className="humidity">{data.main.humidity}%</p>
                 </div>
               ))}
         </div>

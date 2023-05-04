@@ -42,16 +42,21 @@ const IntroPage = ({ setCity }) => {
   };
 
   return (
-    <div className="row" style={{height:'100%'}}>
+    <div className="rw" style={{height:'100%'}}>
         {/* <div className="row text-center d-flex justify-content-center align-items-center " style={{border:'2px solid purple', height:'100%'}} > */}
-              <form id="form" className="col d-flex justify-content-center flex-column align-items-center" onSubmit={handleSubmit} style={{
-                    borderRadius: "20px",
+              <form id="form" className="cl" onSubmit={handleSubmit} style={{
+                    // borderRadius: "1rem",
                     boxShadow: "0 0 10px var(--red2)",
                     backgroundColor: "var(--red5)",
-                    width: "100%",
-                    // height: "100%",
-                    margin: '1rem'
+                    display:'flex',
+                    flexDirection:'column',
+                    alignItems:'center',
+                    justifyContent:'center',
+                    minHeight:'100%',
+                    // width: "100%",
+                    height: "100%"
                 }} >
+                  <h1>Title Test</h1>
                 <h2 className="form-heading">Enter the city and country name</h2>
                 <p>
                   <em className="form-subheading">Example: Caguas, Puerto Rico</em>
