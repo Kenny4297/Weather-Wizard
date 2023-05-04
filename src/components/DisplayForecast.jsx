@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ErrorMessage from '../Utils/ErrorMessage'
+import { FiAlertCircle } from 'react-icons/fi';
+
 
 const DisplayForecast = () => {
   const [forecastData, setForecastData] = useState(null);
@@ -40,7 +42,7 @@ const DisplayForecast = () => {
   try {
     return (
       <div className="col future-information-section future-forecast d-flex justify-content-around">
-        {!forecastData ? <p>No forecast data</p> : (
+        {!forecastData ? <><p>No forecast data</p> <FiAlertCircle /> </> : (
         <div className="row justify-content-center">
           {/* Conditionally render the error message if it exists */}
           {errorMessage && <ErrorMessage message={errorMessage} />}
@@ -48,7 +50,11 @@ const DisplayForecast = () => {
             forecastData.list
               .filter((data, index) => index % 8 === 3)
               .map((data) => (
-                <div className= "card future-forecast-css" style={{width: '10rem', fontSize:'.5rem', lineHeight:"0.1rem", marginTop: "1rem"}} key={data.dt}>
+                <div className= "card d-flex align-items-center future-forecast-css" style={{
+                    width: '10rem', 
+                    fontSize:'.7rem', 
+                    lineHeight:"0.1rem", 
+                    marginTop: ".68rem"}} key={data.dt}>
                   <p className="future-date"><u>{getFormattedDate(data.dt_txt)}</u></p>
                   <p className="future-temp">Temperature: {data.main.temp}&deg;F</p>
                   <img

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { useParams } from "react-router-dom";
-import ErrorMessage from '../Utils/ErrorMessage'
+import { FiAlertCircle } from 'react-icons/fi';
+
 
 const DisplayCurrentWeather = () => {
     const [weatherData, setWeatherData] = useState(null);
@@ -53,12 +54,29 @@ const DisplayCurrentWeather = () => {
     }, [city]);
 
     return (
-        <div>
+        <div style={{border:'2px solid purple'}}>
             {console.log(`Weather data is:${JSON.stringify(weatherData)}`)}
             {!weatherData ? (
                 <p style={{color:'var(--Red1)'}}>Loading...</p>
                 ) : weatherData.cod === "404" ? (
-                <ErrorMessage message="Sorry, your request was inadequate. The city you entered does not exist in our database. If it is spelt correctly, try entering another city that is close by. " />
+                    <>
+                        <div style={{
+                            color: 'var(--red1)',
+                            display:'flex',
+                            border:'2px solid green',
+                            justifyContent:'center',
+                            alignItems:'center',
+                            position: 'relative',
+                            flexDirection:'column',
+                            textAlign:'center',
+                            top: '1rem',
+                            maxHeight:'300px'
+                        }}>
+                            <p >Sorry, but your request was inadequate. The city you entered does not exist in our database. If it is spelt correctly, try entering another city that is close by. </p>
+                    <FiAlertCircle size={295} style={{position:'relative', bottom:'1rem'}} />
+
+                    </div>
+                </>
                 ) : (
             <div className="row" style={{height: '100%'}}>
                 <div
@@ -68,86 +86,105 @@ const DisplayCurrentWeather = () => {
                     boxShadow: "0 0 10px var(--red2)",
                     backgroundColor: "var(--red5)",
                     width: "100%",
-                    margin: '1rem'
+                    margin: '1rem',
+                    height: '20rem'
                     // height: '60%',
                     // marginTop: '1rem',
                     // marginBottom: 'rem'
                 }}
                 >
-                {console.log("weatherData is not null, rendering content...")}
-                <div className="col w-100" style={{color: 'blue', fontSize: '.5rem', lineHeight:'.5rem'}}>
-                    <h2>
-                    <strong>
-                        <span
-                        id="display-city-name"
-                        style={{ textDecoration: "underline" }}
-                        >
-                        {weatherData.name}
+                    {console.log("weatherData is not null, rendering content...")}
+                    <div className="col" style={{
+                            maxHeight: '6.25rem', 
+                            fontSize: '1.3rem',
+                            // marginBottom:'2rem',
+                            // overflow:'hidden', 
+                            lineHeight:'1rem'}}>
+                        <h4>
+                            <strong>
+                                <span
+                                id="display-city-name"
+                                style={{ textDecoration: "underline" }}
+                                >
+                                {weatherData.name}
+                                </span>
+                            </strong>
+                        </h4>
+                        <p>
+                        <span className="todays-weather" id="display-date">
+                            {dayjs().$d.toString().substring(0, 10)}
                         </span>
-                    </strong>
-                    </h2>
-                    <p>
-                    <span className="todays-weather" id="display-date">
-                        {dayjs().$d.toString().substring(0, 10)}
-                    </span>
-                    </p>
-                    <p className="todays-numbers">{time}</p>
-                    {weatherData ? (
-                    <p>
-                        <span id="weather-icon">
-                        <img
-                            style={{ width: "100px" }}
-                            src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
-                            alt={weatherData.weather[0].description}
-                        />
-                        </span>
-                    </p>
-                    ) : null}
-                    <p>
-                        <span className="todays-numbers" id="display-skies">
-                            {weatherData.weather[0].description}
-                        </span>
-                    </p>
-                    <p>
-                        <span id="display-temperature">
-                            <span className="todays-weather">Current Temperature:</span>
-                            <span className="todays-numbers">
-                            {`${weatherData.main.temp}`}&deg;F
-                        </span>
-                    </span>
-                    </p>
-                    <p>
-                    <span id="display-high-temp">
-                        <span
-                        className="todays-numbers max-min"
-                        title="max"
-                        >{`${weatherData.main.temp_max}`}&deg;F</span>
-                        <span className="todays-numbers">/ </span>
-                        <span
-                        className="todays-numbers max-min"
-                        title="min"
-                        >{`${weatherData.main.temp_min}`}&deg;F</span>
-                    </span>
-                    </p>
-                    <p>
-                    <span id="display-humidity">
-                        <span className="todays-weather">Humidity: </span>
-                        <span className="todays-numbers">
-                        {`${weatherData.main.humidity}%`}
-                        </span>
-                    </span>
-                    </p>
-                    <p>
-                    <span id="wind-speed">
-                        <span className="todays-weather">Wind Speed: </span>
-                        <span className="todays-numbers">{`${weatherData.wind.speed}mph`}</span>
-                    </span>
-                    </p>
-                </div>
+                        </p>
+                        <p className="todays-numbers">{time} Local time</p>
+
+                        <div className="row" style={{border:'2px solid red', height: '14rem'}}>
+                            <div className="col" style={{border:'2px solid blue'}}>
+                                {weatherData ? (
+                                <p>
+                                    <span id="weather-icon">
+                                    <img
+                                        style={{ width: "8rem" }}
+                                        src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
+                                        alt={weatherData.weather[0].description}
+                                    />
+                                    </span>
+                                </p>
+                                ) : null}
+                                <p>
+                                    <span className="todays-numbers" id="display-skies">
+                                        {weatherData.weather[0].description}
+                                    </span>
+                                </p>
+                            </div>
+                                
+                            <div className="col d-flex flex-column justify-content-center align-items-center" style={{
+                                    border:'2px solid blue',
+                                    lineHeight:'1.7rem'
+                                    }}>
+                                <p>
+                                    <span id="display-temperature">
+                                        <span className="todays-weather">Temp: </span>
+                                        <span className="todays-numbers">
+                                        {`${weatherData.main.temp}`}&deg;F
+                                    </span>
+                                </span>
+                                </p>
+                                <p>
+                                <span id="display-high-temp">
+                                    <span
+                                    className="todays-numbers max-min"
+                                    title="min"
+                                    >{`${weatherData.main.temp_min}`}&deg;F</span>
+                                    <span className="todays-numbers"> / </span>
+                                    <span
+                                    className="todays-numbers max-min"
+                                    title="max"
+                                    >{`${weatherData.main.temp_max}`}&deg;F</span>
+                                    
+                                    
+                                </span>
+                                </p>
+                                <p>
+                                <span id="display-humidity">
+                                    <span className="todays-weather">Humidity: </span>
+                                    <span className="todays-numbers">
+                                    {`${weatherData.main.humidity}%`}
+                                    </span>
+                                </span>
+                                </p>
+                                <p>
+                                <span id="wind-speed">
+                                    <span className="todays-weather">Wind Speed: </span>
+                                    <span className="todays-numbers">{`${weatherData.wind.speed}mph`}</span>
+                                </span>
+                                </p>
+                            </div>
+                                
+                        </div>
+                    </div>
                 </div>
             </div>
             )}
-        
         </div>
     );
 };
