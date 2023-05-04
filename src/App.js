@@ -28,7 +28,7 @@ function App() {
 
 function WeatherResultsPage({ city, setCity }) {
   return (
-    <div style={{padding:'1.5rem', border:'2px solid blue', height:'100vh', width:'100vw', backgroundImage: 'linear-gradient(159deg, rgb(255, 251, 255) 0%, rgb(255, 255, 255) 100%)'}}>
+    <div style={{padding:'1.5rem', border:'2px solid blue', height:'100vh', width:'100vw',fontSize:'1rem', backgroundImage: 'linear-gradient(159deg, rgb(255, 251, 255) 0%, rgb(255, 255, 255) 100%)'}}>
       <div style={{display:'flex'}}>
           <div style={{width:'50%', border:'2px solid orange'}}>
             <DisplayWeather city={city} />

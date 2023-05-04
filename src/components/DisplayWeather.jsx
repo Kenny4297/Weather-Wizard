@@ -123,7 +123,7 @@ const DisplayCurrentWeather = () => {
                                 boxShadow: "0 0 10px var(--red2)", 
                                 width:'50%', 
                                 margin: '1rem', 
-                                marginTop: '0rem',
+                                marginTop: '1rem',
 
                                 borderRadius:'1rem'
                                 }} >
