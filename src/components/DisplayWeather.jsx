@@ -96,7 +96,7 @@ const DisplayCurrentWeather = () => {
                             <strong>
                                 <span
                                 id="display-city-name"
-                                style={{ textDecoration: "underline" }}
+                                style={{ textDecoration: "underline"}}
                                 >
                                 {weatherData.name}
                                 </span>

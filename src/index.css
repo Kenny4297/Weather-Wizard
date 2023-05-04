@@ -127,26 +127,97 @@ code {
   flex-direction: column;
   margin: 10px;
   padding: 20px;
-  height: 70%;
+  height:  15rem;
   font-size: 1rem; 
-  line-height: .3rem;
+  line-height: .8rem;
   min-width: 5rem;
   max-width: 40%;
   margin-top: .68rem;
   flex-grow: 1;
 }
 
+/* Width */
 @media (max-width: 390px) {
   .future-forecast-css {
     font-size:.5rem;
   }
 }
 
-/* @media (max-width: 640px) {
+@media (max-width: 901px) {
   .future-forecast-css {
     flex-basis: calc(100% - 20px);
+    line-height: 1.2rem;
   }
-} */
+}
+
+/* Height */
+
+@media (min-height: 1080px) {
+  .future-forecast-css {
+    padding-top:2.5rem;
+  }
+}
+
+@media (min-height: 986px) {
+  .future-forecast-css {
+    padding-top:2rem;
+  }
+}
+
+@media (max-height: 959px) {
+  .future-forecast-css {
+    padding-top: 2rem;
+    color:blue;
+  }
+}
+
+@media (min-height: 866px) {
+  .future-forecast-css {
+    padding-top:2rem;
+    padding-bottom:1rem;
+  }
+}
+
+@media (max-height: 676px) {
+  .future-forecast-css {
+    height: 10rem;
+    line-height:.2rem;
+    padding-top:0.7rem;
+  }
+}
+
+@media (max-height: 476px) {
+  .future-forecast-css {
+    height: 8rem;
+    line-height:.2rem;
+    padding-top:1rem;
+
+  }
+  .icon-images {
+    display: none;
+  }
+}
+
+@media (max-height: 404px) {
+  .future-forecast-css {
+    height: 6rem;
+    line-height:.2rem;
+    padding-top:.5rem;
+
+  }
+}
+
+@media (max-height: 350px) {
+  .future-forecast-css {
+    height: 4rem;
+    line-height:.2rem;
+    padding-top:1rem; 
+  }
+  .skies-description, .wind-speed, .humidity {
+    display: none;
+  } 
+}
+
 
 .future-forecast-css:hover {
   transform: scale(1.3);
