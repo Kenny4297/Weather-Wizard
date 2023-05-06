@@ -28,10 +28,8 @@ function App() {
 
 function WeatherResultsPage({ city, setCity }) {
   return (
-    <div style={{backgroundImage: 'linear-gradient(159deg, rgb(255, 251, 255) 0%, rgb(255, 255, 255) 100%)'}}>
+    <>
       <div className='weather-section'>
-
-
           <div className='box1'>
             <DisplayWeather city={city} />
           </div>
@@ -45,8 +43,7 @@ function WeatherResultsPage({ city, setCity }) {
         <div style={{marginTop:'1.5rem'}}>
           <DisplayForecast city={city} />
         </div>
-      
-    </div>
+  </>
   );
 }
 
