@@ -42,22 +42,22 @@ const IntroPage = ({ setCity }) => {
   };
 
   return (
-    <div className="" style={{height:'100%'}}>
+    <div style={{height:'100%'}}>
         {/* <div className="row text-center d-flex justify-content-center align-items-center " style={{border:'2px solid purple', height:'100%'}} > */}
-              <form id="form" className="intro-page" onSubmit={handleSubmit}><h1 className='intro-page-text-h1'><em>Weather Wizard</em></h1>
-                <h2 className="top-section-text intro-page-text">Enter the city and country name</h2>
+              <form id="form" className="intro-page-box"onSubmit={handleSubmit}><h1 className='intro-page-text-h1'><em>Weather Wizard</em></h1>
+                <h2 className="intro-page-text">Enter the city name</h2>
                 <p>
-                  <em className="top-section-text intro-page-text">Example: Caguas, Puerto Rico</em>
+                  <em className="intro-page-text">Example: Caguas, Puerto Rico</em>
                 </p>
                 <input
                   type="text"
                   id="cityInput"
-                  className="form-input top-section-text intro-page-text"
+                  className="form-input intro-page-text"
                   value={inputValue}
                   onChange={handleInputChange}
                 />
                 <p>
-                  <button type="submit" id="submit" className="form-button top-section-text intro-page-text">
+                  <button type="submit" id="submit" className="form-button">
                     Today's Weather
                   </button>
                 </p>

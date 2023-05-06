@@ -91,8 +91,8 @@ const DisplayCurrentWeather = () => {
                 }}
                 >
                     {console.log("weatherData is not null, rendering content...")}
-                        <div className="weather-title">
-                            <h1>
+                        <div className="weather-title-box">
+                            <h1 className='city-name'>
                                 <strong>
                                     <span
                                     id="display-city-name"
@@ -102,26 +102,18 @@ const DisplayCurrentWeather = () => {
                                     </span>
                                 </strong>
                             </h1>
-                            <p className="top-section-text date-and-time">
+                            <p className="date-and-time">
                             <span id="display-date">
                                 {dayjs().$d.toString().substring(0, 10)}
                             </span>
                             </p>
-                            <p className="top-section-text date-and-time">{time} <span className='local-time '>Local time</span></p>
+                            <p className="date-and-time">{time} <span className='local-time '>Local time</span></p>
                         </div>
 
-                        <div className="" style={{
-                                display:'flex',
-                                width:'100%',
-                                height:'60%',  
-                                position:'absolute',
-                                bottom:'0', 
-                                // top:'1.5rem',
-                                // left:'.74rem', 
-                                }}>
-                            <div className='weather-icon-section '>
+                        <div className="weather-box">
+                            <div className='weather-icon-box '>
                                 {weatherData ? (
-                                <p>
+                                <p className=''>
                                     <span id="weather-icon">
                                     <img
                                         src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
@@ -130,14 +122,14 @@ const DisplayCurrentWeather = () => {
                                     </span>
                                 </p>
                                 ) : null}
-                                <p className="">
+                                <p className="weather-img-desc">
                                     <span id="display-skies" style={{color: "var(--red3)", fontWeight:'600'}}>
                                         {weatherData.weather[0].description}
                                     </span>
                                 </p>
                             </div>
                                 
-                            <div className="todays-weather">
+                            <div className="todays-weather-data">
                                 <p className="daily-data-text">
                                     <span id="display-temperature">
                                         <span style={{color:"var(--red2)"}}>Temp: </span>
