@@ -42,34 +42,22 @@ const IntroPage = ({ setCity }) => {
   };
 
   return (
-    <div className="rw" style={{height:'100%'}}>
+    <div className="" style={{height:'100%'}}>
         {/* <div className="row text-center d-flex justify-content-center align-items-center " style={{border:'2px solid purple', height:'100%'}} > */}
-              <form id="form" className="cl" onSubmit={handleSubmit} style={{
-                    // borderRadius: "1rem",
-                    boxShadow: "0 0 10px var(--red2)",
-                    backgroundColor: "var(--red5)",
-                    display:'flex',
-                    flexDirection:'column',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    minHeight:'100%',
-                    // width: "100%",
-                    height: "100%"
-                }} >
-                  <h1>Title Test</h1>
-                <h2 className="form-heading">Enter the city and country name</h2>
+              <form id="form" className="intro-page" onSubmit={handleSubmit}><h1 className='intro-page-text-h1'><em>Weather Wizard</em></h1>
+                <h2 className="top-section-text intro-page-text">Enter the city and country name</h2>
                 <p>
-                  <em className="form-subheading">Example: Caguas, Puerto Rico</em>
+                  <em className="top-section-text intro-page-text">Example: Caguas, Puerto Rico</em>
                 </p>
                 <input
                   type="text"
                   id="cityInput"
-                  className="form-input"
+                  className="form-input top-section-text intro-page-text"
                   value={inputValue}
                   onChange={handleInputChange}
                 />
                 <p>
-                  <button type="submit" id="submit" className="form-button">
+                  <button type="submit" id="submit" className="form-button top-section-text intro-page-text">
                     Today's Weather
                   </button>
                 </p>

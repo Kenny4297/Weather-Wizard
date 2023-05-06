@@ -63,7 +63,7 @@ const DisplayCurrentWeather = () => {
                     <div style={{
                             color: 'blue',
                             display:'flex',
-                            border:'2px solid green',
+                            // border:'2px solid green',
                             justifyContent:'center',
                             alignItems:'center',
                             position: 'relative',
@@ -86,30 +86,31 @@ const DisplayCurrentWeather = () => {
                     position: 'relative',
                     textAlign:'center',
                     // paddingTop:'1rem',
-                    border:'2px solid green',
+                    // border:'2px solid green',
                     height:'100%'
                 }}
                 >
                     {console.log("weatherData is not null, rendering content...")}
-                        
-                        <h4>
-                            <strong>
-                                <span
-                                id="display-city-name"
-                                style={{ textDecoration: "underline"}}
-                                >
-                                {weatherData.name}
-                                </span>
-                            </strong>
-                        </h4>
-                        <p>
-                        <span className="todays-weather" id="display-date">
-                            {dayjs().$d.toString().substring(0, 10)}
-                        </span>
-                        </p>
-                        <p className="todays-numbers">{time} Local time</p>
+                        <div className="weather-title">
+                            <h1>
+                                <strong>
+                                    <span
+                                    id="display-city-name"
+                                    style={{ textDecoration: "underline"}}
+                                    >
+                                    {weatherData.name}
+                                    </span>
+                                </strong>
+                            </h1>
+                            <p className="top-section-text date-and-time">
+                            <span id="display-date">
+                                {dayjs().$d.toString().substring(0, 10)}
+                            </span>
+                            </p>
+                            <p className="top-section-text date-and-time">{time} <span className='local-time '>Local time</span></p>
+                        </div>
 
-                        <div className="rw" style={{
+                        <div className="" style={{
                                 display:'flex',
                                 width:'100%',
                                 height:'60%',  
@@ -117,54 +118,35 @@ const DisplayCurrentWeather = () => {
                                 bottom:'0', 
                                 // top:'1.5rem',
                                 // left:'.74rem', 
-                                border:'2px solid blue'
                                 }}>
-                            <div style={{
-                                boxShadow: "0 0 10px var(--red2)", 
-                                width:'50%', 
-                                margin: '1rem', 
-                                marginTop: '1rem',
-
-                                borderRadius:'1rem'
-                                }} >
+                            <div className='weather-icon-section '>
                                 {weatherData ? (
                                 <p>
                                     <span id="weather-icon">
                                     <img
-                                        style={{ width: "8rem" }}
                                         src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
                                         alt={weatherData.weather[0].description}
                                     />
                                     </span>
                                 </p>
                                 ) : null}
-                                <p>
-                                    <span id="display-skies" style={{color: "var(--red1)", fontWeight:'600'}}>
+                                <p className="">
+                                    <span id="display-skies" style={{color: "var(--red3)", fontWeight:'600'}}>
                                         {weatherData.weather[0].description}
                                     </span>
                                 </p>
                             </div>
                                 
-                            <div style={{
-                                    lineHeight:'1.7rem',
-                                    width:'50%',
-                                    paddingTop:'1rem',
-                                    margin:'1rem',
-                                    boxShadow: "0 0 10px var(--red2)",
-                                    marginTop: '1rem',
-                                    borderRadius:'1rem'
-                                    // borderRadius: '1rem',
-                                    // backgroundColor: 'var(--red5)',
-                                    }}>
-                                <p>
+                            <div className="todays-weather">
+                                <p className="daily-data-text">
                                     <span id="display-temperature">
-                                        <span style={{color:"var(--red3)"}}>Temp: </span>
-                                        <span style={{color:"var(--red2)"}}>
+                                        <span style={{color:"var(--red2)"}}>Temp: </span>
+                                        <span style={{color:"var(--red3)"}}>
                                         {`${weatherData.main.temp}`}&deg;F
                                     </span>
                                 </span>
                                 </p>
-                                <p>
+                                <p className="daily-data-text">
                                 <span id="display-high-temp">
                                     <span
                                     className="todays-numbers max-min"
@@ -179,7 +161,7 @@ const DisplayCurrentWeather = () => {
                                     
                                 </span>
                                 </p>
-                                <p>
+                                <p className="daily-data-text">
                                 <span id="display-humidity">
                                     <span style={{color:"var(--red2)"}}>Humidity: </span>
                                     <span style={{color:"var(--red3)"}}>
@@ -187,7 +169,7 @@ const DisplayCurrentWeather = () => {
                                     </span>
                                 </span>
                                 </p>
-                                <p>
+                                <p className="daily-data-text">
                                 <span id="wind-speed">
                                     <span style={{color:"var(--red2)"}}>Wind Speed: </span>
                                     <span style={{color:"var(--red3)"}}>{`${weatherData.wind.speed}mph`}</span>

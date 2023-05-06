@@ -28,12 +28,18 @@ function App() {
 
 function WeatherResultsPage({ city, setCity }) {
   return (
-    <div style={{padding:'1.5rem', border:'2px solid blue', height:'100vh', width:'100vw',fontSize:'1rem', backgroundImage: 'linear-gradient(159deg, rgb(255, 251, 255) 0%, rgb(255, 255, 255) 100%)'}}>
-      <div style={{display:'flex'}}>
-          <div style={{width:'50%', border:'2px solid orange'}}>
+    <div style={{padding:'1.5rem', height:'100vh', width:'100vw',fontSize:'1rem', backgroundImage: 'linear-gradient(159deg, rgb(255, 251, 255) 0%, rgb(255, 255, 255) 100%)'}}>
+      <div className='weather-section' style={{display:'flex'}}>
+
+
+          <div className='box1' >
             <DisplayWeather city={city} />
           </div>
-          <div style={{width:'50%', height:'50vh'}}>
+
+
+          <div className='box2' style={{
+            // width:'50%', 
+            height:'50vh'}}>
             <IntroPage setCity={setCity} />
           </div>
       </div>
