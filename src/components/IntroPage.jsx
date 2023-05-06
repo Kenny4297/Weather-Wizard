@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaBolt, FaCloudShowersHeavy } from 'react-icons/fa'
 
 const IntroPage = ({ setCity }) => {
   const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
 
-  // load saved history from localStorage
-  const [history, setHistory] = useState(() => {
-    const savedHistory = localStorage.getItem("weatherHistory");
-    return savedHistory ? JSON.parse(savedHistory) : [];
-  });
-
   const [selectedCity, setSelectedCity] = useState(null);
 
-  useEffect(() => {
-    // save history to localStorage whenever it changes
-    localStorage.setItem("weatherHistory", JSON.stringify(history));
-  }, [history]);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+  const checkInput = (e) => {
+    const value = e.target.value.trim();
+    setInputValue(value);
+
+    if (value === '') {
+      setIsButtonDisabled(true);
+    } else {
+      setIsButtonDisabled(false);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -29,24 +28,15 @@ const IntroPage = ({ setCity }) => {
     navigate(`/displayWeather/${inputValue}`);
     setInputValue("");
 
-    // add new entry to history
-    if (!history.includes(inputValue)) {
-      setHistory((prevHistory) => [...prevHistory, inputValue]);
-    }
   };
 
-  const handleHistoryClick = (city) => {
-    setSelectedCity(city);
-    setCity(city);
-    navigate(`/displayWeather/${city}`);
-  };
 
   return (
     <div style={{height:'100%'}}>
-        {/* <div className="row text-center d-flex justify-content-center align-items-center " style={{border:'2px solid purple', height:'100%'}} > */}
-              <form id="form" className="intro-page-box"onSubmit={handleSubmit}><h1 className='intro-page-text-h1'><em>Weather Wizard</em></h1>
-                <h2 className="intro-page-text">Enter the city name</h2>
-                <p>
+              <form id="form" className="intro-page-box"onSubmit={handleSubmit}>
+                <h1 className='intro-page-text-h1' style={{color: '#5DA4D8'}}><FaCloudShowersHeavy /><em>Weather Wizard</em><FaBolt size={30}/></h1>
+                <h2 className="intro-page-text"  style={{color:'var(--red2)'}}>Enter the city name</h2>
+                <p style={{color:'var(--red3)'}}>
                   <em className="intro-page-text">Example: Caguas, Puerto Rico</em>
                 </p>
                 <input
@@ -54,32 +44,17 @@ const IntroPage = ({ setCity }) => {
                   id="cityInput"
                   className="form-input intro-page-text"
                   value={inputValue}
-                  onChange={handleInputChange}
+                  onChange={checkInput}
                 />
                 <p>
-                  <button type="submit" id="submit" className="form-button">
+                  <button type="submit" id="submit" disabled={isButtonDisabled} className="form-button"
+                  style={{
+                    backgroundColor: isButtonDisabled ? 'grey' : 'var(--red2)' // Set this to your normal button color
+                  }}>
                     Today's Weather
                   </button>
                 </p>
               </form>
-        {/* </div> */}
-      
-  
-      {/* <div className="row history-row text-center" style={{height: "20vh", border: '2px solid blue', marginTop: '-2rem'}}>
-        <p className="history-heading">Recent History</p>
-        <div className="col-12 history">
-          {history.map((city) => (
-            <button
-              key={city}
-              onClick={() => handleHistoryClick(city)}
-              className="history-button"
-              disabled={city === selectedCity}
-            >
-              {city}
-            </button>
-          ))}
-        </div>
-      </div> */}
     </div>
   );
 };

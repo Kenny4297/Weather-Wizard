@@ -42,7 +42,7 @@ const DisplayForecast = () => {
   try {
     return (
       <div style={{height:'40vh', overflow:'visible', zIndex:'1'}}>
-        {!forecastData ? <><p>No forecast data</p> <FiAlertCircle /> </> : (
+        {!forecastData ? <></> : (
         <div className="future-forecast">
           {/* Conditionally render the error message if it exists */}
           {errorMessage && <ErrorMessage message={errorMessage} />}
@@ -51,17 +51,17 @@ const DisplayForecast = () => {
               .filter((data, index) => index % 8 === 3)
               .map((data) => (
                 <div className="future-forecast-css" key={data.dt}>
-                  <p className="future-date"><u>{getFormattedDate(data.dt_txt)}</u></p>
-                  <p className="future-temp">{data.main.temp}&deg;F</p>
+                  <p className="future-text-date"><u>{getFormattedDate(data.dt_txt)}</u></p>
+                  <p className="future-text">{data.main.temp}&deg;F</p>
                   <img
                     className="icon-images"
                     style={{width: '3rem'}}
                     src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
                     alt={data.weather[0].description}
                   />
-                  <p className="skies-description">{data.weather[0].description}</p>
-                  <p className="wind-speed">{data.wind.speed} mph</p>
-                  <p className="humidity">{data.main.humidity}%</p>
+                  <p className="future-text">{data.weather[0].description}</p>
+                  <p className="future-text">{data.wind.speed} mph</p>
+                  <p className="future-text">{data.main.humidity}%</p>
                 </div>
               ))}
         </div>

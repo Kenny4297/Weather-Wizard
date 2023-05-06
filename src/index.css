@@ -106,6 +106,7 @@ code {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+
 }
 
 .form-button:hover {
@@ -164,8 +165,13 @@ code {
 
 
 
+.future-text {
+  color: var(--red3)
+}
 
-
+.future-text-date {
+  color: var(--red2)
+}
 
 
 
@@ -189,11 +195,24 @@ code {
 }
 
 .intro-page-text {
-  color: orange;
+  /* color: orange; */
 }
 
 .intro-page-text-h1 {
-  text-decoration: underline;
+  /* transition: transform 0.2s;
+  animation: pulsate 2s infinite; */
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 

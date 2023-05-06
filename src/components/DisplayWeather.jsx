@@ -10,31 +10,38 @@ const DisplayCurrentWeather = () => {
     const { city } = useParams();
     const timeAPIKey = "ZCTR7FVB0K4V";
     const [time, setTime] = useState("");
+    const [date, setDate] = useState("");
     const [errorMessage, setErrorMessage] = useState(null)
 
     const getTimeForLocation = async (lat, lng) => {
         const timeUrl = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeAPIKey}&format=json&by=position&lat=${lat}&lng=${lng}`;
         try {
-            const response = await fetch(timeUrl);
-            const data = await response.json();
-            const currentTime = new Date(); // get the current time
-            const timezoneOffsetSeconds = data.gmtOffset; // get the timezone offset in seconds
-            const timezoneOffsetMilliseconds = timezoneOffsetSeconds * 1000; // convert to milliseconds
-            const timeWithOffset = new Date(
-                currentTime.getTime() +
-                    5 * 60 * 60 * 1000 +
-                    timezoneOffsetMilliseconds
-            ); // add 5 hours worth of milliseconds and the offset to the current time
-            const time = timeWithOffset.toLocaleTimeString([], {
-                hour: "numeric",
-                minute: "2-digit",
-                hour12: true,
-            });
-            setTime(time);
+          const response = await fetch(timeUrl);
+          const data = await response.json();
+      
+          // Parse the date and time from the API response
+          const dateTime = new Date(data.formatted);
+      
+          // Extract and format the date
+          const formattedDate = dateTime.toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'long',
+            day: 'numeric',
+          });
+      
+          // Extract and format the time
+          const formattedTime = dateTime.toLocaleTimeString([], {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true,
+          });
+      
+          setDate(formattedDate); // Set the date
+          setTime(formattedTime); // Set the time
         } catch (error) {
-            console.log(error);
+          console.log(error);
         }
-    };
+      };
 
     const returnCurrentForecast = async (city) => {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
@@ -55,24 +62,28 @@ const DisplayCurrentWeather = () => {
 
     return (
             <div style={{height:'100%'}}>
-                {console.log(`Weather data is:${JSON.stringify(weatherData)}`)}
                 {!weatherData ? (
-                <p style={{color:'var(--Red1)', display:'flex', justifyContent:'center', alignItems:'center'}}>Loading...</p>
+                <p style={{color:'var(--red3)', 
+                display:'flex', 
+                justifyContent:'center', 
+                position:'relative',
+                top:'5rem',
+                fontSize:'1.5rem',
+                alignItems:'center'}}>Loading...</p>
                 ) : weatherData.cod === "404" ? (
                     <>
                     <div style={{
-                            color: 'blue',
                             display:'flex',
-                            // border:'2px solid green',
                             justifyContent:'center',
                             alignItems:'center',
                             position: 'relative',
+                            top:'5rem',
                             flexDirection:'column',
                             textAlign:'center',
                             // top: '1rem',
                             maxHeight:'300px'
                         }}>
-                            <p >Sorry, but your request was inadequate. The city you entered does not exist in our database. If it is spelt correctly, try entering another city that is close by. </p>
+                            <p>Sorry, but your request was inadequate. The city you entered does not exist in our database. If it is spelt correctly, try entering another city that is close by. </p>
                     <FiAlertCircle size={295} style={{position:'relative', bottom:'1rem'}} />
 
                     </div>
@@ -90,7 +101,6 @@ const DisplayCurrentWeather = () => {
                     height:'100%'
                 }}
                 >
-                    {console.log("weatherData is not null, rendering content...")}
                         <div className="weather-title-box">
                             <h1 className='city-name'>
                                 <strong>
@@ -104,7 +114,7 @@ const DisplayCurrentWeather = () => {
                             </h1>
                             <p className="date-and-time">
                             <span id="display-date">
-                                {dayjs().$d.toString().substring(0, 10)}
+                                {date}
                             </span>
                             </p>
                             <p className="date-and-time">{time} <span className='local-time '>Local time</span></p>
