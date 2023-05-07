@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DisplayWeather from "./components/DisplayWeather";
 import DisplayForecast from "./components/DisplayForecast";
@@ -6,6 +6,15 @@ import IntroPage from "./components/IntroPage";
 
 function App() {
   const [city, setCity] = useState("");
+
+  useEffect(() => {
+    // Check if there's a default city saved in localStorage
+    const savedDefaultCity = localStorage.getItem("defaultCity");
+    if (savedDefaultCity) {
+      // Fetch weather data for the default city
+      // returnCurrentForecast(savedDefaultCity);
+    }
+  }, []);
 
   return (
     <BrowserRouter>
@@ -36,7 +45,7 @@ function WeatherResultsPage({ city, setCity }) {
 
 
           <div className='box2'>
-            <IntroPage setCity={setCity} />
+            <IntroPage setCity={setCity} city={city} />
           </div>
       </div>
 
