@@ -7,14 +7,6 @@ import IntroPage from "./components/IntroPage";
 function App() {
   const [city, setCity] = useState("");
 
-  useEffect(() => {
-    // Check if there's a default city saved in localStorage
-    const savedDefaultCity = localStorage.getItem("defaultCity");
-    if (savedDefaultCity) {
-      // Fetch weather data for the default city
-      // returnCurrentForecast(savedDefaultCity);
-    }
-  }, []);
 
   return (
     <BrowserRouter>

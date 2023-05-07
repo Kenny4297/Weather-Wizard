@@ -10,6 +10,23 @@ const IntroPage = ({ setCity, city }) => {
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
+  const [hasMounted, setHasMounted] = useState(false);
+
+  const [defaultCityState, setDefaultCityState] = useState("");
+
+  useEffect(() => {
+    if (!hasMounted) {
+      const defaultCity = localStorage.getItem("defaultCity");
+      if (defaultCity) {
+        setCity(defaultCity);
+        setSelectedCity(defaultCity);
+        navigate(`/displayWeather/${defaultCity}`);
+      }
+      setHasMounted(true);
+    }
+    setDefaultCityState(localStorage.getItem("defaultCity"));
+  }, [navigate, setCity, hasMounted]);
+
   const checkInput = (e) => {
     const value = e.target.value.trim();
     setInputValue(value);
@@ -27,10 +44,13 @@ const IntroPage = ({ setCity, city }) => {
     setSelectedCity(inputValue);
     navigate(`/displayWeather/${inputValue}`);
     setInputValue("");
+    console.log(`The city is ${city}`)
   };
 
   const setDefaultCity = () => {
     localStorage.setItem("defaultCity", city);
+    setDefaultCityState(city);
+    console.log(localStorage.getItem("defaultCity"));
   };
 
 
@@ -57,7 +77,14 @@ const IntroPage = ({ setCity, city }) => {
                     Today's Weather
                   </button>
                 </p>
-                <p><button type='button' onClick={setDefaultCity}>Set City!</button></p>
+                <div>
+                  {city && (
+                    <button type='button' onClick={setDefaultCity}>Set Default City</button>
+                  )}
+                  {localStorage.getItem("defaultCity") && (
+                    <p>Current City: {localStorage.getItem("defaultCity")}</p>
+                  )}
+                </div>
               </form>
     </div>
   );
