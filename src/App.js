@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DisplayWeather from "./components/DisplayWeather";
-import DisplayForecast from "./components/DisplayForecast";
-import IntroPage from "./components/IntroPage";
+import { DisplayCurrentWeather, DisplayForecast, IntroPage } from "./components";
+
 
 function App() {
   const [city, setCity] = useState("");
-
 
   return (
     <BrowserRouter>
@@ -32,7 +30,7 @@ function WeatherResultsPage({ city, setCity }) {
     <>
       <div className='weather-section'>
           <div className='box1'>
-            <DisplayWeather city={city} />
+            <DisplayCurrentWeather city={city} />
           </div>
 
 
