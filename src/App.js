@@ -7,7 +7,7 @@ function App() {
   const [city, setCity] = useState("");
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="Weather-Wizard">
       <Routes>
         <Route
           exact
