@@ -9,6 +9,8 @@ const DisplayCurrentWeather = () => {
     const timeAPIKey = "ZCTR7FVB0K4V";
     const [time, setTime] = useState("");
     const [date, setDate] = useState("");
+    
+    let apiCallCount = 0
 
     const getTimeForLocation = useCallback(async (lat, lng) => {
         const timeUrl = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeAPIKey}&format=json&by=position&lat=${lat}&lng=${lng}`;
@@ -35,10 +37,12 @@ const DisplayCurrentWeather = () => {
       
           setDate(formattedDate);
           setTime(formattedTime);
+          apiCallCount++
+          console.log(`API call count is ${apiCallCount}`)
         } catch (error) {
           console.log(error);
         }
-      }, [timeAPIKey, setDate, setTime]);
+      }, [timeAPIKey, setDate, setTime, apiCallCount]);
 
 
     const returnCurrentForecast = useCallback(async (city) => {

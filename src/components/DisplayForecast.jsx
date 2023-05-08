@@ -58,7 +58,7 @@ const DisplayForecast = () => {
         return (
             <div style={{ height: "40vh", overflow: "visible", zIndex: "1" }}>
                 {!forecastData ? (
-                    <><p>No forecast data available</p></>
+                    <><p style={{color:'var(--red3)', textAlign:'center', fontSize:'2rem'}}>Loading...</p></>
                 ) : (
                     <div className="future-forecast">
                         {forecastData &&

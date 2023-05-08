@@ -91,12 +91,12 @@ const IntroPage = ({ setCity, city }) => {
                 </p>
                 <div>
                     {city && (
-                        <button type="button" onClick={setDefaultCity}>
+                        <button type="button" className='set-city-button' onClick={setDefaultCity}>
                             Set Default City
                         </button>
                     )}
                     {localStorage.getItem("defaultCity") && (
-                        <p>
+                        <p className='default-city-text'>
                             Current City: {localStorage.getItem("defaultCity")}
                         </p>
                     )}

@@ -258,6 +258,18 @@ code {
     flex-grow: 1;
 }
 
+.set-city-button {
+    color: white;
+    background-color: #5DA4D8;
+    box-shadow: 0 0 5px var(--red2);
+    border: 1.5px solid var(--red4);
+    border-radius: .5rem;
+}
+
+.default-city-text {
+    color:grey;
+}
+
 /* =================Media Queries */
 @media (min-width: 240px) and (max-width: 319px) {
     .weather-section {
