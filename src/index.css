@@ -20,22 +20,6 @@ code {
         monospace;
 }
 
-#weather-icon {
-    /* width: 200px; */
-}
-
-/* .todays-weather { 
-  color: var(--red2); 
-  font-size: 1rem;
-  height: 20vh;
-} */
-/* 
-.todays-numbers {
-  color: var(--red1);
-  font-size: 1rem;
-  margin-left: 1rem;
-} */
-
 :root {
     --red1: #5d001e;
     --red2: #9a1750;
@@ -44,28 +28,45 @@ code {
     --red5: #e3e2df;
 }
 
-/* =====Weather Section ========= */
 
-/* Intro Page */
+/*===== Weather title ===== */
+.weather-icon-box img {
+    width: 8rem;
+}
 
-.todays-numbers {
+.future-forecast-css:hover {
+    transform: scale(1.15);
+    z-index: 5;
+    cursor: pointer;
+    background-color: var(--red5);
+}
+
+.max-min {
+    cursor: pointer;
+}
+
+.future-text {
     color: var(--red3);
 }
 
-/* Intro page width */
+.future-text-date {
+    color: var(--red2);
+}
 
-/* Into-page height */
 
-/* @media (max-height:478px) {
-  .intro-page-text {
-    color: green;
-    font-size: .75rem;
-    line-height: .5rem;
-  }
-  .intro-page-text-h1 {
-    color: purple;
-  }
-} */
+/* ===== Intro Page section */
+.intro-page-box {
+    box-shadow: 0 0 10px var(--red2);
+    background-color: var(--red5);
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+}
 
 .form-heading {
     font-size: 1rem;
@@ -96,64 +97,6 @@ code {
     background-color: var(--red3);
 }
 
-.history-row {
-    background-color: var(--red1);
-    /* padding: 20px; */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-/*===== Weather title ===== */
-
-.weather-icon-box img {
-    width: 8rem;
-}
-
-.future-forecast-css:hover {
-    transform: scale(1.15);
-    z-index: 5;
-    cursor: pointer;
-    background-color: var(--red5);
-}
-
-.max-min {
-    cursor: pointer;
-}
-
-.future-text {
-    color: var(--red3);
-}
-
-.future-text-date {
-    color: var(--red2);
-}
-
-/* Intro Page section */
-
-.intro-page-box {
-    box-shadow: 0 0 10px var(--red2);
-    background-color: var(--red5);
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100%;
-    width: 100%;
-    height: 100%;
-    /* border: 2px solid red; */
-    /* margin-left: -1rem */
-}
-
-.intro-page-text {
-    /* color: orange; */
-}
-
-.intro-page-text-h1 {
-    /* transition: transform 0.2s;
-  animation: pulsate 2s infinite; */
-}
-
 @keyframes pulsate {
     0% {
         transform: scale(1);
@@ -166,18 +109,14 @@ code {
     }
 }
 
+
 /*===== Weather section */
 .weather-section {
     display: flex;
-    /* margin: .5rem; */
     padding: 1rem;
-
-    /* border:2px solid blue; */
 }
 
 .weather-title-box {
-    /* border: 2px solid green; */
-    /* height: 10px; */
     height: auto;
 }
 
@@ -192,12 +131,10 @@ code {
 }
 
 .box2 {
-    /* border: 2px solid green; */
     width: 50%;
 }
 
 .weather-box {
-    /* border:2px solid orange; */
     display: flex;
     width: 100%;
     position: absolute;
@@ -211,7 +148,6 @@ code {
     margin: 1rem;
     margin-top: 1rem;
     border-radius: 1rem;
-    /* border: 2px solid green; */
 }
 
 .weather-img-desc {
@@ -224,22 +160,24 @@ code {
     margin: 1rem;
     box-shadow: 0 0 10px var(--red2);
     border-radius: 1rem;
-    /* border: 2px solid blue; */
 }
 
 .date-and-time {
-    /* color: red; */
     line-height: 1rem;
 }
 
-/* =============Future Forecast */
+.todays-numbers {
+    color: var(--red3);
+}
+
+
+/* ===== Future Forecast */
 .future-forecast {
     height: 40vh;
     display: flex;
-    flex-wrap: wrap; /* wrap child elements to new line */
+    flex-wrap: wrap; 
     justify-content: center;
     align-items: center;
-    /* border:2px solid green; */
     margin: 1rem;
 }
 
@@ -270,7 +208,8 @@ code {
     color:grey;
 }
 
-/* =================Media Queries */
+
+/* =====Media Queries */
 @media (min-width: 240px) and (max-width: 319px) {
     .weather-section {
         flex-direction: column-reverse;
@@ -548,7 +487,6 @@ code {
 @media (min-width: 414px) and (max-width: 479px) {
     .weather-section {
         flex-direction: column-reverse;
-        /* margin-right:0rem; */
     }
     .box1 {
         width: 100%;
