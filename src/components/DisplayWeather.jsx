@@ -122,9 +122,9 @@ const DisplayCurrentWeather = () => {
                             <strong>
                                 <span
                                     id="display-city-name"
-                                    style={{ textDecoration: "underline" }}
+                                    // style={{ textDecoration: "underline" }}
                                 >
-                                    {weatherData.name}
+                                    {weatherData.name}, {weatherData.sys.country}
                                 </span>
                             </strong>
                         </h1>
