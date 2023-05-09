@@ -10,8 +10,10 @@
     "babel-jest": "^29.5.0",
     "bootstrap": "^5.2.3",
     "dotenv": "^16.0.3",
+    "fetch-mock": "^9.11.0",
     "gh-pages": "^5.0.0",
     "jest": "^27.5.1",
+    "node-fetch": "^3.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
@@ -28,10 +30,7 @@
     "deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -44,12 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    },
-    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"]
   }
 }

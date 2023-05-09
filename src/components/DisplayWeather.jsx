@@ -66,7 +66,7 @@ const DisplayCurrentWeather = () => {
     
 
     return (
-        <div style={{ height: "100%" }}>
+        <div data-testid="display-weather-page" style={{ height: "100%" }}>
             {!weatherData ? (
                 <p
                     style={{

@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { DisplayCurrentWeather, DisplayForecast, IntroPage } from "./components";
+import { DisplayCurrentWeather, DisplayForecast, IntroPage } from "./components/";
 
 const Redirector = () => {
   const navigate = useNavigate();
