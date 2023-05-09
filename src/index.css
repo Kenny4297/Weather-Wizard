@@ -20,7 +20,6 @@ code {
         monospace;
 }
 
-
 :root {
     --red1: #5d001e;
     --red2: #9a1750;
@@ -62,6 +61,14 @@ code {
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
+    border: 2px solid transparent; 
+    outline: none;
+    color: var(--red2);
+    transition: border-color 0.5s ease-in-out;
+}
+
+.thing:focus {
+    border: 2px solid lightblue;
 }
 
 .form-button {
@@ -77,12 +84,7 @@ code {
 .form-button:hover {
     background-color: var(--red3);
 }
-
-.history-row {
-    background-color: var(--red1);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+  
 
 /*===== Weather title ===== */
 
@@ -123,8 +125,6 @@ code {
     width: 100%;
     height: 100%;
 }
-
-
 
 /*===== Weather section */
 .weather-section {
@@ -496,7 +496,6 @@ code {
 @media (min-width: 414px) and (max-width: 479px) {
     .weather-section {
         flex-direction: column-reverse;
-        /* margin-right:0rem; */
     }
     .box1 {
         width: 100%;
@@ -710,32 +709,3 @@ code {
         font-size: 1.5rem;
     }
 }
-
-/* Height */
-
-/* @media (min-height: 887px) {
-  .weather-section {
-    border:2px solid blue;
-    height: 50vh;
-  }
-  .box1 {
-    height: 100%;
-  }
-  .box2 {
-    height: 100%;
-  }
-  .weather-title-box {
-    height: 50%;
-    padding-top:3rem;
-  }
-  .future-forecast {
-    border:2px solid green;
-    margin:1rem;
-  }
-  .future-forecast-css {
-    height: 20rem;
-    font-size: 1.5rem;
-    padding-top:2rem;
-    line-height:1.5rem;
-  }
-} */

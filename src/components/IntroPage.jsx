@@ -25,10 +25,10 @@ const IntroPage = ({ setCity, city }) => {
     }, [navigate, setCity, hasMounted]);
 
     const checkInput = (event) => {
-        const value = event.target.value.trim();
+        const value = event.target.value;
         setInputValue(value);
-
-        if (value === "") {
+    
+        if (value.trim() === "") {
             setIsButtonDisabled(true);
         } else {
             setIsButtonDisabled(false);
@@ -70,7 +70,7 @@ const IntroPage = ({ setCity, city }) => {
                 <input
                     type="text"
                     id="cityInput"
-                    className="form-input intro-page-text"
+                    className="form-input thing intro-page-text"
                     value={inputValue}
                     onChange={checkInput}
                 />
