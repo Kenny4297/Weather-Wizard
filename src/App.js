@@ -1,13 +1,25 @@
-import React, { useState} from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { DisplayCurrentWeather, DisplayForecast, IntroPage } from "./components";
+import React, { useState, useEffect} from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { DisplayCurrentWeather, DisplayForecast, IntroPage } from "./components/";
 
+const Redirector = () => {
+  const navigate = useNavigate();
 
-function App() {
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const path = queryParams.get("path");
+    if (path) {
+      navigate(path, { replace: true });
+    }
+  }, [navigate]);
+
+  return null;
+};
+
+const App = () => {
   const [city, setCity] = useState("");
 
   return (
-    <BrowserRouter basename="Weather-Wizard">
       <Routes>
         <Route
           exact
@@ -21,11 +33,10 @@ function App() {
           }
         />
       </Routes>
-    </BrowserRouter>
   );
 }
 
-function WeatherResultsPage({ city, setCity }) {
+const WeatherResultsPage = ({ city, setCity }) => {
   return (
     <>
       <div className='weather-section'>
@@ -35,7 +46,7 @@ function WeatherResultsPage({ city, setCity }) {
 
 
           <div className='box2'>
-            <IntroPage setCity={setCity} city={city} />
+            <IntroPage data-testid='intro-page' setCity={setCity} city={city} />
           </div>
       </div>
 

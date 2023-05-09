@@ -49,7 +49,7 @@ const IntroPage = ({ setCity, city }) => {
     };
 
     return (
-        <div style={{ height: "100%" }}>
+        <div data-testid="intro-page" style={{ height: "100%" }}>
             <form id="form" className="intro-page-box" onSubmit={handleSubmit}>
                 <h1 className="intro-page-text-h1" style={{ color: 'var(--blue)'}}>
                     <FaCloudShowersHeavy />

@@ -15,7 +15,7 @@ const DisplayCurrentWeather = () => {
     let apiCallCount = 0
 
     const getTimeForLocation = useCallback(async (lat, lng) => {
-        const timeUrl = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeAPIKey}&format=json&by=position&lat=${lat}&lng=${lng}`;
+        const timeUrl = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeAPIKey}&format=json&by=position&lat=${lat}&lng=${lng}`;
         try {
           const response = await fetch(timeUrl);
           const data = await response.json();
@@ -41,6 +41,7 @@ const DisplayCurrentWeather = () => {
           setTime(formattedTime);
           apiCallCount++
           console.log(`API call count is ${apiCallCount}`)
+          console.log(formattedDate, formattedTime)
         } catch (error) {
           console.log(error);
         }
@@ -65,7 +66,7 @@ const DisplayCurrentWeather = () => {
     
 
     return (
-        <div style={{ height: "100%" }}>
+        <div data-testid="display-weather-page" style={{ height: "100%" }}>
             {!weatherData ? (
                 <p
                     style={{
