@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { FiAlertCircle } from "react-icons/fi";
+import { FaSpinner } from 'react-icons/fa';
 
 const DisplayCurrentWeather = () => {
     const [weatherData, setWeatherData] = useState(null);
@@ -58,7 +59,10 @@ const DisplayCurrentWeather = () => {
       }, [apiKey, setWeatherData, getTimeForLocation]);
       
       useEffect(() => {
-        returnCurrentForecast(city);
+        const timerId = setTimeout(() => {
+          returnCurrentForecast(city);
+        }, 2000);
+        return () => clearTimeout(timerId);
       }, [returnCurrentForecast, city]);
     
 
@@ -71,12 +75,12 @@ const DisplayCurrentWeather = () => {
                         display: "flex",
                         justifyContent: "center",
                         position: "relative",
-                        top: "5rem",
+                        top: "10rem",
                         fontSize: "1.5rem",
                         alignItems: "center",
                     }}
                 >
-                    Loading...
+                    <FaSpinner className='spinner'/>
                 </p>
             ) : weatherData.cod === "404" ? (
                 <>

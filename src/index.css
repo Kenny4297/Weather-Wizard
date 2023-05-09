@@ -236,11 +236,17 @@ code {
     background: grey;
     border-radius: 50px;
 }
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
   
-/* Handle on hover */
-/* ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-} */
+.spinner {
+    animation: spin 1s infinite linear;
+    color: var(--red3);
+    font-size: 24px;
+}
 
 /* =================Media Queries */
 @media (min-width: 240px) and (max-width: 319px) {
