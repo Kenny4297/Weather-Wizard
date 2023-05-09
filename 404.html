@@ -8,8 +8,11 @@
       // Get the current path
       const path = location.pathname;
 
+      // Remove the `/Weather-Wizard` part from the path
+      const newPath = path.replace('/Weather-Wizard', '');
+
       // Redirect to the index.html with the original path as a query parameter
-      location.replace('/index.html?path=' + encodeURIComponent(path));
+      location.replace('/index.html?path=' + encodeURIComponent(newPath));
     </script>
   </head>
   <body>

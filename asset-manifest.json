@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Weather-Wizard/static/css/main.091df468.css",
-    "main.js": "/Weather-Wizard/static/js/main.0f942d17.js",
+    "main.js": "/Weather-Wizard/static/js/main.b96a0d03.js",
     "static/js/787.74e6b0f6.chunk.js": "/Weather-Wizard/static/js/787.74e6b0f6.chunk.js",
     "index.html": "/Weather-Wizard/index.html",
     "main.091df468.css.map": "/Weather-Wizard/static/css/main.091df468.css.map",
-    "main.0f942d17.js.map": "/Weather-Wizard/static/js/main.0f942d17.js.map",
+    "main.b96a0d03.js.map": "/Weather-Wizard/static/js/main.b96a0d03.js.map",
     "787.74e6b0f6.chunk.js.map": "/Weather-Wizard/static/js/787.74e6b0f6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.091df468.css",
-    "static/js/main.0f942d17.js"
+    "static/js/main.b96a0d03.js"
   ]
 }
