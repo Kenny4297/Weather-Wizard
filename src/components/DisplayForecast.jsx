@@ -18,7 +18,7 @@ const DisplayForecast = () => {
         }
     };
 
-    function getFormattedDate(dateStr) {
+    const getFormattedDate = dateStr => {
         const daysOfWeek = [
             "Sunday",
             "Monday",

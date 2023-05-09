@@ -5,7 +5,8 @@ import { FaSpinner } from 'react-icons/fa';
 
 const DisplayCurrentWeather = () => {
     const [weatherData, setWeatherData] = useState(null);
-    const apiKey = "0c8087e93b7bd6b5e9d6fbd5daee1b51";
+    // const apiKey = "0c8087e93b7bd6b5e9d6fbd5daee1b51";
+    const apiKey = process.env.REACT_APP_API_KEY;
     const { city } = useParams();
     const timeAPIKey = "ZCTR7FVB0K4V";
     const [time, setTime] = useState("");
@@ -59,10 +60,7 @@ const DisplayCurrentWeather = () => {
       }, [apiKey, setWeatherData, getTimeForLocation]);
       
       useEffect(() => {
-        const timerId = setTimeout(() => {
-          returnCurrentForecast(city);
-        }, 2000);
-        return () => clearTimeout(timerId);
+        returnCurrentForecast(city);
       }, [returnCurrentForecast, city]);
     
 
