@@ -1,9 +1,18 @@
-<script>
-    (function() {
-      const path = window.location.pathname;
-      if (path !== '/') {
-        sessionStorage.setItem('redirectPath', path);
-        window.location.replace('/');
-      }
-    })();
-  </script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecting...</title>
+    <script>
+      // Get the current path
+      const path = location.pathname;
+
+      // Redirect to the index.html with the original path as a query parameter
+      location.replace('/index.html?path=' + encodeURIComponent(path));
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>

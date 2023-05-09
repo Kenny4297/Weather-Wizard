@@ -11,10 +11,13 @@
     />
     <script>
       (function() {
-        const redirectPath = sessionStorage.getItem('redirectPath');
-        if (redirectPath) {
-          sessionStorage.removeItem('redirectPath');
-          history.replaceState(null, null, redirectPath);
+        // Check if there is a 'path' query parameter
+        const searchParams = new URLSearchParams(location.search);
+        const path = searchParams.get('path');
+    
+        // If there's a 'path' query parameter, replace the current path with it
+        if (path) {
+          history.replaceState(null, null, path);
         }
       })();
     </script>
