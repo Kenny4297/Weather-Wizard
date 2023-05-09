@@ -1,0 +1,9 @@
+<script>
+    (function() {
+      const path = window.location.pathname;
+      if (path !== '/') {
+        sessionStorage.setItem('redirectPath', path);
+        window.location.replace('/');
+      }
+    })();
+  </script>
