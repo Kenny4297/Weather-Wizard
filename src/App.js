@@ -1,9 +1,8 @@
 import React, { useState, useEffect} from "react";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { DisplayCurrentWeather, DisplayForecast, IntroPage } from "./components";
 
-
-const App = () => {
+const Redirector = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,10 +13,13 @@ const App = () => {
     }
   }, [navigate]);
 
+  return null;
+};
+
+const App = () => {
   const [city, setCity] = useState("");
 
   return (
-    <BrowserRouter basename="Weather-Wizard">
       <Routes>
         <Route
           exact
@@ -31,7 +33,6 @@ const App = () => {
           }
         />
       </Routes>
-    </BrowserRouter>
   );
 }
 
