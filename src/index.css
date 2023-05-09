@@ -26,6 +26,7 @@ code {
     --red3: #ee4c7c;
     --red4: #e3afbc;
     --red5: #e3e2df;
+    --blue: #5DA4D8;
 }
 
 @keyframes pulsate {
@@ -209,14 +210,14 @@ code {
 
 .set-city-button {
     color: white;
-    background-color: #5DA4D8;
+    background-color: var(--blue);
     box-shadow: 0 0 5px var(--red2);
     border: 1.5px solid var(--red4);
     border-radius: .5rem;
 }
 
 .default-city-text {
-    color:grey;
+    color: var(--blue);
 }
 
 
@@ -227,12 +228,12 @@ code {
   
 /* Track */
 ::-webkit-scrollbar-track {
-    background: grey;
+    background: var(--red4);
 }
   
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #999;
+    background: grey;
     border-radius: 50px;
 }
   

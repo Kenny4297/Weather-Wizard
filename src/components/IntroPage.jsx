@@ -51,7 +51,7 @@ const IntroPage = ({ setCity, city }) => {
     return (
         <div style={{ height: "100%" }}>
             <form id="form" className="intro-page-box" onSubmit={handleSubmit}>
-                <h1 className="intro-page-text-h1" style={{ color: "#5DA4D8" }}>
+                <h1 className="intro-page-text-h1" style={{ color: 'var(--blue)'}}>
                     <FaCloudShowersHeavy />
                     <em>Weather Wizard</em>
                     <FaBolt size={30} />
