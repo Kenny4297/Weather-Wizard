@@ -65,10 +65,10 @@ const DisplayForecast = (testMode = false) => {
                         {forecastData &&
                             forecastData.list
                             .filter((data, index) => (testMode ? true : index % 8 === 3))
-                                .map((data) => (
+                                .map((data, index) => (
                                     <div
                                         className="future-forecast-css"
-                                        key={data.dt}
+                                        key={index}
                                     >
                                         <p data-testid="forecast-date" className="future-text-date">
                                             <u>

@@ -9,20 +9,21 @@ const IntroPage = ({ setCity, city, publicUrl }) => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [hasMounted, setHasMounted] = useState(false);
     const [defaultCityState, setDefaultCityState] = useState("");
+    const isDefaultCity = city === defaultCityState;
 
     // Set the default city 
     useEffect(() => {
         if (!hasMounted) {
-            const defaultCity = localStorage.getItem("defaultCity");
-            if (defaultCity) {
-                setCity(defaultCity);
-                setSelectedCity(defaultCity);
-                navigate(`/displayWeather/${defaultCity}`);
-            }
-            setHasMounted(true);
+          const defaultCity = localStorage.getItem("defaultCity");
+          if (defaultCity) {
+            setCity(defaultCity);
+            setSelectedCity(defaultCity);
+            navigate(`/displayWeather/${defaultCity}`);
+          }
+          setHasMounted(true);
         }
         setDefaultCityState(localStorage.getItem("defaultCity"));
-    }, [navigate, setCity, hasMounted]);
+      }, [navigate, setCity, hasMounted]);
 
     const checkInput = (event) => {
         const value = event.target.value;
@@ -91,7 +92,12 @@ const IntroPage = ({ setCity, city, publicUrl }) => {
                 </p>
                 <div>
                     {city && (
-                        <button type="button" className='set-city-button' onClick={setDefaultCity}>
+                        <button
+                        type="button"
+                        className="set-city-button"
+                        onClick={setDefaultCity}
+                        disabled={isDefaultCity}
+                    >
                             Set Default City
                         </button>
                     )}
