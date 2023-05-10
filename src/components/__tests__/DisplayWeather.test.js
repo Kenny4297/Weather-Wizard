@@ -126,7 +126,7 @@ test('displays error message when fetch request fails', async () => {
     // Mock weather API response
     fetch.mockResponses(
       [
-        JSON.stringifyJSON.stringify({
+        JSON.stringify({
             coord: { lon: -122.08, lat: 37.39 },
             weather: [
                 {
@@ -167,9 +167,21 @@ test('displays error message when fetch request fails', async () => {
       [
         JSON.stringify({
           status: "OK",
-          formatted: "2023-05-10 12:00:00",
-          /* rest of time API response */
-        }),
+          message:"",
+          countryCode:"US",
+          countryName:"United States",
+          regionName:"Minnesota",
+          cityName:"Lino Lakes",
+          zoneName:"America/Chicago",
+          abbreviation:"CDT",
+          gmtOffset:-18000,
+          dst:"1",
+          zoneStart:1678608000,
+          zoneEnd:1699167600,
+          nextAbbreviation:"CST",
+          timestamp:1683740088,
+          formatted:"2023-05-10 12:00:00"}
+        ),
         { status: 200 },
       ]
     );

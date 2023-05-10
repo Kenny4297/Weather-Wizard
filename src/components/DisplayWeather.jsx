@@ -20,6 +20,7 @@ const DisplayCurrentWeather = () => {
         try {
           const response = await fetch(timeUrl);
           const data = await response.json();
+          console.log(`raw time data: ${JSON.stringify(data)}`)
       
           // Parse the date and time from the API response
           const dateTime = new Date(data.formatted);

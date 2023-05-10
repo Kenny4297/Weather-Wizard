@@ -33,7 +33,16 @@ The user can enter any city across the globe and see the local time, the current
 Due to this portfolio being a SPA, I have decided to simply use GitPages for the deployment. Check it out [here](https://kenny4297.github.io/Weather-Wizard/)!
 
 ## Testing
-Coming soon!
+I used Jest and RTL for tests. Here is the coverage table for all tests.
+
+---------------------|---------|----------|---------|---------|-------------------
+File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+---------------------|---------|----------|---------|---------|-------------------
+All files            |   95.04 |    82.75 |   93.75 |   95.04 |                   
+ DisplayForecast.jsx |    87.5 |    72.72 |   85.71 |    87.5 | 18,86,133-134     
+ DisplayWeather.jsx  |     100 |    83.33 |     100 |     100 | 147               
+ IntroPage.jsx       |   96.96 |    91.66 |     100 |   96.96 | 33                
+---------------------|---------|----------|---------|---------|-------------------
 
 
 If you have any suggestions for improvement, please feel free to share them with me! Thanks for viewing this README!
