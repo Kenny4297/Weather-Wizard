@@ -46,3 +46,43 @@ test("renders DisplayForecast component", async () => {
     expect(displayForecastElement).toBeInTheDocument();
   });
 });
+
+
+test("renders Loading... text while fetching data", async () => {
+    fetch.mockResponseOnce(
+      // Simulate a delayed response
+      () => new Promise((resolve) => setTimeout(() => resolve({ body: JSON.stringify({
+        list: [
+            {
+            dt_txt: "2023-05-10 03:00:00",
+            main: {
+                temp: 68.43,
+                feels_like: 66.9,
+                temp_min: 68.43,
+                temp_max: 71.13,
+                pressure: 1014,
+                humidity: 41,
+            },
+            weather: [{ id: 800, main: "Clear", description: "clear sky", icon: "01d" }],
+            clouds: { all: 3 },
+            wind: { speed: 4.72, deg: 70, gust: 6.33 },
+            sys: { pod: "d" },
+            }
+        ],
+        }) }), 100))
+    );
+  
+    render(
+      <MemoryRouter>
+        <DisplayForecast />
+      </MemoryRouter>
+    );
+  
+    const loadingElement = screen.getByText("Loading...");
+    expect(loadingElement).toBeInTheDocument();
+  
+    // Clean up after test
+    await waitFor(() => {
+      expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
+    });
+  });
