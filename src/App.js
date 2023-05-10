@@ -2,20 +2,6 @@ import React, { useState, useEffect} from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { DisplayCurrentWeather, DisplayForecast, IntroPage } from "./components/";
 
-const Redirector = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const path = queryParams.get("path");
-    if (path) {
-      navigate(path, { replace: true });
-    }
-  }, [navigate]);
-
-  return null;
-};
-
 const App = () => {
   const [city, setCity] = useState("");
 

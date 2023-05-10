@@ -5,14 +5,12 @@ import App from "./App.js";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css"; // import Bootstrap CSS
 import { BrowserRouter } from "react-router-dom";
-import Redirector from "./components/Redirector";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="Weather-Wizard">
-      <Redirector />
+    <BrowserRouter basename="/Weather-Wizard">
       <App />
     </BrowserRouter>
   </React.StrictMode>
