@@ -57,7 +57,7 @@ const DisplayForecast = () => {
 
     try {
         return (
-            <div style={{ height: "40vh", overflow: "visible", zIndex: "1" }}>
+            <div data-testid="display-forecast-page" style={{ height: "40vh", overflow: "visible", zIndex: "1" }}>
                 {!forecastData ? (
                     <><p style={{color:'var(--red3)', textAlign:'center', fontSize:'2rem'}}>Loading...</p></>
                 ) : (
