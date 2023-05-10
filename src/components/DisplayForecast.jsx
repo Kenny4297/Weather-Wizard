@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const DisplayForecast = () => {
+const DisplayForecast = (testMode = false) => {
     const [forecastData, setForecastData] = useState(null);
     const apiKey = "0c8087e93b7bd6b5e9d6fbd5daee1b51";
     const { city } = useParams();
@@ -43,8 +43,8 @@ const DisplayForecast = () => {
             "November",
             "December",
         ];
-
-        const date = new Date(dateStr);
+    
+        const date = new Date(dateStr.replace(" ", "T"));
         const dayOfWeek = daysOfWeek[date.getDay()];
         const month = months[date.getMonth()];
         const day = date.getDate();
@@ -64,13 +64,13 @@ const DisplayForecast = () => {
                     <div className="future-forecast">
                         {forecastData &&
                             forecastData.list
-                                .filter((data, index) => index % 8 === 3)
+                            .filter((data, index) => (testMode ? true : index % 8 === 3))
                                 .map((data) => (
                                     <div
                                         className="future-forecast-css"
                                         key={data.dt}
                                     >
-                                        <p className="future-text-date">
+                                        <p data-testid="forecast-date" className="future-text-date">
                                             <u>
                                                 {getFormattedDate(data.dt_txt)}
                                             </u>

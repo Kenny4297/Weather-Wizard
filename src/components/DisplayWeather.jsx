@@ -55,6 +55,7 @@ const DisplayCurrentWeather = () => {
           const data = await response.json();
           setWeatherData(data);
           getTimeForLocation(data.coord.lat, data.coord.lon);
+          console.log(data)
         } catch (error) {
           console.log(error);
         }

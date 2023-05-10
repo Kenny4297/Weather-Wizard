@@ -36,14 +36,26 @@ test("renders DisplayForecast component", async () => {
     </MemoryRouter>
   );
 
-  await act(async () => {
-    // Wait for the component to update after the fetch
-    await new Promise((resolve) => setTimeout(resolve, 0));
-  });
-
   await waitFor(() => {
     const displayForecastElement = screen.getByTestId("display-forecast-page");
     expect(displayForecastElement).toBeInTheDocument();
+
+    // Check if the forecast-related elements are rendered
+    const forecastDateElement = screen.getByTestId("forecast-date");
+    expect(forecastDateElement).toHaveTextContent(/wednesday, may 10/i);
+    const temperatureElement = screen.getByText(/68.43°F/i);
+    expect(temperatureElement).toBeInTheDocument();
+    const descriptionElement = screen.getByText(/clear sky/i);
+    expect(descriptionElement).toBeInTheDocument();
+    const humidityElement = screen.getByText(/41%/i);
+    expect(humidityElement).toBeInTheDocument();
+    const windSpeedElement = screen.getByText(/4.72 mph/i);
+    expect(windSpeedElement).toBeInTheDocument();
+
+    // Check if the weather icon is rendered with correct src and alt
+    const weatherIcon = screen.getByAltText(/clear sky/i);
+    expect(weatherIcon).toBeInTheDocument();
+    expect(weatherIcon.src).toContain("http://openweathermap.org/img/w/01d.png");
   });
 });
 
@@ -73,10 +85,10 @@ test("renders Loading... text while fetching data", async () => {
     );
   
     render(
-      <MemoryRouter>
-        <DisplayForecast />
-      </MemoryRouter>
-    );
+        <MemoryRouter>
+          <DisplayForecast setCity={jest.fn()} testMode={true} />
+        </MemoryRouter>
+      );
   
     const loadingElement = screen.getByText("Loading...");
     expect(loadingElement).toBeInTheDocument();
