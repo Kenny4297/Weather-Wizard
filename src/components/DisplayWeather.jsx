@@ -81,23 +81,9 @@ const DisplayCurrentWeather = () => {
                     alignItems: "center",
                 }}
                 >
-                Sorry, but your request was inadequate.
-                </p>
-            ) : (
-                <p
-                style={{
-                    color: "var(--red3)",
-                    display: "flex",
-                    justifyContent: "center",
-                    position: "relative",
-                    top: "10rem",
-                    fontSize: "1.5rem",
-                    alignItems: "center",
-                }}
-                >
                 <FaSpinner className="spinner" data-testid="spinner" />
                 </p>
-            )} : weatherData.cod === "404" ? (
+            ) : weatherData.cod === "404" ? (
                 <>
                     <div
                         style={{

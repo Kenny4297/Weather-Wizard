@@ -14,16 +14,16 @@ const IntroPage = ({ setCity, city, publicUrl }) => {
     // Set the default city 
     useEffect(() => {
         if (!hasMounted) {
-            const defaultCity = localStorage.getItem("defaultCity");
-            if (defaultCity) {
-                setCity(defaultCity);
-                setSelectedCity(defaultCity);
-                navigate(`/displayWeather/${defaultCity}`);
-            }
-            setHasMounted(true);
+          const defaultCity = localStorage.getItem("defaultCity");
+          if (defaultCity) {
+            setCity(defaultCity);
+            setSelectedCity(defaultCity);
+            navigate(`/displayWeather/${defaultCity}`);
+          }
+          setHasMounted(true);
         }
         setDefaultCityState(localStorage.getItem("defaultCity"));
-    }, [navigate, setCity, hasMounted]);
+      }, [navigate, setCity, hasMounted]);
 
     const checkInput = (event) => {
         const value = event.target.value;

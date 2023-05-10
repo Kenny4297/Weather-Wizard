@@ -1,23 +1,22 @@
 import React, { useState } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, HashRouter } from "react-router-dom";
 import { DisplayCurrentWeather, DisplayForecast, IntroPage } from "./components/";
 
 const App = () => {
   const [city, setCity] = useState("");
-  const basename = process.env.NODE_ENV === "production" ? "/Weather-Wizard" : "";
 
   return (
-      <BrowserRouter basename={basename}>
-        <Routes>
-          <Route path="/" element={<IntroPage setCity={setCity} />} />
-          <Route
-            path="/displayWeather/:city"
-            element={<WeatherResultsPage city={city} setCity={setCity} />}
-          />
-        </Routes>
-      </BrowserRouter>
-    );
-}
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<IntroPage setCity={setCity} />} />
+        <Route
+          path="/displayWeather/:city"
+          element={<WeatherResultsPage city={city} setCity={setCity} />}
+        />
+      </Routes>
+    </HashRouter>
+  );
+};
 
 const WeatherResultsPage = ({ city, setCity }) => {
   return (
