@@ -22,11 +22,14 @@ code {
 
 :root {
     --red1: #5d001e;
-    --red2: #9a1750;
-    --red3: #ee4c7c;
+    --red2: #811343;
+    --red3: #1B4C6F;
+    /* --red3: #264D00; */
+
     --red4: #e3afbc;
-    --red5: #e3e2df;
-    --blue: #5DA4D8;
+    /* --red5: #e3e2df; */
+    --red5: #F0F0F0;
+    --blue: #1E547B;
 }
 
 @keyframes pulsate {
@@ -64,7 +67,7 @@ code {
     border-radius: 5px;
     border: 2px solid transparent; 
     outline: none;
-    color: var(--red2);
+    color: var(--red1);
     transition: border-color 0.5s ease-in-out;
 }
 
@@ -73,7 +76,7 @@ code {
 }
 
 .form-button {
-    background-color: var(--red2);
+    background-color: var(--red1);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -109,13 +112,13 @@ code {
 }
 
 .future-text-date {
-    color: var(--red2);
+    color: var(--red1);
 }
 
 /* Intro Page section */
 
 .intro-page-box {
-    box-shadow: 0 0 10px var(--red2);
+    box-shadow: 0 0 10px var(--red1);
     background-color: var(--red5);
     display: flex;
     text-align: center;
@@ -159,7 +162,7 @@ code {
 }
 
 .weather-icon-box {
-    box-shadow: 0 0 10px var(--red2);
+    box-shadow: 0 0 10px var(--red1);
     width: 50%;
     margin: 1rem;
     margin-top: 1rem;
@@ -174,7 +177,7 @@ code {
 .todays-weather-data {
     width: 50%;
     margin: 1rem;
-    box-shadow: 0 0 10px var(--red2);
+    box-shadow: 0 0 10px var(--red1);
     border-radius: 1rem;
 }
 
@@ -196,7 +199,7 @@ code {
     align-items: center;
     background-color: var(--red5);
     border-radius: 10px;
-    box-shadow: 0 0 5px var(--red2);
+    box-shadow: 0 0 5px var(--red1);
     display: flex;
     flex-direction: column;
     margin: 1rem;
@@ -211,7 +214,7 @@ code {
 .set-city-button {
     color: white;
     background-color: var(--blue);
-    box-shadow: 0 0 5px var(--red2);
+    box-shadow: 0 0 5px var(--red1);
     border: 1.5px solid var(--red4);
     border-radius: .5rem;
 }

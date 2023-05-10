@@ -14,7 +14,7 @@
 This project is licensed under the MIT license.
 
 ## Description
-An advanced weather dashboard that shows the current weather, 5 day forecast, and local time of any city across the globe.
+An advanced weather dashboard that displays the current weather, the 5 day forecast, the local time of any city, and saves their home city for better user experience. 
 
 ## Motivation
 I challenged myself to create a superior Weather Dashboard beyond the scope of the Minnesota Coding Bootcamp requirements. My original dashboard had several limitations, and I believed that additional features would enhance its functionality. As a result, I expanded upon the existing design to create a more comprehensive and user-friendly interface.
@@ -28,6 +28,8 @@ TimeZone BD is a web service that provides time zone data and related services, 
 
 ## Features
 The user can enter any city across the globe and see the local time, the current weather (including the temperature, skies, humidity, low / high, wind speed ), along with the next 5 day forecast. They are also able to set a default location, which allows the dashboard to immediately fetch the default location when they visit the app, instead of manually entering their city each time they visit. 
+
+This color scheme passes the AA and AAA level of the WCAG guidelines.
 
 ## Deployment
 Due to this portfolio being a SPA, I have decided to simply use GitPages for the deployment. Check it out [here](https://kenny4297.github.io/Weather-Wizard/)!

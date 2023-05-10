@@ -115,7 +115,7 @@ const DisplayCurrentWeather = () => {
                 <div
                     className=""
                     style={{
-                        boxShadow: "0 0 10px var(--red2)",
+                        boxShadow: "0 0 10px var(--red1)",
                         backgroundColor: "var(--red5)",
                         position: "relative",
                         textAlign: "center",
@@ -173,7 +173,7 @@ const DisplayCurrentWeather = () => {
                         <div className="todays-weather-data">
                             <p className="daily-data-text">
                                 <span id="display-temperature">
-                                    <span style={{ color: "var(--red2)" }}>
+                                    <span style={{ color: "var(--red1)" }}>
                                         Temp:{" "}
                                     </span>
                                     <span style={{ color: "var(--red3)" }}>
@@ -200,7 +200,7 @@ const DisplayCurrentWeather = () => {
                             </p>
                             <p className="daily-data-text">
                                 <span id="display-humidity">
-                                    <span style={{ color: "var(--red2)" }}>
+                                    <span style={{ color: "var(--red1)" }}>
                                         Humidity:{" "}
                                     </span>
                                     <span style={{ color: "var(--red3)" }}>
@@ -210,7 +210,7 @@ const DisplayCurrentWeather = () => {
                             </p>
                             <p className="daily-data-text">
                                 <span id="wind-speed">
-                                    <span style={{ color: "var(--red2)" }}>
+                                    <span style={{ color: "var(--red1)" }}>
                                         Wind Speed:{" "}
                                     </span>
                                     <span
