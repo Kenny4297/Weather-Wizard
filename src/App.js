@@ -4,10 +4,10 @@ import { DisplayCurrentWeather, DisplayForecast, IntroPage } from "./components/
 
 const App = () => {
   const [city, setCity] = useState("");
-  const publicUrl = process.env.PUBLIC_URL || '';
+  const basename = process.env.NODE_ENV === "production" ? "/Weather-Wizard" : "";
 
   return (
-      <BrowserRouter basename={publicUrl}>
+      <BrowserRouter basename={basename}>
         <Routes>
           <Route path="/" element={<IntroPage setCity={setCity} />} />
           <Route
