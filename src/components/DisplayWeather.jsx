@@ -11,6 +11,7 @@ const DisplayCurrentWeather = () => {
     const timeAPIKey = "ZCTR7FVB0K4V";
     const [time, setTime] = useState("");
     const [date, setDate] = useState("");
+    const [error, setError] = useState(null);
     
     let apiCallCount = 0
 
@@ -70,19 +71,33 @@ const DisplayCurrentWeather = () => {
         <div data-testid="display-weather-page" style={{ height: "100%" }}>
             {!weatherData ? (
                 <p
-                    style={{
-                        color: "var(--red3)",
-                        display: "flex",
-                        justifyContent: "center",
-                        position: "relative",
-                        top: "10rem",
-                        fontSize: "1.5rem",
-                        alignItems: "center",
-                    }}
+                style={{
+                    color: "var(--red3)",
+                    display: "flex",
+                    justifyContent: "center",
+                    position: "relative",
+                    top: "10rem",
+                    fontSize: "1.5rem",
+                    alignItems: "center",
+                }}
                 >
-                    <FaSpinner className='spinner'/>
+                Sorry, but your request was inadequate.
                 </p>
-            ) : weatherData.cod === "404" ? (
+            ) : (
+                <p
+                style={{
+                    color: "var(--red3)",
+                    display: "flex",
+                    justifyContent: "center",
+                    position: "relative",
+                    top: "10rem",
+                    fontSize: "1.5rem",
+                    alignItems: "center",
+                }}
+                >
+                <FaSpinner className="spinner" data-testid="spinner" />
+                </p>
+            )} : weatherData.cod === "404" ? (
                 <>
                     <div
                         style={{
