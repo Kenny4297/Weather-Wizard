@@ -1,25 +1,22 @@
-import React, { useState, useEffect} from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { DisplayCurrentWeather, DisplayForecast, IntroPage } from "./components/";
 
 const App = () => {
   const [city, setCity] = useState("");
+  const publicUrl = process.env.PUBLIC_URL || '';
 
   return (
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={<IntroPage setCity={setCity} />}
-        />
-        <Route
-          path="/displayWeather/:city"
-          element={
-            <WeatherResultsPage city={city} setCity={setCity} />
-          }
-        />
-      </Routes>
-  );
+      <BrowserRouter basename={publicUrl}>
+        <Routes>
+          <Route path="/" element={<IntroPage setCity={setCity} />} />
+          <Route
+            path="/displayWeather/:city"
+            element={<WeatherResultsPage city={city} setCity={setCity} />}
+          />
+        </Routes>
+      </BrowserRouter>
+    );
 }
 
 const WeatherResultsPage = ({ city, setCity }) => {
@@ -29,7 +26,6 @@ const WeatherResultsPage = ({ city, setCity }) => {
           <div className='box1'>
             <DisplayCurrentWeather city={city} />
           </div>
-
 
           <div className='box2'>
             <IntroPage data-testid='intro-page' setCity={setCity} city={city} />

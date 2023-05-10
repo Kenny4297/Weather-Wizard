@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBolt, FaCloudShowersHeavy } from "react-icons/fa";
 
-const IntroPage = ({ setCity, city }) => {
+const IntroPage = ({ setCity, city, publicUrl }) => {
     const [inputValue, setInputValue] = useState("");
     const navigate = useNavigate();
     const [selectedCity, setSelectedCity] = useState(null);
@@ -39,9 +39,9 @@ const IntroPage = ({ setCity, city }) => {
         event.preventDefault();
         setCity(inputValue);
         setSelectedCity(inputValue);
-        navigate(`/displayWeather/${inputValue}`);
+        navigate(`/displayWeather/${inputValue}`, { replace: true });
         setInputValue("");
-    };
+      };
 
     const setDefaultCity = () => {
         localStorage.setItem("defaultCity", city);
