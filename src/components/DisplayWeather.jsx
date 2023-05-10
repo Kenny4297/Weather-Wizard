@@ -105,6 +105,7 @@ const DisplayCurrentWeather = () => {
                         </p>
                         <FiAlertCircle
                             size={295}
+                            data-testid="alert-icon"
                             style={{ position: "relative", bottom: "1rem" }}
                         />
                     </div>

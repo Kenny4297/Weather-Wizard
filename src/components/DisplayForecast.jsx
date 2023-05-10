@@ -57,48 +57,78 @@ const DisplayForecast = (testMode = false) => {
 
     try {
         return (
-            <div data-testid="display-forecast-page" style={{ height: "40vh", overflow: "visible", zIndex: "1" }}>
-                {!forecastData ? (
-                    <><p style={{color:'var(--red3)', textAlign:'center', fontSize:'2rem'}}>Loading...</p></>
-                ) : (
-                    <div className="future-forecast">
-                        {forecastData &&
-                            forecastData.list
-                            .filter((data, index) => (testMode ? true : index % 8 === 3))
-                                .map((data, index) => (
-                                    <div
-                                        className="future-forecast-css"
-                                        key={index}
-                                    >
-                                        <p data-testid="forecast-date" className="future-text-date">
-                                            <u>
-                                                {getFormattedDate(data.dt_txt)}
-                                            </u>
-                                        </p>
-                                        <p className="future-text">
-                                            {data.main.temp}&deg;F
-                                        </p>
-                                        <img
-                                            className="icon-images"
-                                            style={{ width: "3rem" }}
-                                            src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
-                                            alt={data.weather[0].description}
-                                        />
-                                        <p className="future-text">
-                                            {data.weather[0].description}
-                                        </p>
-                                        <p className="future-text">
-                                            {data.main.humidity}%
-                                        </p>
-                                        <p className="future-text">
-                                            {data.wind.speed} mph
-                                        </p>
-                                    </div>
-                                ))}
-                    </div>
-                )}
+            <div
+              data-testid="display-forecast-page"
+              style={{ height: "40vh", overflow: "visible", zIndex: "1" }}
+            >
+              {!forecastData ? (
+                <>
+                  <p
+                    style={{
+                      color: "var(--red3)",
+                      textAlign: "center",
+                      fontSize: "2rem",
+                    }}
+                  >
+                    Loading...
+                  </p>
+                </>
+              ) : (
+                <div className="future-forecast">
+                  {forecastData &&
+                    forecastData.list
+                      .reduce((uniqueIndices, data, index) => {
+                        if (
+                          uniqueIndices.length < 5 &&
+                          (testMode || index % 8 === 3) &&
+                          uniqueIndices.every(
+                            (storedIndex) =>
+                              getFormattedDate(forecastData.list[storedIndex].dt_txt).slice(0, 10) !==
+                              getFormattedDate(data.dt_txt).slice(0, 10)
+                          )
+                        ) {
+                          uniqueIndices.push(index);
+                        }
+                        return uniqueIndices;
+                      }, [])
+                      .map((uniqueIndex) => {
+                        const data = forecastData.list[uniqueIndex];
+                        return (
+                          <div
+                            className="future-forecast-css"
+                            key={data.dt_txt}
+                          >
+                            <p data-testid="forecast-date" className="future-text-date">
+                              <u>
+                                {getFormattedDate(data.dt_txt)}
+                              </u>
+                            </p>
+                            <p className="future-text">
+                              {data.main.temp}&deg;F
+                            </p>
+                            <img
+                              className="icon-images"
+                              style={{ width: "3rem" }}
+                              src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                              alt={data.weather[0].description}
+                            />
+                            <p className="future-text">
+                              {data.weather[0].description}
+                            </p>
+                            <p className="future-text">
+                              {data.main.humidity}%
+                            </p>
+                            <p className="future-text">
+                              {data.wind.speed} mph
+                            </p>
+                          </div>
+                        );
+                      })}
+                </div>
+              )}
             </div>
-        );
+          );
+          
     } catch (error) {
         console.log(error);
         <p>Sorry, no forecast data available</p>
