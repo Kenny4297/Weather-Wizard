@@ -1,3 +1,5 @@
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
         "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
@@ -97,8 +99,14 @@ code {
 
 /*===== Weather title ===== */
 
-.weather-icon-box img {
+.weather-icon-box {
     width: 8rem;
+}
+
+.icon {
+    width: 8rem;
+    margin-top: 3rem;
+    color: var(--blue);
 }
 
 .future-forecast-css:hover {
@@ -122,7 +130,7 @@ code {
 
 /* Intro Page section */
 
-.intro-page-box {
+.box2 {
     box-shadow: 0 0 10px var(--red1);
     background-color: var(--red5);
     display: flex;
@@ -176,7 +184,7 @@ code {
 
 .weather-img-desc {
     position: relative;
-    bottom: 2rem;
+    bottom: 0rem;
 }
 
 .todays-weather-data {
@@ -188,6 +196,9 @@ code {
 
 .date-and-time {
     line-height: 1rem;
+    font-size:1.5rem;
+    color: var(--blue);
+    font-weight: bold;
 }
 
 /* =============Future Forecast */
@@ -256,18 +267,28 @@ code {
     font-size: 24px;
 }
 
-/* =================Media Queries */
-@media (min-width: 240px) and (max-width: 319px) {
+/* =========Media Queries */
+@media (max-width: 280px) {
+    .box2 {
+        border: 4px solid blue;
+        height: auto !important;
+    }
+}
+
+@media (max-width: 321px) {
     .weather-section {
         flex-direction: column-reverse;
+        height: auto;
     }
     .box1 {
-        width: 100%;
-        height: 29rem;
+        width: 20rem;
+        height: 33rem !important;
+        /* border: 2px solid blue; */
     }
     .box2 {
         width: 100%;
         height: 50%;
+        margin-bottom: 1rem;
     }
     .city-name {
         padding-top: 1rem;
@@ -275,19 +296,21 @@ code {
     .intro-page-text-h1 {
         padding-top: 1rem;
     }
-    .intro-page-box {
-        margin-bottom: 1rem;
-    }
     .weather-icon-box {
-        height: 6rem;
-        width: 7.5rem;
+        height: 8rem !important;
+        width: 10rem;
+    }
+    .icon {
+        position: relative;
+        top: -3rem;
+    }
+    .weather-img-desc {
+        position: relative !important;
+        bottom: 3rem !important;
     }
     .weather-icon-box img {
         width: 5rem;
         padding-top: 0.5rem;
-    }
-    .weather-img-desc {
-        display: none;
     }
     .weather-box {
         height: auto;
@@ -314,357 +337,108 @@ code {
     }
 }
 
-@media (min-width: 320px) and (max-width: 359px) {
-    .weather-section {
-        flex-direction: column-reverse;
-        margin-right: 0rem;
-    }
+@media (max-width: 394px) {
     .box1 {
         width: 100%;
         height: 35rem;
     }
-    .box2 {
-        width: 100%;
-        height: 50%;
-    }
     .intro-page-text-h1 {
         padding-top: 1rem;
     }
-    .intro-page-box {
-        margin-bottom: 1rem;
+    .box2 {
+        padding-top: 1.5rem;
     }
     .weather-title-box {
         padding-top: 0.5rem;
-    }
-    .weather-box {
-        height: auto;
-        position: relative;
-        top: 0rem;
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
     }
     .city-name {
         padding-top: 0.5rem;
     }
     .todays-weather-data {
-        padding-top: 1rem;
+        padding-top: 0.5rem;
     }
     .weather-icon-box {
-        height: 10rem;
-    }
-    .future-forecast {
-        height: auto;
+        height: 13rem;
     }
     .future-forecast-css {
         max-width: 10rem;
         min-width: 10rem;
     }
-}
-
-@media (min-width: 360px) and (max-width: 389px) {
-    .weather-section {
-        flex-direction: column-reverse;
-    }
-    .box1 {
-        width: 100%;
-        height: 35rem;
-    }
-    .box2 {
-        width: 100%;
-        height: 50%;
-    }
-    .intro-page-text-h1 {
-        padding-top: 1rem;
-    }
-    .intro-page-box {
-        margin-bottom: 1rem;
-    }
-    .weather-title-box {
-        padding-top: 0.5rem;
-    }
-    .weather-box {
-        height: auto;
-        position: relative;
-        top: 0rem;
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-    }
-    .city-name {
-        padding-top: 0.5rem;
-    }
-    .todays-weather-data {
-        padding-top: 0.5rem;
-    }
-    .future-forecast {
-        height: auto;
-    }
-    .future-forecast-css {
-        max-width: 10rem;
-        min-width: 10rem;
+    .icon {
+        padding-top: 2rem;
     }
 }
 
-@media (min-width: 390px) and (max-width: 392px) {
-    .weather-section {
-        flex-direction: column-reverse;
-        margin-right: 0rem;
-    }
-    .box1 {
-        width: 100%;
-        height: 35rem;
-    }
-    .box2 {
-        width: 100%;
-        height: 50%;
-    }
-    .intro-page-text-h1 {
-        padding-top: 1rem;
-    }
-    .intro-page-box {
-        margin-bottom: 1rem;
-    }
-    .weather-title-box {
-        padding-top: 0.5rem;
-    }
-    .weather-box {
-        height: auto;
-        position: relative;
-        top: 0rem;
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-    }
-    .city-name {
-        padding-top: 1rem;
-    }
-    .future-forecast {
-        height: auto;
-    }
-    .future-forecast-css {
-        max-width: 10rem;
-        min-width: 10rem;
-    }
-}
-
-@media (min-width: 393px) and (max-width: 410px) {
-    .weather-section {
-        flex-direction: column-reverse;
-        margin-right: 0rem;
-    }
+@media (max-width: 410px) {
     .box1 {
         width: 100%;
         height: 33rem;
     }
-    .box2 {
-        width: 100%;
-        height: 50%;
-    }
     .intro-page-text-h1 {
         padding-top: 1rem;
     }
-    .intro-page-box {
+    .box2 {
         margin-bottom: 1rem;
     }
     .weather-title-box {
         padding-top: 0.5rem;
     }
-    .weather-box {
-        height: auto;
-        position: relative;
-        top: 0rem;
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-    }
     .todays-weather-data {
         padding-top: 0.5rem;
     }
-    .future-forecast {
-        height: auto;
-    }
-    .future-forecast-css {
-        max-width: 10rem;
-        min-width: 10rem;
-    }
 }
 
-@media (min-width: 411px) and (max-width: 413px) {
-    .weather-section {
-        flex-direction: column-reverse;
-        margin-right: 0rem;
-    }
+@media (max-width: 413px) {
     .box1 {
         width: 100%;
         height: 30rem;
-    }
-    .box2 {
-        width: 100%;
-        height: 50%;
-    }
-    .intro-page-text-h1 {
-        padding-top: 1rem;
-    }
-    .intro-page-box {
-        margin-bottom: 1rem;
-    }
-    .weather-title-box {
-        padding-top: 0.5rem;
-    }
-    .weather-box {
-        height: auto;
-    }
-    .todays-weather-data {
-        padding-top: 0.5rem;
-    }
-    .future-forecast {
-        height: auto;
-    }
-    .future-forecast-css {
-        max-width: 10rem;
-    }
-}
 
-@media (min-width: 414px) and (max-width: 479px) {
-    .weather-section {
-        flex-direction: column-reverse;
-    }
-    .box1 {
-        width: 100%;
-        height: 20rem;
-    }
-    .box2 {
-        width: 100%;
-        height: 50%;
     }
     .intro-page-text-h1 {
         padding-top: 1rem;
     }
-    .intro-page-box {
-        margin-bottom: 1rem;
-    }
-    .weather-title-box {
-        padding-top: 0.5rem;
-    }
-    .weather-box {
-        height: auto;
-    }
-    .future-forecast {
-        height: auto;
-    }
-    .future-forecast-css {
-        max-width: 10rem;
-        min-width: 10rem;
-    }
-}
-
-@media (min-width: 480px) and (max-width: 599px) {
-    .weather-section {
-        flex-direction: column-reverse;
-    }
-    .box1 {
-        width: 100%;
-        height: 20rem;
-    }
     .box2 {
-        width: 100%;
-        height: 50%;
-    }
-    .intro-page-text-h1 {
-        padding-top: 1rem;
-    }
-    .intro-page-box {
-        margin-bottom: 1rem;
-    }
-    .weather-title-box {
-        padding-top: 0.5rem;
-    }
-    .weather-box {
-        height: auto;
-    }
-    .todays-weather-data {
-        padding-top: 1rem;
-    }
-    .future-forecast {
-        height: auto;
-    }
-    .future-forecast-css {
-        max-width: 10rem;
-        min-width: 10rem;
-    }
-}
-
-@media (min-width: 600px) and (max-width: 767px) {
-    .weather-section {
-        flex-direction: column-reverse;
-        margin-right: 0rem;
-    }
-    .box1 {
-        width: 100%;
-        height: 20rem;
-    }
-    .box2 {
-        width: 100%;
-        height: 50%;
-    }
-    .intro-page-text-h1 {
-        padding-top: 1rem;
-    }
-    .intro-page-box {
-        margin-bottom: 1rem;
-    }
-    .weather-title-box {
-        padding-top: 0.5rem;
-    }
-    .weather-box {
-        height: auto;
-    }
-    .todays-weather-data {
-        padding-top: 1rem;
-    }
-    .future-forecast {
-        height: auto;
-    }
-    .future-forecast-css {
-        max-width: 10rem;
-        min-width: 10rem;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 911px) {
-    .weather-section {
-        flex-direction: column-reverse;
-        margin-right: 0rem;
-    }
-    .box1 {
-        width: 100%;
-        height: 20rem;
-    }
-    .box2 {
-        width: 100%;
-        height: 50%;
-    }
-    .intro-page-text-h1 {
-        padding-top: 1rem;
-    }
-    .intro-page-box {
-        margin-bottom: 1rem;
-    }
-    .weather-title-box {
-        padding-top: 0.5rem;
-    }
-    .weather-box {
-        height: auto;
-    }
-    .todays-weather-data {
-        padding-top: 1rem;
         font-size: 1rem;
     }
+    .weather-title-box {
+        padding-top: 0.5rem;
+    }
+    .todays-weather-data {
+        padding-top: 0.5rem;
+    }
+    .icon {
+        position: relative;
+        bottom: 1rem;
+    }
+    .weather-img-desc {
+        bottom: 1rem;
+    }
+}
+
+@media (max-width: 479px) {
+    .weather-section {
+        flex-direction: column-reverse;
+    }
+    .box1 {
+        width: 100%;
+        height: 20rem;
+    }
+    .box2 {
+        width: 100%;
+        height: 50%;
+    }
+    .intro-page-text-h1 {
+        padding-top: 1rem;
+    }
+    .box2 {
+        margin-bottom: 1rem;
+    }
+    .weather-title-box {
+        padding-top: 0.5rem;
+    }
+    .weather-box {
+        height: auto;
+    }
     .future-forecast {
         height: auto;
     }
@@ -674,35 +448,28 @@ code {
     }
 }
 
-@media (min-width: 912px) and (max-width: 1279px) {
+@media (max-width: 601px) {
     .weather-section {
-        margin-right: 0rem;
+        flex-direction: column-reverse;
+        width: 100%;
     }
     .box1 {
-        width: 100%;
         height: 20rem;
+        width: 100%;
     }
     .box2 {
+        height: 50%;
         width: 100%;
-        height: 20rem;
-    }
-    .intro-page-text-h1 {
-        padding-top: 1rem;
-    }
-    .intro-page-box {
-        margin-bottom: 1rem;
     }
     .weather-title-box {
         padding-top: 0.5rem;
     }
-    .weather-box {
+    .weather-box,
+    .future-forecast {
         height: auto;
     }
     .todays-weather-data {
         padding-top: 1rem;
-    }
-    .future-forecast {
-        height: auto;
     }
     .future-forecast-css {
         max-width: 10rem;
@@ -710,38 +477,62 @@ code {
     }
 }
 
-@media (min-width: 1280px) {
+@media (max-width: 767px) {
     .weather-section {
+        flex-direction: column-reverse;
         margin-right: 0rem;
     }
-    .box1 {
-        width: 100%;
-        height: 25rem;
-    }
+    .box1,
     .box2 {
+        height: 20rem;
         width: 100%;
-        height: 25rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 911px) {
+    .todays-weather-data {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1279px) {
+    .box1,
+    .box2 {
+        height: 20rem;
+    }
+}
+
+@media (max-width: 1150px) {
+    .future-forecast-css {
+        max-width: 12rem;
+    }
+}
+
+@media (max-width: 1282px) {
+    .weather-section {
+        height: auto;
+    }
+    .box1, .box2 {
+        height:22rem;
+    }
+    .city-name {
+        padding-top: 1rem;
     }
     .intro-page-text-h1 {
         padding-top: 1rem;
     }
-    .intro-page-box {
-        margin-bottom: 1rem;
-    }
-    .weather-title-box {
-        padding-top: 0.5rem;
-    }
-    .weather-box {
-        height: auto;
+}
+
+@media (min-width: 1290px) {
+    .box1,
+    .box2 {
+        min-height: 25rem;
     }
     .todays-weather-data {
-        padding-top: 1rem;
         font-size: 1.25rem;
     }
-    .date-and-time {
-        padding-top: 0.5rem;
-        font-size: 1.5rem;
-    }
+    .date-and-time,
     .weather-img-desc {
         font-size: 1.5rem;
     }

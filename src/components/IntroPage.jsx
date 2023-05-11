@@ -5,7 +5,6 @@ import { FaBolt, FaCloudShowersHeavy } from "react-icons/fa";
 const IntroPage = ({ setCity, city, publicUrl }) => {
     const [inputValue, setInputValue] = useState("");
     const navigate = useNavigate();
-    const [selectedCity, setSelectedCity] = useState(null);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [hasMounted, setHasMounted] = useState(false);
     const [defaultCityState, setDefaultCityState] = useState("");
@@ -17,7 +16,6 @@ const IntroPage = ({ setCity, city, publicUrl }) => {
           const defaultCity = localStorage.getItem("defaultCity");
           if (defaultCity) {
             setCity(defaultCity);
-            setSelectedCity(defaultCity);
             navigate(`/displayWeather/${defaultCity}`);
           }
           setHasMounted(true);
@@ -39,7 +37,6 @@ const IntroPage = ({ setCity, city, publicUrl }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         setCity(inputValue);
-        setSelectedCity(inputValue);
         navigate(`/displayWeather/${inputValue}`, { replace: true });
         setInputValue("");
       };
