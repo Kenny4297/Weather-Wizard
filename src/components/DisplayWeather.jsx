@@ -11,7 +11,6 @@ const DisplayCurrentWeather = () => {
     const timeAPIKey = "ZCTR7FVB0K4V";
     const [time, setTime] = useState("");
     const [date, setDate] = useState("");
-    const [error, setError] = useState(null);
     
     let apiCallCount = 0
 
