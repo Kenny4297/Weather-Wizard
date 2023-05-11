@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { FiAlertCircle } from "react-icons/fi";
 import { FaSpinner } from 'react-icons/fa';
 
+
 const DisplayCurrentWeather = () => {
     const [weatherData, setWeatherData] = useState(null);
     // const apiKey = "0c8087e93b7bd6b5e9d6fbd5daee1b51";
@@ -65,6 +66,51 @@ const DisplayCurrentWeather = () => {
       useEffect(() => {
         returnCurrentForecast(city);
       }, [returnCurrentForecast, city]);
+
+      const mapWeatherIcon = (code) => {
+        switch (code) {
+          case "01d":
+            return "fas fa-sun";
+          case "01n":
+            return "fas fa-moon";
+          case "02d":
+            return "fas fa-cloud-sun";
+          case "02n":
+            return "fas fa-cloud-moon";
+          case "03d":
+            return "fas fa-cloud";
+          case "03n":
+            return "fas fa-cloud";
+          case "04d":
+            return "fas fa-cloud";
+          case "04n":
+            return "fas fa-cloud";
+          case "09d":
+            return "fas fa-cloud-showers-heavy";
+          case "09n":
+            return "fas fa-cloud-showers-heavy";
+          case "10d":
+            return "fas fa-cloud-sun-rain";
+          case "10n":
+            return "fas fa-cloud-moon-rain";
+          case "11d":
+            return "fas fa-bolt";
+          case "11n":
+            return "fas fa-bolt";
+          case "13d":
+            return "fas fa-snowflake";
+          case "13n":
+            return "fas fa-snowflake";
+          case "50d":
+            return "fas fa-smog";
+          case "50n":
+            return "fas fa-smog";
+          default:
+            return "fas fa-question"; // Fallback icon if the code is not recognized
+        }
+      };
+      
+      
     
 
     return (
@@ -146,14 +192,12 @@ const DisplayCurrentWeather = () => {
                             {weatherData ? (
                                 <p className="">
                                     <span id="weather-icon">
-                                        <img
-                                            src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
-                                            alt={
-                                                weatherData.weather[0]
-                                                    .description
-                                            }
-                                        />
-                                    </span>
+                                    <i
+                                    className={`${mapWeatherIcon(weatherData.weather[0].icon)} icon fa-2x`}
+                                    aria-label={weatherData.weather[0].description}
+                                    title={weatherData.weather[0].description}
+                                    ></i>
+                                </span>
                                 </p>
                             ) : null}
                             <p className="weather-img-desc">
