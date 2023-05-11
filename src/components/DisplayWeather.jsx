@@ -12,15 +12,12 @@ const DisplayCurrentWeather = () => {
     const timeAPIKey = "ZCTR7FVB0K4V";
     const [time, setTime] = useState("");
     const [date, setDate] = useState("");
-    
-    let apiCallCount = 0
 
     const getTimeForLocation = useCallback(async (lat, lng) => {
         const timeUrl = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeAPIKey}&format=json&by=position&lat=${lat}&lng=${lng}`;
         try {
           const response = await fetch(timeUrl);
           const data = await response.json();
-          console.log(`raw time data: ${JSON.stringify(data)}`)
       
           // Parse the date and time from the API response
           const dateTime = new Date(data.formatted);
@@ -41,13 +38,10 @@ const DisplayCurrentWeather = () => {
       
           setDate(formattedDate);
           setTime(formattedTime);
-          apiCallCount++
-          console.log(`API call count is ${apiCallCount}`)
-          console.log(formattedDate, formattedTime)
         } catch (error) {
           console.log(error);
         }
-      }, [timeAPIKey, setDate, setTime, apiCallCount]);
+      }, [timeAPIKey, setDate, setTime]);
 
 
     const returnCurrentForecast = useCallback(async (city) => {
@@ -57,7 +51,6 @@ const DisplayCurrentWeather = () => {
           const data = await response.json();
           setWeatherData(data);
           getTimeForLocation(data.coord.lat, data.coord.lon);
-          console.log(data)
         } catch (error) {
           console.log(error);
         }

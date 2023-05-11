@@ -13,7 +13,6 @@ const DisplayForecast = (testMode = false) => {
             let response = await fetch(url);
             let data = await response.json();
             setForecastData(data);
-            console.log(data)
         } catch (error) {
             console.log(error);
         }

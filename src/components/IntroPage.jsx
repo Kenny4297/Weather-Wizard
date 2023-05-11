@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBolt, FaCloudShowersHeavy } from "react-icons/fa";
 
-const IntroPage = ({ setCity, city, publicUrl }) => {
+const IntroPage = ({ setCity, city }) => {
     const [inputValue, setInputValue] = useState("");
     const navigate = useNavigate();
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -22,10 +22,6 @@ const IntroPage = ({ setCity, city, publicUrl }) => {
         }
         setDefaultCityState(localStorage.getItem("defaultCity"));
     
-        // Cleanup function
-        return () => {
-          setHasMounted(false);
-        };
       }, [navigate, setCity, hasMounted]);
 
     const checkInput = (event) => {
