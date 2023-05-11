@@ -23,8 +23,9 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --max-old-space-size=4096 start",
     "build": "react-scripts build",
     "test": "jest --coverage",
     "eject": "react-scripts eject",
