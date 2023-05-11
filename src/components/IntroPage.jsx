@@ -21,6 +21,11 @@ const IntroPage = ({ setCity, city, publicUrl }) => {
           setHasMounted(true);
         }
         setDefaultCityState(localStorage.getItem("defaultCity"));
+    
+        // Cleanup function
+        return () => {
+          setHasMounted(false);
+        };
       }, [navigate, setCity, hasMounted]);
 
     const checkInput = (event) => {
