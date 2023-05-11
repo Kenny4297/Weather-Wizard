@@ -65,7 +65,7 @@ const IntroPage = ({ setCity, city, publicUrl }) => {
                 </h2>
                 <p style={{ color: "var(--red3)" }}>
                     <em className="intro-page-text">
-                        Example: Caguas, Puerto Rico
+                        Example: Caguas, PR
                     </em>
                 </p>
                 <input

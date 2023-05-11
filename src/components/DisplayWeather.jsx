@@ -138,7 +138,7 @@ const DisplayCurrentWeather = () => {
                         </p>
                         <p className="date-and-time">
                             {time}{" "}
-                            <span className="local-time ">Local time</span>
+                            <span className="local-time ">Local Time</span>
                         </p>
                     </div>
 

@@ -25,11 +25,16 @@ code {
     --red2: #811343;
     --red3: #1B4C6F;
     /* --red3: #264D00; */
-
+    --red3: #609A33;
+    /* 609A33 */
     --red4: #e3afbc;
-    /* --red5: #e3e2df; */
-    --red5: #F0F0F0;
-    --blue: #1E547B;
+    --red5: #e3e2df;
+    /* --red5: #F0F0F0; */
+    /* --blue: #1E547B; */
+    --blue: #3A80B3;
+    ;
+
+    /* 3A80B3 */
 }
 
 @keyframes pulsate {
