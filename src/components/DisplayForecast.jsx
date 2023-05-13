@@ -18,7 +18,7 @@ const DisplayForecast = (testMode = false) => {
         }
     };
 
-    const getFormattedDate = dateStr => {
+    const getFormattedDate = (dateStr) => {
         const daysOfWeek = [
             "Sunday",
             "Monday",
@@ -42,13 +42,13 @@ const DisplayForecast = (testMode = false) => {
             "November",
             "December",
         ];
-    
+
         const date = new Date(dateStr.replace(" ", "T"));
         const dayOfWeek = daysOfWeek[date.getDay()];
         const month = months[date.getMonth()];
         const day = date.getDate();
         return `${dayOfWeek}, ${month} ${day}`;
-    }
+    };
 
     useEffect(() => {
         returnFiveDayForecast(city);
@@ -57,80 +57,101 @@ const DisplayForecast = (testMode = false) => {
     try {
         return (
             <div
-              data-testid="display-forecast-page"
-              style={{ height: "40vh", overflow: "visible", zIndex: "1" }}
+                data-testid="display-forecast-page"
+                style={{ height: "40vh", overflow: "visible", zIndex: "1" }}
+                aria-labelledby="display-forecast-heading"
             >
-              {!forecastData ? (
-                <>
-                  <p
-                    style={{
-                      color: "var(--red3)",
-                      textAlign: "center",
-                      fontSize: "2rem",
-                    }}
-                  >
-                    Loading...
-                  </p>
-                </>
-              ) : (
-                <div className="future-forecast">
-                  {forecastData &&
-                    forecastData.list
-                      .reduce((uniqueIndices, data, index) => {
-                        if (
-                          uniqueIndices.length < 5 &&
-                          (testMode || index % 8 === 3) &&
-                          uniqueIndices.every(
-                            (storedIndex) =>
-                              getFormattedDate(forecastData.list[storedIndex].dt_txt).slice(0, 10) !==
-                              getFormattedDate(data.dt_txt).slice(0, 10)
-                          )
-                        ) {
-                          uniqueIndices.push(index);
-                        }
-                        return uniqueIndices;
-                      }, [])
-                      .map((uniqueIndex) => {
-                        const data = forecastData.list[uniqueIndex];
-                        return (
-                          <div
-                            className="future-forecast-css"
-                            key={data.dt_txt}
-                          >
-                            <p data-testid="forecast-date" className="future-text-date">
-                              <u>
-                                {getFormattedDate(data.dt_txt)}
-                              </u>
-                            </p>
-                            <p className="future-text">
-                              {data.main.temp}&deg;F
-                            </p>
-                            <img
-                              className="icon-images"
-                              style={{ width: "3rem" }}
-                              src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
-                              alt={data.weather[0].description}
-                            />
-                            <p className="future-text">
-                              {data.weather[0].description}
-                            </p>
-                            <p className="future-text">
-                              {data.main.humidity}%
-                            </p>
-                            <p className="future-text">
-                              {data.wind.speed} mph
-                            </p>
-                          </div>
-                        );
-                      })}
-                </div>
-              )}
+                {!forecastData ? (
+                    <>
+                        <p
+                            style={{
+                                color: "var(--red3)",
+                                textAlign: "center",
+                                fontSize: "2rem",
+                            }}
+                            aria-label="Loading..."
+                        >
+                            Loading...
+                        </p>
+                    </>
+                ) : (
+                    <div className="future-forecast">
+                        {forecastData &&
+                            forecastData.list
+                                .reduce((uniqueIndices, data, index) => {
+                                    if (
+                                        uniqueIndices.length < 5 &&
+                                        (testMode || index % 8 === 3) &&
+                                        uniqueIndices.every(
+                                            (storedIndex) =>
+                                                getFormattedDate(
+                                                    forecastData.list[
+                                                        storedIndex
+                                                    ].dt_txt
+                                                ).slice(0, 10) !==
+                                                getFormattedDate(
+                                                    data.dt_txt
+                                                ).slice(0, 10)
+                                        )
+                                    ) {
+                                        uniqueIndices.push(index);
+                                    }
+                                    return uniqueIndices;
+                                }, [])
+                                .map((uniqueIndex) => {
+                                    const data = forecastData.list[uniqueIndex];
+                                    return (
+                                        <div
+                                            className="future-forecast-css"
+                                            key={data.dt_txt}
+                                            aria-labelledby={`forecast-${data.dt_txt}`}
+                                        >
+                                            <p
+                                                data-testid="forecast-date"
+                                                className="future-text-date"
+                                                aria-label={getFormattedDate(
+                                                    data.dt_txt
+                                                )}
+                                            >
+                                                <u>
+                                                    {getFormattedDate(
+                                                        data.dt_txt
+                                                    )}
+                                                </u>
+                                            </p>
+                                            <p className="future-text">
+                                                {data.main.temp}&deg;F
+                                            </p>
+                                            <img
+                                                className="icon-images"
+                                                style={{ width: "3rem" }}
+                                                src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                                                alt={
+                                                    data.weather[0].description
+                                                }
+                                                aria-label={
+                                                    data.weather[0].description
+                                                }
+                                            />
+                                            <p className="future-text">
+                                                {data.weather[0].description}
+                                            </p>
+                                            <p className="future-text">
+                                                {data.main.humidity}%
+                                            </p>
+                                            <p className="future-text">
+                                                {data.wind.speed} mph
+                                            </p>
+                                        </div>
+                                    );
+                                })}
+                    </div>
+                )}
             </div>
-          );
-          
+        );
     } catch (error) {
         console.log(error);
-        <p>Sorry, no forecast data available</p>
+        <p>Sorry, no forecast data available</p>;
     }
 };
 

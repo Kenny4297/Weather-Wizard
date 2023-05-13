@@ -10,24 +10,23 @@ const IntroPage = ({ setCity, city }) => {
     const [defaultCityState, setDefaultCityState] = useState("");
     const isDefaultCity = city === defaultCityState;
 
-    // Set the default city 
+    // Set the default city
     useEffect(() => {
         if (!hasMounted) {
-          const defaultCity = localStorage.getItem("defaultCity");
-          if (defaultCity) {
-            setCity(defaultCity);
-            navigate(`/displayWeather/${defaultCity}`);
-          }
-          setHasMounted(true);
+            const defaultCity = localStorage.getItem("defaultCity");
+            if (defaultCity) {
+                setCity(defaultCity);
+                navigate(`/displayWeather/${defaultCity}`);
+            }
+            setHasMounted(true);
         }
         setDefaultCityState(localStorage.getItem("defaultCity"));
-    
-      }, [navigate, setCity, hasMounted]);
+    }, [navigate, setCity, hasMounted]);
 
     const checkInput = (event) => {
         const value = event.target.value;
         setInputValue(value);
-    
+
         if (value.trim() === "") {
             setIsButtonDisabled(true);
         } else {
@@ -40,7 +39,7 @@ const IntroPage = ({ setCity, city }) => {
         setCity(inputValue);
         navigate(`/displayWeather/${inputValue}`, { replace: true });
         setInputValue("");
-      };
+    };
 
     const setDefaultCity = () => {
         localStorage.setItem("defaultCity", city);
@@ -49,8 +48,17 @@ const IntroPage = ({ setCity, city }) => {
 
     return (
         <div data-testid="intro-page" style={{ height: "100%" }}>
-            <form id="form" className="intro-page-box" onSubmit={handleSubmit}>
-                <h1 className="intro-page-text-h1" style={{ color: 'var(--blue)'}}>
+            <form
+                id="form"
+                className="intro-page-box"
+                onSubmit={handleSubmit}
+                aria-labelledby="intro-page-heading"
+            >
+                <h1
+                    id="intro-page-heading"
+                    className="intro-page-text-h1"
+                    style={{ color: "var(--blue)" }}
+                >
                     <FaCloudShowersHeavy />
                     <em>Weather Wizard</em>
                     <FaBolt size={30} />
@@ -58,11 +66,15 @@ const IntroPage = ({ setCity, city }) => {
                 <h2
                     className="intro-page-text"
                     style={{ color: "var(--red2)" }}
+                    aria-label="Enter the city name"
                 >
                     Enter the city name
                 </h2>
                 <p style={{ color: "var(--red3)" }}>
-                    <em className="intro-page-text">
+                    <em
+                        className="intro-page-text"
+                        aria-label="Example: Caguas, PR"
+                    >
                         Example: Caguas, PR
                     </em>
                 </p>
@@ -72,6 +84,7 @@ const IntroPage = ({ setCity, city }) => {
                     className="form-input thing intro-page-text"
                     value={inputValue}
                     onChange={checkInput}
+                    aria-label="City input"
                 />
                 <p>
                     <button
@@ -84,6 +97,7 @@ const IntroPage = ({ setCity, city }) => {
                                 ? "grey"
                                 : "var(--red2)",
                         }}
+                        aria-label="Submit"
                     >
                         Today's Weather
                     </button>
@@ -91,16 +105,17 @@ const IntroPage = ({ setCity, city }) => {
                 <div>
                     {city && (
                         <button
-                        type="button"
-                        className="set-city-button"
-                        onClick={setDefaultCity}
-                        disabled={isDefaultCity}
-                    >
+                            type="button"
+                            className="set-city-button"
+                            onClick={setDefaultCity}
+                            disabled={isDefaultCity}
+                            aria-label="Set Default City"
+                        >
                             Set Default City
                         </button>
                     )}
                     {localStorage.getItem("defaultCity") && (
-                        <p className='default-city-text'>
+                        <p className="default-city-text">
                             Current City: {localStorage.getItem("defaultCity")}
                         </p>
                     )}

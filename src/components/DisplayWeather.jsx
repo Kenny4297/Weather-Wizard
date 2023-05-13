@@ -72,7 +72,7 @@ const DisplayCurrentWeather = () => {
     const mapWeatherIcon = (code) => {
         switch (code) {
             case "01d":
-             return "fas fa-sun";
+                return "fas fa-sun";
             case "01n":
                 return "fas fa-moon";
             case "02d":
@@ -113,7 +113,11 @@ const DisplayCurrentWeather = () => {
     };
 
     return (
-        <div data-testid="display-weather-page" style={{ height: "100%" }}>
+        <div
+            data-testid="display-weather-page"
+            style={{ height: "100%" }}
+            aria-labelledby="display-weather-heading"
+        >
             {!weatherData ? (
                 <p
                     style={{
@@ -125,6 +129,7 @@ const DisplayCurrentWeather = () => {
                         fontSize: "1.5rem",
                         alignItems: "center",
                     }}
+                    aria-label="Loading..."
                 >
                     <FaSpinner className="spinner" data-testid="spinner" />
                 </p>
@@ -141,8 +146,12 @@ const DisplayCurrentWeather = () => {
                             textAlign: "center",
                             maxHeight: "300px",
                         }}
+                        aria-labelledby="error-message-heading"
                     >
-                        <p style={{ color: "var(--red3" }}>
+                        <p
+                            style={{ color: "var(--red3" }}
+                            aria-label="Sorry, but your request was inadequate. The city you entered does not exist in our database. If it is spelt correctly, try entering another city that is close by."
+                        >
                             Sorry, but your request was inadequate. The city you
                             entered does not exist in our database. If it is
                             spelt correctly, try entering another city that is
@@ -152,6 +161,7 @@ const DisplayCurrentWeather = () => {
                             size={295}
                             data-testid="alert-icon"
                             style={{ position: "relative", bottom: "1rem" }}
+                            aria-hidden="true"
                         />
                     </div>
                 </>
@@ -189,19 +199,26 @@ const DisplayCurrentWeather = () => {
 
                     <div className="weather-box">
                         <div className="weather-icon-box ">
-                        {weatherData ? (
-                            <p className="">
-                              <span id="weather-icon">
-                                <i
-                                  className={`${mapWeatherIcon(weatherData.weather[0].icon)} icon fa-2x`}
-                                  aria-label={weatherData.weather[0].description}
-                                  title={weatherData.weather[0].description}
-                                  data-testid={`${weatherData.weather[0].icon}-icon`}
-                                ></i>
-                              </span>
-                            </p>
-                          ) : null}
-
+                            {weatherData ? (
+                                <p className="">
+                                    <span id="weather-icon">
+                                        <i
+                                            className={`${mapWeatherIcon(
+                                                weatherData.weather[0].icon
+                                            )} icon fa-2x`}
+                                            aria-label={
+                                                weatherData.weather[0]
+                                                    .description
+                                            }
+                                            title={
+                                                weatherData.weather[0]
+                                                    .description
+                                            }
+                                            data-testid={`${weatherData.weather[0].icon}-icon`}
+                                        ></i>
+                                    </span>
+                                </p>
+                            ) : null}
 
                             <p className="weather-img-desc">
                                 <span
