@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { FiAlertCircle } from "react-icons/fi";
-import { FaSpinner } from 'react-icons/fa';
-
+import { FaSpinner } from "react-icons/fa";
 
 const DisplayCurrentWeather = () => {
     const [weatherData, setWeatherData] = useState(null);
@@ -13,114 +12,125 @@ const DisplayCurrentWeather = () => {
     const [time, setTime] = useState("");
     const [date, setDate] = useState("");
 
-    const getTimeForLocation = useCallback(async (lat, lng) => {
-        const timeUrl = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeAPIKey}&format=json&by=position&lat=${lat}&lng=${lng}`;
-        try {
-          const response = await fetch(timeUrl);
-          const data = await response.json();
-      
-          // Parse the date and time from the API response
-          const dateTime = new Date(data.formatted);
-      
-          // Extract and format the date
-          const formattedDate = dateTime.toLocaleDateString("en-US", {
-            weekday: "short",
-            month: "long",
-            day: "numeric",
-          });
-      
-          // Extract and format the time
-          const formattedTime = dateTime.toLocaleTimeString([], {
-            hour: "numeric",
-            minute: "2-digit",
-            hour12: true,
-          });
-      
-          setDate(formattedDate);
-          setTime(formattedTime);
-        } catch (error) {
-          console.log(error);
-        }
-      }, [timeAPIKey, setDate, setTime]);
+    const getTimeForLocation = useCallback(
+        async (lat, lng) => {
+            const timeUrl = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeAPIKey}&format=json&by=position&lat=${lat}&lng=${lng}`;
+            try {
+                const response = await fetch(timeUrl);
+                const data = await response.json();
 
+                // Parse the date and time from the API response
+                const dateTime = new Date(data.formatted);
 
-    const returnCurrentForecast = useCallback(async (city) => {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-        try {
-          const response = await fetch(url);
-          const data = await response.json();
-          setWeatherData(data);
-          getTimeForLocation(data.coord.lat, data.coord.lon);
-        } catch (error) {
-          console.log(error);
-        }
-      }, [apiKey, setWeatherData, getTimeForLocation]);
-      
-      useEffect(() => {
+                // Extract and format the date
+                const formattedDate = dateTime.toLocaleDateString("en-US", {
+                    weekday: "short",
+                    month: "long",
+                    day: "numeric",
+                });
+
+                // Extract and format the time
+                const formattedTime = dateTime.toLocaleTimeString([], {
+                    hour: "numeric",
+                    minute: "2-digit",
+                    hour12: true,
+                });
+
+                setDate(formattedDate);
+                setTime(formattedTime);
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        [timeAPIKey, setDate, setTime]
+    );
+
+    const returnCurrentForecast = useCallback(
+        async (city) => {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error("Weather data fetch failed");
+                const data = await response.json();
+                setWeatherData(data);
+
+                if (data.cod !== "404") {
+                    try {
+                        getTimeForLocation(data.coord.lat, data.coord.lon);
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            } catch (error) {
+                console.log(error);
+                setWeatherData({ cod: "404" });
+            }
+        },
+        [apiKey, setWeatherData, getTimeForLocation]
+    );
+
+    useEffect(() => {
         returnCurrentForecast(city);
-      }, [returnCurrentForecast, city]);
+    }, [returnCurrentForecast, city]);
 
-      const mapWeatherIcon = (code) => {
+    const mapWeatherIcon = (code) => {
         switch (code) {
-          case "01d":
-            return "fas fa-sun";
-          case "01n":
-            return "fas fa-moon";
-          case "02d":
-            return "fas fa-cloud-sun";
-          case "02n":
-            return "fas fa-cloud-moon";
-          case "03d":
-            return "fas fa-cloud";
-          case "03n":
-            return "fas fa-cloud";
-          case "04d":
-            return "fas fa-cloud";
-          case "04n":
-            return "fas fa-cloud";
-          case "09d":
-            return "fas fa-cloud-showers-heavy";
-          case "09n":
-            return "fas fa-cloud-showers-heavy";
-          case "10d":
-            return "fas fa-cloud-sun-rain";
-          case "10n":
-            return "fas fa-cloud-moon-rain";
-          case "11d":
-            return "fas fa-bolt";
-          case "11n":
-            return "fas fa-bolt";
-          case "13d":
-            return "fas fa-snowflake";
-          case "13n":
-            return "fas fa-snowflake";
-          case "50d":
-            return "fas fa-smog";
-          case "50n":
-            return "fas fa-smog";
-          default:
-            return "fas fa-question"; // Fallback icon if the code is not recognized
+            case "01d":
+             return "fas fa-sun";
+            case "01n":
+                return "fas fa-moon";
+            case "02d":
+                return "fas fa-cloud-sun";
+            case "02n":
+                return "fas fa-cloud-moon";
+            case "03d":
+                return "fas fa-cloud";
+            case "03n":
+                return "fas fa-cloud";
+            case "04d":
+                return "fas fa-cloud";
+            case "04n":
+                return "fas fa-cloud";
+            case "09d":
+                return "fas fa-cloud-showers-heavy";
+            case "09n":
+                return "fas fa-cloud-showers-heavy";
+            case "10d":
+                return "fas fa-cloud-sun-rain";
+            case "10n":
+                return "fas fa-cloud-moon-rain";
+            case "11d":
+                return "fas fa-bolt";
+            case "11n":
+                return "fas fa-bolt";
+            case "13d":
+                return "fas fa-snowflake";
+            case "13n":
+                return "fas fa-snowflake";
+            case "50d":
+                return "fas fa-smog";
+            case "50n":
+                return "fas fa-smog";
+            default:
+                return "fas fa-question";
         }
-      };
-      
-      
-    
+    };
 
     return (
         <div data-testid="display-weather-page" style={{ height: "100%" }}>
             {!weatherData ? (
                 <p
-                style={{
-                    color: "var(--red3)",
-                    display: "flex",
-                    justifyContent: "center",
-                    position: "relative",
-                    top: "10rem",
-                    fontSize: "1.5rem",
-                    alignItems: "center",
-                }}
+                    style={{
+                        color: "var(--red3)",
+                        display: "flex",
+                        justifyContent: "center",
+                        position: "relative",
+                        top: "10rem",
+                        fontSize: "1.5rem",
+                        alignItems: "center",
+                    }}
                 >
-                <FaSpinner className="spinner" data-testid="spinner" />
+                    <FaSpinner className="spinner" data-testid="spinner" />
                 </p>
             ) : weatherData.cod === "404" ? (
                 <>
@@ -136,7 +146,7 @@ const DisplayCurrentWeather = () => {
                             maxHeight: "300px",
                         }}
                     >
-                        <p style={{color:'var(--red3'}}>
+                        <p style={{ color: "var(--red3" }}>
                             Sorry, but your request was inadequate. The city you
                             entered does not exist in our database. If it is
                             spelt correctly, try entering another city that is
@@ -167,7 +177,8 @@ const DisplayCurrentWeather = () => {
                                     id="display-city-name"
                                     // style={{ textDecoration: "underline" }}
                                 >
-                                    {weatherData.name}, {weatherData.sys.country}
+                                    {weatherData.name},{" "}
+                                    {weatherData.sys.country}
                                 </span>
                             </strong>
                         </h1>
@@ -182,17 +193,20 @@ const DisplayCurrentWeather = () => {
 
                     <div className="weather-box">
                         <div className="weather-icon-box ">
-                            {weatherData ? (
-                                <p className="">
-                                    <span id="weather-icon">
-                                    <i
-                                    className={`${mapWeatherIcon(weatherData.weather[0].icon)} icon fa-2x`}
-                                    aria-label={weatherData.weather[0].description}
-                                    title={weatherData.weather[0].description}
-                                    ></i>
-                                </span>
-                                </p>
-                            ) : null}
+                        {weatherData ? (
+                            <p className="">
+                              <span id="weather-icon">
+                                <i
+                                  className={`${mapWeatherIcon(weatherData.weather[0].icon)} icon fa-2x`}
+                                  aria-label={weatherData.weather[0].description}
+                                  title={weatherData.weather[0].description}
+                                  data-testid={`${weatherData.weather[0].icon}-icon`}
+                                ></i>
+                              </span>
+                            </p>
+                          ) : null}
+
+
                             <p className="weather-img-desc">
                                 <span
                                     id="display-skies"

@@ -1,6 +1,6 @@
 # Weather Wizard
 
-![Screenshot](./public/assets/react-weather-screenshot.png)
+![Screenshot](./public/assets/weather-wizard.png)
 ## Table of Contents
 - [License](#license)
 - [Description](#description)
@@ -37,14 +37,10 @@ Due to this portfolio being a SPA, I have decided to simply use GitPages for the
 ## Testing
 I used Jest and RTL for tests. Here is the coverage table for all tests.
 
----------------------|---------|----------|---------|---------|-------------------
-File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
----------------------|---------|----------|---------|---------|-------------------
-All files            |   95.04 |    82.75 |   93.75 |   95.04 |                   
- DisplayForecast.jsx |    87.5 |    72.72 |   85.71 |    87.5 | 18,86,133-134     
- DisplayWeather.jsx  |     100 |    83.33 |     100 |     100 | 147               
- IntroPage.jsx       |   96.96 |    91.66 |     100 |   96.96 | 33                
----------------------|---------|----------|---------|---------|-------------------
+All files            |   76.06 |    53.84 |   94.11 |   76.72 |                   
+ DisplayForecast.jsx |   87.09 |    72.72 |   85.71 |   87.09 | 17,85,132-133     
+ DisplayWeather.jsx  |   58.92 |    31.03 |     100 |      60 | 42,61-66,81-115   
+ IntroPage.jsx       |   96.66 |    91.66 |     100 |   96.66 | 32           
 
 
 If you have any suggestions for improvement, please feel free to share them with me! Thanks for viewing this README!
