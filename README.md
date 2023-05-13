@@ -37,10 +37,12 @@ Due to this portfolio being a SPA, I have decided to simply use GitPages for the
 ## Testing
 I used Jest and RTL for tests. Here is the coverage table for all tests.
 
-All files            |   76.06 |    53.84 |   94.11 |   76.72 |                   
- DisplayForecast.jsx |   87.09 |    72.72 |   85.71 |   87.09 | 17,85,132-133     
- DisplayWeather.jsx  |   58.92 |    31.03 |     100 |      60 | 42,61-66,81-115   
- IntroPage.jsx       |   96.66 |    91.66 |     100 |   96.66 | 32           
+File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+---------------------|---------|----------|---------|---------|-------------------
+All files            |   89.58 |    81.81 |   93.75 |   90.52 |                   
+ DisplayForecast.jsx |   87.09 |    72.72 |   85.71 |   87.09 | 17,87,153-154     
+ DisplayWeather.jsx  |   85.71 |       80 |     100 |   88.23 | 38,57-62          
+ IntroPage.jsx       |   96.66 |    91.66 |     100 |   96.66 | 31       
 
 
 If you have any suggestions for improvement, please feel free to share them with me! Thanks for viewing this README!
