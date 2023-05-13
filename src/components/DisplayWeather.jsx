@@ -5,7 +5,6 @@ import { FaSpinner } from "react-icons/fa";
 
 const DisplayCurrentWeather = () => {
     const [weatherData, setWeatherData] = useState(null);
-    // const apiKey = "0c8087e93b7bd6b5e9d6fbd5daee1b51";
     const apiKey = process.env.REACT_APP_API_KEY;
     const { city } = useParams();
     const timeAPIKey = "ZCTR7FVB0K4V";
@@ -19,17 +18,14 @@ const DisplayCurrentWeather = () => {
                 const response = await fetch(timeUrl);
                 const data = await response.json();
 
-                // Parse the date and time from the API response
                 const dateTime = new Date(data.formatted);
 
-                // Extract and format the date
                 const formattedDate = dateTime.toLocaleDateString("en-US", {
                     weekday: "short",
                     month: "long",
                     day: "numeric",
                 });
 
-                // Extract and format the time
                 const formattedTime = dateTime.toLocaleTimeString([], {
                     hour: "numeric",
                     minute: "2-digit",
