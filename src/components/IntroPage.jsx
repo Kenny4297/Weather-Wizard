@@ -20,8 +20,11 @@ const IntroPage = ({ setCity, city }) => {
             }
             setHasMounted(true);
         }
-        setDefaultCityState(localStorage.getItem("defaultCity"));
     }, [navigate, setCity, hasMounted]);
+    
+    useEffect(() => {
+        setDefaultCityState(localStorage.getItem("defaultCity"));
+    }, []); // Run only when the component mounts and unmounts
 
     const checkInput = (event) => {
         const value = event.target.value;
