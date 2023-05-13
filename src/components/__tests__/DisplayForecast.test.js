@@ -72,7 +72,6 @@ test("renders DisplayForecast component", async () => {
 
 test("renders Loading... text while fetching data", async () => {
     fetch.mockResponseOnce(
-        // Simulate a delayed response
         () =>
             new Promise((resolve) =>
                 setTimeout(

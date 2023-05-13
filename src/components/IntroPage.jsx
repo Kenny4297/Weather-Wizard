@@ -97,7 +97,7 @@ const IntroPage = ({ setCity, city }) => {
                                 ? "grey"
                                 : "var(--red2)",
                         }}
-                        aria-label="Submit"
+                        aria-label="Today's Weather"
                     >
                         Today's Weather
                     </button>
