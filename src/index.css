@@ -104,9 +104,8 @@ code {
 }
 
 .icon {
-    width: 8rem;
-    margin-top: 3rem;
-    color: var(--blue);
+    width: 10rem;
+    margin-top: 1rem;
 }
 
 .future-forecast-css:hover {
@@ -300,13 +299,9 @@ code {
         height: 8rem !important;
         width: 10rem;
     }
-    .icon {
-        position: relative;
-        top: -3rem;
-    }
     .weather-img-desc {
         position: relative !important;
-        bottom: 3rem !important;
+        bottom: 1rem !important;
     }
     .weather-icon-box img {
         width: 5rem;
@@ -405,13 +400,6 @@ code {
     }
     .todays-weather-data {
         padding-top: 0.5rem;
-    }
-    .icon {
-        position: relative;
-        bottom: 1rem;
-    }
-    .weather-img-desc {
-        bottom: 1rem;
     }
 }
 

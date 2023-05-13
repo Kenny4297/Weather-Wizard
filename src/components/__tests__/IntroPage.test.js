@@ -35,7 +35,7 @@ test("submit button is disabled when input value is empty", () => {
             <IntroPage setCity={jest.fn()} />
         </MemoryRouter>
     );
-    const submitButton = screen.getByRole("button", {
+    const submitButton = screen.queryByRole("button", {
         name: "Today's Weather",
     });
     expect(submitButton).toBeDisabled();
@@ -48,7 +48,7 @@ test("submit button is enabled when input value is not empty", () => {
         </MemoryRouter>
     );
     const input = screen.getByRole("textbox");
-    const submitButton = screen.getByRole("button", {
+    const submitButton = screen.queryByRole("button", {
         name: "Today's Weather",
     });
     fireEvent.change(input, { target: { value: "New York" } });
