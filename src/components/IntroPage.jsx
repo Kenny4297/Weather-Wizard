@@ -12,9 +12,11 @@ const IntroPage = ({ setCity, city }) => {
     // Default city should only run when user visits the page
     const [hasMounted, setHasMounted] = useState(false);
     const [defaultCityState, setDefaultCityState] = useState("");
+    
+    // Condition sets the boolean for 'isDefaultCity'
     const isDefaultCity = city === defaultCityState;
 
-    // Set the default city
+    // Automatically search the default city on mount
     useEffect(() => {
         if (!hasMounted) {
             const defaultCity = localStorage.getItem("defaultCity");
@@ -24,7 +26,8 @@ const IntroPage = ({ setCity, city }) => {
             }
             setHasMounted(true);
         }
-    }, [navigate, setCity, hasMounted]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [hasMounted]);
     
     useEffect(() => {
         setDefaultCityState(localStorage.getItem("defaultCity"));
@@ -41,6 +44,7 @@ const IntroPage = ({ setCity, city }) => {
         }
     };
 
+    //  ‘replace: true’ updates the URL without adding a new entry to the history stack, giving the impression of a seamless transition between different pages or components.
     const handleSubmit = (event) => {
         event.preventDefault();
         setCity(inputValue);

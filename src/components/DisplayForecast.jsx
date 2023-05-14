@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 // 'testMode - false' for second test
 const DisplayForecast = (testMode = false) => {
     const [forecastData, setForecastData] = useState(null);
-    const apiKey = "0c8087e93b7bd6b5e9d6fbd5daee1b51";
+    const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
     const { city } = useParams();
 
     // This returns the data at the bottom of the page
@@ -44,6 +44,7 @@ const DisplayForecast = (testMode = false) => {
             "December",
         ];
 
+        // Editing the response for better UX
         const date = new Date(dateStr.replace(" ", "T"));
         const dayOfWeek = daysOfWeek[date.getDay()];
         const month = months[date.getMonth()];
@@ -53,6 +54,7 @@ const DisplayForecast = (testMode = false) => {
 
     useEffect(() => {
         returnFiveDayForecast(city);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [city]);
 
     try {
