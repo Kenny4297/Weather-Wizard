@@ -175,7 +175,7 @@ test("displays error message when a city is not found", async () => {
     });
 
     const errorMessage = screen.getByText(
-        /Sorry, but your request was inadequate. The city you entered does not exist in our database. If it is spelt correctly, try entering another city that is close by./i
+        /The city you entered does not exist in our database. If it is spelt correctly, and a comma is between the city and country code, try entering another city that is close by./i
     );
     expect(errorMessage).toBeInTheDocument();
 
@@ -189,7 +189,7 @@ test("displays error message when fetch request fails", async () => {
     render(<DisplayWeather />);
 
     const errorMessage = await screen.findByText(
-        /Sorry, but your request was inadequate/i
+        /The city you entered does not exist in our database./i
     );
 
     expect(errorMessage).toBeInTheDocument();

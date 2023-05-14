@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+// 'testMode - false' for second test
 const DisplayForecast = (testMode = false) => {
     const [forecastData, setForecastData] = useState(null);
     const apiKey = "0c8087e93b7bd6b5e9d6fbd5daee1b51";

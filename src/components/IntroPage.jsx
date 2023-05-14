@@ -5,7 +5,11 @@ import { FaBolt, FaCloudShowersHeavy } from "react-icons/fa";
 const IntroPage = ({ setCity, city }) => {
     const [inputValue, setInputValue] = useState("");
     const navigate = useNavigate();
+
+    // State for disabling the 'Today's Weather' button if user hasn't entered anything
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+    // Default city should only run when user visits the page
     const [hasMounted, setHasMounted] = useState(false);
     const [defaultCityState, setDefaultCityState] = useState("");
     const isDefaultCity = city === defaultCityState;
