@@ -109,9 +109,9 @@ const DisplayCurrentWeather = () => {
                             style={{ color: "var(--red3" }}
                             aria-label="Sorry, but your request was inadequate. The city you entered does not exist in our database. If it is spelt correctly, try entering another city that is close by."
                         >
-                            Sorry, but your request was inadequate. The city you
+                            The city you
                             entered does not exist in our database. If it is
-                            spelt correctly, try entering another city that is
+                            spelt correctly, and a comma is between the city and country code, try entering another city that is
                             close by.
                         </p>
                         <FiAlertCircle
