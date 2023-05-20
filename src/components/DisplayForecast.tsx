@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+
+interface DisplayForecastProps {
+    city: string;
+    testMode?: boolean;
+}
+
 // 'testMode - false' for second test
-const DisplayForecast = (testMode = false) => {
+const DisplayForecast: React.FC<DisplayForecastProps> = ({ city, testMode }) => {
     const [forecastData, setForecastData] = useState(null);
     const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
     const { city } = useParams();
@@ -154,7 +160,7 @@ const DisplayForecast = (testMode = false) => {
         );
     } catch (error) {
         console.log(error);
-        <p>Sorry, no forecast data available</p>;
+        return <p>Sorry, no forecast data available</p>;
     }
 };
 

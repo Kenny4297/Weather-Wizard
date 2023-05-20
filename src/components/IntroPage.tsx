@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { IntroPageProps } from "../App";
 import { FaBolt, FaCloudShowersHeavy } from "react-icons/fa";
 
-const IntroPage = ({ setCity, city }) => {
+const IntroPage: React.FC<IntroPageProps> = ({ city, setCity }) => {
     const [inputValue, setInputValue] = useState("");
     const navigate = useNavigate();
 
