@@ -4,7 +4,7 @@ import { FiAlertCircle } from "react-icons/fi";
 import { FaSpinner } from "react-icons/fa";
 
 const DisplayCurrentWeather = () => {
-    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+    const [weatherData, setWeatherData] = useState<WeatherData | Error | null>(null);
     const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
     const { city } = useParams() as { city: string };
     const timeAPIKey= process.env.REACT_APP_TIMEZONE_API_KEY;
@@ -64,24 +64,9 @@ const DisplayCurrentWeather = () => {
         cod: string;
     }
 
-    // Response for the TimeZoneDB API
-    interface TimeZoneResponse {
-        status: string;
-        message: string;
-        countryCode: string;
-        countryName: string;
-        regionName: string;
-        cityName: string;
-        zoneName: string;
-        abbreviation: string;
-        gmtOffset: number;
-        dst: string;
-        zoneStart: number;
-        zoneEnd: number;
-        nextAbbreviation: string;
-        timestamp: number;
-        formatted: string;
-      }
+    interface Error {
+        cod: string;
+    }
 
     const getTimeForLocation = useCallback(
         async (lat: string, lng: string) => {
@@ -122,7 +107,7 @@ const DisplayCurrentWeather = () => {
                 const data = await response.json();
                 setWeatherData(data);
 
-                if (data.cod !== "404") {
+                if (data.cod !== 404) {
                     try {
                         getTimeForLocation(data.coord.lat, data.coord.lon);
                     } catch (error) {
@@ -162,7 +147,7 @@ const DisplayCurrentWeather = () => {
                 >
                     <FaSpinner className="spinner" data-testid="spinner" />
                 </p>
-            ) : weatherData.cod === "404" ? (
+            ) : 'cod' in weatherData && weatherData.cod === "404" ? (
                 <>
                     <div
                         style={{
@@ -212,8 +197,8 @@ const DisplayCurrentWeather = () => {
                                     id="display-city-name"
                                     // style={{ textDecoration: "underline" }}
                                 >
-                                    {weatherData.name},{" "}
-                                    {weatherData.sys.country}
+                                    {(weatherData as WeatherData).name},{" "}
+                                    {(weatherData as WeatherData).sys.country}
                                 </span>
                             </strong>
                         </h1>
@@ -234,12 +219,12 @@ const DisplayCurrentWeather = () => {
                                       <img
                                                   className="icon"
                                                   style={{ width: "4.5rem" }}
-                                                  src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
+                                                  src={`http://openweathermap.org/img/w/${(weatherData as WeatherData).weather[0].icon}.png`}
                                                   alt={
-                                                      weatherData.weather[0].description
+                                                    (weatherData as WeatherData).weather[0].description
                                                   }
                                                   aria-label={
-                                                      weatherData.weather[0].description
+                                                    (weatherData as WeatherData).weather[0].description
                                                   }
                                               />
                                       </span>
@@ -254,7 +239,7 @@ const DisplayCurrentWeather = () => {
                                         fontWeight: "600",
                                     }}
                                 >
-                                    {weatherData.weather[0].description}
+                                    {(weatherData as WeatherData).weather[0].description}
                                 </span>
                             </p>
                         </div>
@@ -266,7 +251,7 @@ const DisplayCurrentWeather = () => {
                                         Temp:{" "}
                                     </span>
                                     <span style={{ color: "var(--red3)" }}>
-                                        {`${weatherData.main.temp}`}&deg;F
+                                        {`${(weatherData as WeatherData).main.temp}`}&deg;F
                                     </span>
                                 </span>
                             </p>
@@ -276,14 +261,14 @@ const DisplayCurrentWeather = () => {
                                         className="todays-numbers max-min"
                                         title="low"
                                     >
-                                        {`${weatherData.main.temp_min}`}&deg;F
+                                        {`${(weatherData as WeatherData).main.temp_min}`}&deg;F
                                     </span>
                                     <span className="todays-numbers"> / </span>
                                     <span
                                         className="todays-numbers max-min"
                                         title="high"
                                     >
-                                        {`${weatherData.main.temp_max}`}&deg;F
+                                        {`${(weatherData as WeatherData).main.temp_max}`}&deg;F
                                     </span>
                                 </span>
                             </p>
@@ -293,7 +278,7 @@ const DisplayCurrentWeather = () => {
                                         Humidity:{" "}
                                     </span>
                                     <span style={{ color: "var(--red3)" }}>
-                                        {`${weatherData.main.humidity}%`}
+                                        {`${(weatherData as WeatherData).main.humidity}%`}
                                     </span>
                                 </span>
                             </p>
@@ -304,7 +289,7 @@ const DisplayCurrentWeather = () => {
                                     </span>
                                     <span
                                         style={{ color: "var(--red3)" }}
-                                    >{`${weatherData.wind.speed}mph`}</span>
+                                    >{`${(weatherData as WeatherData).wind.speed}mph`}</span>
                                 </span>
                             </p>
                         </div>

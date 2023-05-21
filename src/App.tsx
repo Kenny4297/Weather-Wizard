@@ -3,7 +3,6 @@ import React, {
     createContext,
     Dispatch,
     SetStateAction,
-    useContext
 } from "react";
 import { Route, Routes, HashRouter } from "react-router-dom";
 import {
@@ -40,7 +39,7 @@ const App = () => {
 };
 
 const WeatherResultsPage: React.FC = () => {
-    const { city, setCity } = useContext(CityContext);
+    // const { city, setCity } = useContext(CityContext);
 
     return (
         <>

@@ -1,20 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-
 interface DisplayForecastProps {
-    city: string;
     testMode?: boolean;
 }
 
 // 'testMode - false' for second test
-const DisplayForecast: React.FC<DisplayForecastProps> = ({ city, testMode }) => {
-    const [forecastData, setForecastData] = useState(null);
+const DisplayForecast: React.FC<DisplayForecastProps> = ({ testMode }) => {
+    const [forecastData, setForecastData] = useState<ForecastResponse | null>(null);
     const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
-    const { city } = useParams();
+    const { city } = useParams() as { city: string };
+
+    interface ForecastResponse {
+        list: ForecastListItem[];
+    }
+
+    interface ForecastListItem {
+        dt_txt: string; 
+        main: Main;
+        weather: Weather[];
+        wind: Wind;
+        sys: Sys;
+    }
+    
+    interface Main {
+        temp: number; 
+        humidity: number; 
+    }
+    
+    interface Weather {
+        description: string; 
+        icon: string; 
+    }
+
+    
+    interface Wind {
+        speed: number; 
+    }
+    
+    interface Sys {
+        pod: string;
+    }
+    
 
     // This returns the data at the bottom of the page
-    const returnFiveDayForecast = async (city) => {
+    const returnFiveDayForecast = async (city: string) => {
         const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
         try {
             let response = await fetch(url);
@@ -25,7 +54,7 @@ const DisplayForecast: React.FC<DisplayForecastProps> = ({ city, testMode }) => 
         }
     };
 
-    const getFormattedDate = (dateStr) => {
+    const getFormattedDate = (dateStr: string): string => {
         const daysOfWeek = [
             "Sunday",
             "Monday",
@@ -87,7 +116,7 @@ const DisplayForecast: React.FC<DisplayForecastProps> = ({ city, testMode }) => 
                     <div className="future-forecast">
                         {forecastData &&
                             forecastData.list
-                                .reduce((uniqueIndices, data, index) => {
+                                .reduce((uniqueIndices: number[], data, index) => {
                                     if (
                                         uniqueIndices.length < 5 &&
                                         (testMode || index % 8 === 3) &&
@@ -106,7 +135,7 @@ const DisplayForecast: React.FC<DisplayForecastProps> = ({ city, testMode }) => 
                                         uniqueIndices.push(index);
                                     }
                                     return uniqueIndices;
-                                }, [])
+                                }, [] as number[])
                                 .map((uniqueIndex) => {
                                     const data = forecastData.list[uniqueIndex];
                                     return (

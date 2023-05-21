@@ -64,7 +64,7 @@ const IntroPage: React.FC = () => {
     };
 
     return (
-        <div data-testid="intro-page" style={{ height: "100%" }}>
+        <div data-testid="intro-page" className={!city ? 'intro-page-no-city' : ''}>
             <form
                 id="form"
                 className="intro-page-box"
