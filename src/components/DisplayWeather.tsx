@@ -68,6 +68,10 @@ const DisplayCurrentWeather = () => {
         cod: string;
     }
 
+    interface TimeZoneAPI {
+        formatted: string
+    }
+
     const getTimeForLocation = useCallback(
         async (lat: string, lng: string) => {
             const timeUrl = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeAPIKey}&format=json&by=position&lat=${lat}&lng=${lng}`;
