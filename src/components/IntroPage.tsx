@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { IntroPageProps } from "../App";
 import { FaBolt, FaCloudShowersHeavy } from "react-icons/fa";
+import { CityContext } from "../App";
 
-const IntroPage: React.FC<IntroPageProps> = ({ city, setCity }) => {
-    const [inputValue, setInputValue] = useState("");
+const IntroPage: React.FC = () => {
+    const [inputValue, setInputValue] = useState<string>("");
     const navigate = useNavigate();
 
+    const { city, setCity } = useContext(CityContext);
+
     // State for disabling the 'Today's Weather' button if user hasn't entered anything
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 
     // Default city should only run when user visits the page
-    const [hasMounted, setHasMounted] = useState(false);
-    const [defaultCityState, setDefaultCityState] = useState("");
+    const [hasMounted, setHasMounted] = useState<boolean>(false);
+    const [defaultCity, setDefaultCity] = useState<string | null>("");
     
     // Condition sets the boolean for 'isDefaultCity'
-    const isDefaultCity = city === defaultCityState;
+    const isDefaultCity: boolean = city === defaultCity;
 
     // Automatically search the default city on mount
     useEffect(() => {
@@ -31,31 +33,34 @@ const IntroPage: React.FC<IntroPageProps> = ({ city, setCity }) => {
     }, [hasMounted]);
     
     useEffect(() => {
-        setDefaultCityState(localStorage.getItem("defaultCity"));
-    }, []); 
+        const localStorageCity = localStorage.getItem("defaultCity");
+        if (localStorageCity !== null) {
+            setDefaultCity(localStorageCity);
+        }
+    }, []);
 
-    const checkInput = (event) => {
+    const checkInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setInputValue(value);
-
+    
         if (value.trim() === "") {
             setIsButtonDisabled(true);
         } else {
             setIsButtonDisabled(false);
         }
     };
-
-    //  ‘replace: true’ updates the URL without adding a new entry to the history stack, giving the impression of a seamless transition between different pages or components.
-    const handleSubmit = (event) => {
+    
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setCity(inputValue);
         navigate(`/displayWeather/${inputValue}`, { replace: true });
         setInputValue("");
     };
-
-    const setDefaultCity = () => {
+    
+    // The function that sets the default city 
+    const handleSetDefaultCity = () => {
         localStorage.setItem("defaultCity", city);
-        setDefaultCityState(city);
+        setDefaultCity(city);
     };
 
     return (
@@ -119,7 +124,7 @@ const IntroPage: React.FC<IntroPageProps> = ({ city, setCity }) => {
                         <button
                             type="button"
                             className="set-city-button"
-                            onClick={setDefaultCity}
+                            onClick={handleSetDefaultCity}
                             disabled={isDefaultCity}
                             aria-label="Set Default City"
                         >

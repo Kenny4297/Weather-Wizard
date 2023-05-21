@@ -1,4 +1,10 @@
-import React, { useState } from "react";
+import React, {
+    useState,
+    createContext,
+    Dispatch,
+    SetStateAction,
+    useContext
+} from "react";
 import { Route, Routes, HashRouter } from "react-router-dom";
 import {
     DisplayCurrentWeather,
@@ -6,33 +12,36 @@ import {
     IntroPage,
 } from "./components";
 
-export interface IntroPageProps {
+
+export const CityContext = createContext<{
     city: string;
-    setCity: React.Dispatch<React.SetStateAction<string>>;
-}
+    setCity: Dispatch<SetStateAction<string>>;
+    }>({
+    city: "",
+    setCity: () => {},
+});
 
 const App = () => {
-    const [city, setCity] = useState("");
+    const [city, setCity] = useState<string>("");
 
     return (
-        <HashRouter>
-            <Routes>
-                <Route
-                    path="/"
-                    element={<IntroPage city={city} setCity={setCity} />}
-                />
-                <Route
-                    path="/displayWeather/:city"
-                    element={
-                        <WeatherResultsPage city={city} setCity={setCity} />
-                    }
-                />
-            </Routes>
-        </HashRouter>
+        <CityContext.Provider value={{ city, setCity }}>
+            <HashRouter>
+                <Routes>
+                    <Route path="/" element={<IntroPage />} />
+                    <Route
+                        path="/displayWeather/:city"
+                        element={<WeatherResultsPage />}
+                    />
+                </Routes>
+            </HashRouter>
+        </CityContext.Provider>
     );
 };
 
-const WeatherResultsPage: React.FC<IntroPageProps> = ({ city, setCity }) => {
+const WeatherResultsPage: React.FC = () => {
+    const { city, setCity } = useContext(CityContext);
+
     return (
         <>
             <div className="weather-section">
@@ -41,16 +50,12 @@ const WeatherResultsPage: React.FC<IntroPageProps> = ({ city, setCity }) => {
                 </div>
 
                 <div className="box2">
-                    <IntroPage
-                        data-testid="intro-page"
-                        setCity={setCity}
-                        city={city}
-                    />
+                    <IntroPage data-testid="intro-page" />
                 </div>
             </div>
 
             <div style={{ marginTop: "1.5rem" }}>
-                <DisplayForecast city={city} />
+                <DisplayForecast />
             </div>
         </>
     );

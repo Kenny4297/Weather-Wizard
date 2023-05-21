@@ -4,15 +4,87 @@ import { FiAlertCircle } from "react-icons/fi";
 import { FaSpinner } from "react-icons/fa";
 
 const DisplayCurrentWeather = () => {
-    const [weatherData, setWeatherData] = useState(null);
+    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
     const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
-    const { city } = useParams();
-    const timeAPIKey = process.env.REACT_APP_TIMEZONE_API_KEY;
-    const [time, setTime] = useState("");
-    const [date, setDate] = useState("");
+    const { city } = useParams() as { city: string };
+    const timeAPIKey= process.env.REACT_APP_TIMEZONE_API_KEY;
+    const [time, setTime] = useState<string>("");
+    const [date, setDate] = useState<string>("");
+
+    //Interface for the response from OpenWeatherAPI
+    interface Weather {
+        id: number;
+        main: string;
+        description: string;
+        icon: string;
+    }
+    
+    interface Main {
+        temp: number;
+        feels_like: number;
+        temp_min: number;
+        temp_max: number;
+        pressure: number;
+        humidity: number;
+    }
+    
+    interface Wind {
+        speed: number;
+        deg: number;
+    }
+    
+    interface Clouds {
+        all: number;
+    }
+    
+    interface Sys {
+        type: number;
+        id: number;
+        country: string;
+        sunrise: number;
+        sunset: number;
+    }
+    
+    interface WeatherData {
+        coord: {
+            lon: number;
+            lat: number;
+        };
+        weather: Weather[];
+        base: string;
+        main: Main;
+        visibility: number;
+        wind: Wind;
+        clouds: Clouds;
+        dt: number;
+        sys: Sys;
+        timezone: number;
+        id: number;
+        name: string;
+        cod: string;
+    }
+
+    // Response for the TimeZoneDB API
+    interface TimeZoneResponse {
+        status: string;
+        message: string;
+        countryCode: string;
+        countryName: string;
+        regionName: string;
+        cityName: string;
+        zoneName: string;
+        abbreviation: string;
+        gmtOffset: number;
+        dst: string;
+        zoneStart: number;
+        zoneEnd: number;
+        nextAbbreviation: string;
+        timestamp: number;
+        formatted: string;
+      }
 
     const getTimeForLocation = useCallback(
-        async (lat, lng) => {
+        async (lat: string, lng: string) => {
             const timeUrl = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeAPIKey}&format=json&by=position&lat=${lat}&lng=${lng}`;
             try {
                 const response = await fetch(timeUrl);
@@ -42,7 +114,7 @@ const DisplayCurrentWeather = () => {
     );
 
     const returnCurrentForecast = useCallback(
-        async (city) => {
+        async (city: string) => {
             const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
             try {
                 const response = await fetch(url);
