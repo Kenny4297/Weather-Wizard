@@ -52,19 +52,24 @@ const IntroPage: React.FC = () => {
     
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+    
+        // set the current input as the default city
+        localStorage.setItem("defaultCity", inputValue);
+        setDefaultCity(inputValue);
+    
         setCity(inputValue);
         navigate(`/displayWeather/${inputValue}`, { replace: true });
         setInputValue("");
     };
     
     // The function that sets the default city 
-    const handleSetDefaultCity = () => {
-        localStorage.setItem("defaultCity", city);
-        setDefaultCity(city);
-    };
+    // const handleSetDefaultCity = () => {
+    //     localStorage.setItem("defaultCity", city);
+    //     setDefaultCity(city);
+    // };
 
     return (
-        <div data-testid="intro-page" className={!city ? 'intro-page-no-city' : ''}>
+        <div data-testid="intro-page" className={!defaultCity ? 'intro-page-no-city' : ''}>
             <form
                 id="form"
                 className="intro-page-box"
@@ -120,7 +125,7 @@ const IntroPage: React.FC = () => {
                     </button>
                 </p>
                 <div>
-                    {city && (
+                    {/* {city && (
                         <button
                             type="button"
                             className="set-city-button"
@@ -135,7 +140,7 @@ const IntroPage: React.FC = () => {
                         <p className="default-city-text">
                             Current City: {localStorage.getItem("defaultCity")}
                         </p>
-                    )}
+                    )} */}
                 </div>
             </form>
         </div>

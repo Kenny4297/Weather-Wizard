@@ -27,7 +27,7 @@ TimeZoneDB API:
 TimeZone BD is a web service that provides time zone data and related services, such as current time, time zone conversion, and daylight saving time information. It allows developers to integrate time zone functionality into their applications, such as scheduling, appointment booking, and time-based notifications. 
 
 ## Features
-The user can enter any city across the globe and see the local time, the current weather (including the temperature, skies, humidity, low / high, wind speed ), along with the next 5 day forecast. They are also able to set a default location, which allows the dashboard to immediately fetch the default location when they visit the app, instead of manually entering their city each time they visit. 
+The user can enter any city across the globe and see the local time, the current weather (including the temperature, skies, humidity, low / high, wind speed ), along with the next 5 day forecast. The , which allows the dashboard to immediately fetch the default location when they visit the app, instead of manually entering their city each time they visit. 
 
 This color scheme passes the AA and AAA level of the WCAG guidelines.
 

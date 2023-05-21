@@ -39,8 +39,6 @@ const App = () => {
 };
 
 const WeatherResultsPage: React.FC = () => {
-    // const { city, setCity } = useContext(CityContext);
-
     return (
         <>
             <div className="weather-section">
