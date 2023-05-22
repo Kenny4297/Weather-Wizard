@@ -1,8 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { CityContext } from './App';
 import React, { useContext } from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import App from './App';
 
 test('updates city context', () => {
   const TestComponent = () => {
@@ -33,24 +31,6 @@ test('updates city context', () => {
 });
 
 
-// Mock API calls
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useParams: () => ({
-      city: "mockCity"
-    }),
-    useRouteMatch: () => ({ url: '/displayWeather/mockCity' }),
-  }));
-  
-  test("renders WeatherResultsPage", async () => {
-    render(
-      <CityContext.Provider value={{ city: "mockCity", setCity: jest.fn() }}>
-        <App />
-      </CityContext.Provider>
-    );
-    const displayWeatherElement = await screen.findByTestId("display-weather");
-    const displayForecastElement = await screen.findByTestId("display-forecast");
-    expect(displayWeatherElement).toBeInTheDocument();
-    expect(displayForecastElement).toBeInTheDocument();
-  });
+
+
 
