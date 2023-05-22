@@ -172,7 +172,7 @@ test("renders DisplayWeather component", async () => {
 
     render(
         <MemoryRouter>
-            <DisplayWeather setCity={jest.fn()} />
+            <DisplayWeather />
         </MemoryRouter>
     );
 

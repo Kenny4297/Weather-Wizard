@@ -40,21 +40,19 @@ const App = () => {
 
 const WeatherResultsPage: React.FC = () => {
     return (
-        <>
+        <div data-testid="weather-results-page">
             <div className="weather-section">
                 <div className="box1">
                     <DisplayCurrentWeather />
                 </div>
-
                 <div className="box2">
                     <IntroPage data-testid="intro-page" />
                 </div>
             </div>
-
             <div style={{ marginTop: "1.5rem" }}>
                 <DisplayForecast />
             </div>
-        </>
+        </div>
     );
 };
 

@@ -73,7 +73,8 @@ const DisplayCurrentWeather = () => {
     }
 
     const getTimeForLocation = useCallback(
-        async (lat: string, lng: string) => {
+        async (lat: number, lng: number) => {
+            console.log(`Lat and lgn are: ${lat}, ${lng}.They are ${typeof lat} and ${typeof lng}`);
             const timeUrl = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeAPIKey}&format=json&by=position&lat=${lat}&lng=${lng}`;
             try {
                 const response = await fetch(timeUrl);
@@ -107,7 +108,7 @@ const DisplayCurrentWeather = () => {
             const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
             try {
                 const response = await fetch(url);
-                if (!response.ok) throw new Error("Weather data fetch failed");
+                // if (!response.ok) throw new Error("Weather data fetch failed");
                 const data = await response.json();
                 setWeatherData(data);
 
