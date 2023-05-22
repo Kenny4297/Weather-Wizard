@@ -31,7 +31,6 @@ const DisplayForecast: React.FC<DisplayForecastProps> = ({ testMode }) => {
         description: string; 
         icon: string; 
     }
-
     
     interface Wind {
         speed: number; 
@@ -113,7 +112,7 @@ const DisplayForecast: React.FC<DisplayForecastProps> = ({ testMode }) => {
                         </p>
                     </>
                 ) : (
-                    <div className="future-forecast">
+                    <div className="future-forecast" data-testid="forecast-date">
                         {forecastData &&
                             forecastData.list
                                 .reduce((uniqueIndices: number[], data, index) => {
