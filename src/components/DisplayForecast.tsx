@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { CityContext } from "../App";
 interface ForecastResponse {
     list: ForecastListItem[];
 }
@@ -55,7 +55,7 @@ interface ForecastDataInterface {
   const DisplayForecast: React.FC<DisplayForecastProps> = ({ forecastDataProp, isLoading = false }) => {
     const [forecastData, setForecastData] = useState<ForecastDataInterface | null>(forecastDataProp ?? null);
     const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
-    const { city } = useParams() as { city: string };
+    const { city } = useContext(CityContext);
 
     // This returns the data at the bottom of the page
     const returnFiveDayForecast = async (city: string) => {
@@ -111,11 +111,6 @@ interface ForecastDataInterface {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [city, forecastDataProp]);
-    
-    //   useEffect(() => {
-    //     setForecastData(null);
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    //   }, [city]);
 
     try {
         return (

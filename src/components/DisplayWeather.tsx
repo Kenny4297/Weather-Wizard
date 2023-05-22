@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState, useCallback, useContext } from "react";
 import { FiAlertCircle } from "react-icons/fi";
 import { FaSpinner } from "react-icons/fa";
+import { CityContext } from "../App";
 
 const DisplayCurrentWeather = () => {
     const [weatherData, setWeatherData] = useState<WeatherData | Error | null>(null);
     const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
-    const { city } = useParams() as { city: string };
+    const { city } = useContext(CityContext);
     const timeAPIKey= process.env.REACT_APP_TIMEZONE_API_KEY;
     const [time, setTime] = useState<string>("");
     const [date, setDate] = useState<string>("");

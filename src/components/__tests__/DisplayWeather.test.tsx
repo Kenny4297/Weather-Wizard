@@ -172,7 +172,7 @@ test("renders DisplayWeather component", async () => {
 
     render(
         <MemoryRouter>
-            <DisplayWeather />
+            <DisplayWeather weatherDataProp={weatherResponse} isLoading={false} />
         </MemoryRouter>
     );
 

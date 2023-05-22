@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { FaBolt, FaCloudShowersHeavy } from "react-icons/fa";
 import { CityContext } from "../App";
 
 const IntroPage: React.FC = () => {
     const [inputValue, setInputValue] = useState<string>("");
-    const navigate = useNavigate();
-
     const { city, setCity } = useContext(CityContext);
 
     // State for disabling the 'Today's Weather' button if user hasn't entered anything
@@ -25,7 +22,6 @@ const IntroPage: React.FC = () => {
             const defaultCity = localStorage.getItem("defaultCity");
             if (defaultCity) {
                 setCity(defaultCity);
-                navigate(`/displayWeather/${defaultCity}`);
             }
             setHasMounted(true);
         }
@@ -58,15 +54,9 @@ const IntroPage: React.FC = () => {
         setDefaultCity(inputValue);
     
         setCity(inputValue);
-        navigate(`/displayWeather/${inputValue}`, { replace: true });
         setInputValue("");
     };
     
-    // The function that sets the default city 
-    // const handleSetDefaultCity = () => {
-    //     localStorage.setItem("defaultCity", city);
-    //     setDefaultCity(city);
-    // };
 
     return (
         <div data-testid="intro-page" className={!defaultCity ? 'intro-page-no-city' : ''}>

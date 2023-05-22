@@ -37,6 +37,7 @@ test("form input is updated correctly when user types in a value", () => {
     expect(input.value).toBe("New York");
 });
 
+
 test("submit button is disabled when input value is empty", () => {
     render(
         <CityContext.Provider value={{ city: '', setCity: mockSetCity }}>
