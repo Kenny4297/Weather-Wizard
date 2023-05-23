@@ -4,6 +4,8 @@ import { CityContext } from "../App";
 
 const IntroPage: React.FC = () => {
     const [inputValue, setInputValue] = useState<string>("");
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { city, setCity } = useContext(CityContext);
 
     // State for disabling the 'Today's Weather' button if user hasn't entered anything
@@ -11,10 +13,9 @@ const IntroPage: React.FC = () => {
 
     // Default city should only run when user visits the page
     const [hasMounted, setHasMounted] = useState<boolean>(false);
-    const [defaultCity, setDefaultCity] = useState<string | null>("");
-    
-    // Condition sets the boolean for 'isDefaultCity'
-    const isDefaultCity: boolean = city === defaultCity;
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [ defaultCity, setDefaultCity] = useState<string | null>("");
 
     // Automatically search the default city on mount
     useEffect(() => {
@@ -82,7 +83,7 @@ const IntroPage: React.FC = () => {
                 >
                     Enter the city name
                 </h2>
-                <p style={{ color: "var(--red3)" }}>
+                <p style={{ color: "var(--green)" }}>
                     <em
                         className="intro-page-text"
                         aria-label="Example: Caguas, PR"
@@ -115,22 +116,6 @@ const IntroPage: React.FC = () => {
                     </button>
                 </p>
                 <div>
-                    {/* {city && (
-                        <button
-                            type="button"
-                            className="set-city-button"
-                            onClick={handleSetDefaultCity}
-                            disabled={isDefaultCity}
-                            aria-label="Set Default City"
-                        >
-                            Set Default City
-                        </button>
-                    )}
-                    {localStorage.getItem("defaultCity") && (
-                        <p className="default-city-text">
-                            Current City: {localStorage.getItem("defaultCity")}
-                        </p>
-                    )} */}
                 </div>
             </form>
         </div>

@@ -1,59 +1,33 @@
 import React, { useEffect, useState, useContext } from "react";
 import { CityContext } from "../App";
-interface ForecastResponse {
-    list: ForecastListItem[];
-}
-
-interface ForecastListItem {
-    dt_txt: string;
-    main: Main;
-    weather: Weather[];
-    wind: Wind;
-    sys: Sys;
-}
-
-interface Main {
-    temp: number;
-    humidity: number;
-}
-
-interface Weather {
-    description: string;
-    icon: string;
-}
-
-interface Wind {
-    speed: number;
-}
-
-interface Sys {
-    pod: string;
-}
-
 interface ForecastDataInterface {
     list: Array<{
-      dt_txt: string;
-      main: {
-        temp: number;
-        humidity: number;
-      };
-      weather: Array<{
-        icon: string;
-        description: string;
-      }>;
-      wind: {
-        speed: number;
-      };
+        dt_txt: string;
+        main: {
+            temp: number;
+            humidity: number;
+        };
+        weather: Array<{
+            icon: string;
+            description: string;
+        }>;
+        wind: {
+            speed: number;
+        };
     }>;
-  }
+}
 
-  interface DisplayForecastProps {
+interface DisplayForecastProps {
     forecastDataProp?: ForecastDataInterface;
     isLoading?: boolean;
-  }
+}
 
-  const DisplayForecast: React.FC<DisplayForecastProps> = ({ forecastDataProp, isLoading = false }) => {
-    const [forecastData, setForecastData] = useState<ForecastDataInterface | null>(forecastDataProp ?? null);
+const DisplayForecast: React.FC<DisplayForecastProps> = ({
+    forecastDataProp,
+    isLoading = false,
+}) => {
+    const [forecastData, setForecastData] =
+        useState<ForecastDataInterface | null>(forecastDataProp ?? null);
     const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
     const { city } = useContext(CityContext);
 
@@ -64,7 +38,6 @@ interface ForecastDataInterface {
             let response = await fetch(url);
             let data = await response.json();
             setForecastData(data);
-            console.log(data);
         } catch (error) {
             console.log(error);
         }
@@ -105,12 +78,12 @@ interface ForecastDataInterface {
 
     useEffect(() => {
         if (forecastDataProp) {
-          setForecastData(forecastDataProp);
+            setForecastData(forecastDataProp);
         } else {
-          returnFiveDayForecast(city);
+            returnFiveDayForecast(city);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [city, forecastDataProp]);
+    }, [city, forecastDataProp]);
 
     try {
         return (
@@ -123,7 +96,7 @@ interface ForecastDataInterface {
                     <>
                         <p
                             style={{
-                                color: "var(--red3)",
+                                color: "var(--green)",
                                 textAlign: "center",
                                 fontSize: "2rem",
                             }}
@@ -136,43 +109,57 @@ interface ForecastDataInterface {
                     <div className="future-forecast">
                         {forecastData &&
                             forecastData.list.slice(0, 5).map((data) => (
-                            <div
-                                className="future-forecast-css"
-                                key={data.dt_txt}
-                                data-testid="forecast-css-test"
-                                aria-labelledby={`forecast-${data.dt_txt}`}
-                            >
-                                <p
-                                className="future-text-date"
-                                aria-label={getFormattedDate(data.dt_txt)}
+                                <div
+                                    className="future-forecast-css"
+                                    key={data.dt_txt}
+                                    data-testid="forecast-css-test"
+                                    aria-labelledby={`forecast-${data.dt_txt}`}
                                 >
-                                <u data-testid="forecast-date-test">
-                                    {getFormattedDate(data.dt_txt)}
-                                </u>
-                                </p>
-                                <p className="future-text" data-testid="forecast-text-test">
-                                {data.main.temp}&deg;F
-                                </p>
-                                <img
-                                className="icon-images"
-                                style={{ width: "3rem" }}
-                                src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
-                                alt={data.weather[0].description}
-                                data-testid="icon-images-test"
-                                aria-label={data.weather[0].description}
-                                />
-                                <p className="future-text" data-testid="weather-description-test">
-                                {data.weather[0].description}
-                                </p>
-                                <p className="future-text" data-testid="humidity-test">
-                                {data.main.humidity}%
-                                </p>
-                                <p className="future-text" data-testid="wind-speed-test">
-                                {data.wind.speed} mph
-                                </p>
-                            </div>
+                                    <p
+                                        className="future-text-date"
+                                        aria-label={getFormattedDate(
+                                            data.dt_txt
+                                        )}
+                                    >
+                                        <u data-testid="forecast-date-test">
+                                            {getFormattedDate(data.dt_txt)}
+                                        </u>
+                                    </p>
+                                    <p
+                                        className="future-text"
+                                        data-testid="forecast-text-test"
+                                    >
+                                        {data.main.temp}&deg;F
+                                    </p>
+                                    <img
+                                        className="icon-images"
+                                        style={{ width: "3rem" }}
+                                        src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                                        alt={data.weather[0].description}
+                                        data-testid="icon-images-test"
+                                        aria-label={data.weather[0].description}
+                                    />
+                                    <p
+                                        className="future-text"
+                                        data-testid="weather-description-test"
+                                    >
+                                        {data.weather[0].description}
+                                    </p>
+                                    <p
+                                        className="future-text"
+                                        data-testid="humidity-test"
+                                    >
+                                        {data.main.humidity}%
+                                    </p>
+                                    <p
+                                        className="future-text"
+                                        data-testid="wind-speed-test"
+                                    >
+                                        {data.wind.speed} mph
+                                    </p>
+                                </div>
                             ))}
-                        </div>
+                    </div>
                 )}
             </div>
         );

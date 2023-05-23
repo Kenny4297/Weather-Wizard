@@ -3,21 +3,21 @@
 ![Screenshot](./public/assets/weather-wizard.png)
 ## Table of Contents
 - [License](#license)
-- [Description](#description)
-- [Motivation](#motivation)
+- [Project Overview](#project-overview)
+- [Purpose and Inspiration](#purpose-and-inspiration)
 - [Technologies](#technologies)
-- [Features](#features)
+- [Functionality and Features](#functionality-and-features)
 - [Deployment](#Deployment)
 - [Testing](#testing)
 
 ## License
 This project is licensed under the MIT license.
 
-## Description
-An advanced weather dashboard that displays the current weather, the 5 day forecast, the local time of any city, and saves their home city for better user experience. 
+## Project Overview
+This project presents an advanced weather dashboard, capable of providing real-time weather updates, a five-day forecast, and the local time for any city globally. It leverages the power of React and TypeScript to deliver a seamless and personalized user experience, including the ability to remember a user's home city.
 
-## Motivation
-I challenged myself to create a superior Weather Dashboard beyond the scope of the Minnesota Coding Bootcamp requirements. My original dashboard had several limitations, and I believed that additional features would enhance its functionality. As a result, I expanded upon the existing design to create a more comprehensive and user-friendly interface.
+## Purpose and Inspiration
+This project was motivated by a desire to push beyond the confines of my coursework requirements at the Minnesota Coding Bootcamp. Recognizing the potential to augment the original weather dashboard's limited functionality, I set out to create an enhanced, more intuitive, and comprehensive user interface.
 
 ## Technologies
 OpenWeather API:
@@ -26,13 +26,14 @@ The OpenWeather API is a web-based service that provides weather data and foreca
 TimeZoneDB API:
 TimeZone BD is a web service that provides time zone data and related services, such as current time, time zone conversion, and daylight saving time information. It allows developers to integrate time zone functionality into their applications, such as scheduling, appointment booking, and time-based notifications. 
 
-## Features
-The user can enter any city across the globe and see the local time, the current weather (including the temperature, skies, humidity, low / high, wind speed ), along with the next 5 day forecast. The , which allows the dashboard to immediately fetch the default location when they visit the app, instead of manually entering their city each time they visit. 
+TypeScript:
+TypeScript is a statically-typed superset of JavaScript, developed by Microsoft to catch common errors early in the development process. It allows developers to specify types for variables and function parameters, providing better tooling and documentation. Once TypeScript code is written, it's compiled into JavaScript, enabling it to run in any JavaScript environment.
 
-This color scheme passes the AA and AAA level of the WCAG guidelines.
+## Functionality and Features
+The dashboard is designed for global utility, allowing users to input any city worldwide to view its current weather conditions. These conditions include data points such as temperature, sky conditions, humidity levels, daily high and low temperatures, and wind speed. It also offers a five-day forecast for the selected location. A standout feature is the dashboard's capacity to store the last searched city in local storage, enabling users to see their default location's weather updates immediately upon revisiting the app. This functionality eliminates the need for repeated manual entry, making the tool more user-friendly and efficient.
 
 ## Deployment
-Due to this portfolio being a SPA, I have decided to simply use GitPages for the deployment. Check it out [here](https://kenny4297.github.io/Weather-Wizard/)!
+Check it out [here](https://weather-wizard4297.herokuapp.com/)!
 
 ## Testing
 I used Jest and RTL for tests. Here is the coverage table for all tests:
@@ -51,8 +52,3 @@ All files             |   76.85 |    57.77 |   77.77 |   76.85 |
   IntroPage.tsx       |      90 |       70 |     100 |      90 | 24,34,43
   index.ts            |       0 |        0 |       0 |       0 | 
 ----------------------|---------|----------|---------|---------|-------------------
-
-
-If you have any suggestions for improvement, please feel free to share them with me! Thanks for viewing this README!
-
-

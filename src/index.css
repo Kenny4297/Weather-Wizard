@@ -23,18 +23,11 @@ code {
 :root {
     --red1: #5d001e;
     --red2: #811343;
-    --red3: #1B4C6F;
-    /* --red3: #264D00; */
-    --red3: #609A33;
-    /* 609A33 */
     --red4: #e3afbc;
     --red5: #e3e2df;
-    /* --red5: #F0F0F0; */
-    /* --blue: #1E547B; */
     --blue: #3A80B3;
+    --green: #609A33;
     ;
-
-    /* 3A80B3 */
 }
 
 @keyframes pulsate {
@@ -52,9 +45,8 @@ code {
 /* =====Weather Section ========= */
 
 /* Intro Page */
-
 .todays-numbers {
-    color: var(--red3);
+    color: var(--green);
 }
 
 .intro-page-no-city {
@@ -67,7 +59,6 @@ code {
     background-color: var(--red5);
     width: 50%;
     box-shadow: 0 0 10px var(--red1);
-    /* margin-top: 2rem; */
     border: 2px solid blue;
 }
 
@@ -111,9 +102,8 @@ code {
 }
 
 .form-button:hover {
-    background-color: var(--red3);
+    background-color: var(--green);
 }
-  
 
 /*===== Weather title ===== */
 
@@ -138,16 +128,12 @@ code {
 }
 
 .future-text {
-    color: var(--red3);
+    color: var(--green);
 }
 
 .future-text-date {
     color: var(--red1);
 }
-
-/* Intro Page section */
-
-
 
 /*===== Weather section */
 .weather-section {
@@ -172,7 +158,6 @@ code {
 .box2 {
     box-shadow: 0 0 10px var(--red1);
     background-color: var(--red5);
-    /* background-color: blue; */
     display: flex;
     text-align: center;
     flex-direction: column;
@@ -281,7 +266,7 @@ code {
   
 .spinner {
     animation: spin 1s infinite linear;
-    color: var(--red3);
+    color: var(--green);
     font-size: 24px;
 }
 
