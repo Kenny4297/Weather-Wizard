@@ -40,16 +40,16 @@ I used Jest and RTL for tests. Here is the coverage table for all tests:
 ----------------------|---------|----------|---------|---------|-------------------
 File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ----------------------|---------|----------|---------|---------|-------------------
-All files             |   76.85 |    57.77 |   77.77 |   80.89 |                   
+All files             |   76.85 |    57.77 |   77.77 |   76.85 |                   
  src                  |   26.66 |    35.71 |      25 |   26.66 |                   
   App.tsx             |     100 |       50 |      50 |     100 | 26-34             
   index.js            |       0 |      100 |     100 |       0 | 8-16              
-  reportWebVitals.js  |       0 |        0 |       0 |       0 | 1-8               
- src/components       |   84.94 |    67.74 |   92.85 |   84.94 |                   
-  DisplayForecast.tsx |   65.51 |    54.54 |      80 |   65.51 | 62-69,110,180-181 
-  DisplayWeather.tsx  |   97.05 |       80 |     100 |   97.05 | 100               
-  IntroPage.tsx       |      90 |       70 |     100 |      90 | 24,34,43          
-  index.ts            |       0 |        0 |       0 |       0 |                   
+  reportWebVitals.js  |       0 |        0 |       0 |       0 | 1-8
+ src/components       |   84.94 |    67.74 |   92.85 |   84.94 | 
+  DisplayForecast.tsx |   65.51 |    54.54 |      80 |   65.51 | 62-69,110,180-181
+  DisplayWeather.tsx  |   97.05 |       80 |     100 |   97.05 | 100
+  IntroPage.tsx       |      90 |       70 |     100 |      90 | 24,34,43
+  index.ts            |       0 |        0 |       0 |       0 | 
 ----------------------|---------|----------|---------|---------|-------------------
 
 
