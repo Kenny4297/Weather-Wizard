@@ -67,7 +67,18 @@ code {
     background-color: var(--red5);
     width: 50%;
     box-shadow: 0 0 10px var(--red1);
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
+    border: 2px solid blue;
+}
+
+.weather-section-no-city {
+    border: 2px solid red;
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .form-heading {
@@ -161,6 +172,7 @@ code {
 .box2 {
     box-shadow: 0 0 10px var(--red1);
     background-color: var(--red5);
+    /* background-color: blue; */
     display: flex;
     text-align: center;
     flex-direction: column;

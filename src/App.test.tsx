@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { CityContext } from './App';
 import React, { useContext } from 'react';
+import App from './App';
 
 test('updates city context', () => {
   const TestComponent = () => {
@@ -28,6 +29,22 @@ test('updates city context', () => {
 
   fireEvent.click(screen.getByText('Update City'));
   expect(screen.getByText('Test City')).toBeInTheDocument();
+});
+
+
+test("only IntroPage is rendered when city is an empty string", () => {
+    render(<App />);
+
+    // Check that the IntroPage component is in the document
+    const introPageElement = screen.getByTestId('intro-page');
+    expect(introPageElement).toBeInTheDocument();
+
+    // Check that the DisplayCurrentWeather and DisplayForecast components are not in the document
+    const currentWeatherElement = screen.queryByTestId('display-current-weather-page');
+    const forecastElement = screen.queryByTestId('display-forecast-page');
+
+    expect(currentWeatherElement).not.toBeInTheDocument();
+    expect(forecastElement).not.toBeInTheDocument();
 });
 
 

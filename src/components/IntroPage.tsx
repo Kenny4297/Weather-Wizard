@@ -59,7 +59,7 @@ const IntroPage: React.FC = () => {
     
 
     return (
-        <div data-testid="intro-page" className={!defaultCity ? 'intro-page-no-city' : ''}>
+        <div data-testid="intro-page">
             <form
                 id="form"
                 className="intro-page-box"

@@ -23,23 +23,19 @@ const App = () => {
 
     return (
         <CityContext.Provider value={{ city, setCity }}>
-            {city === "" ? 
-                <IntroPage data-testid="intro-page" /> 
-                : 
-                <div data-testid="weather-results-page">
-                    <div className="weather-section">
-                        <div className="box1">
-                            <DisplayCurrentWeather />
-                        </div>
-                        <div className="box2">
-                            <IntroPage data-testid="intro-page" />
-                        </div>
-                    </div>
-                    <div style={{ marginTop: "1.5rem" }}>
-                        <DisplayForecast />
-                    </div>
+            <div className={!city ? 'weather-section-no-city' : 'weather-section'}>
+                <div className={!city ? '' : 'box1'}>
+                    {city && <DisplayCurrentWeather data-testid="display-current-weather-page" />}
                 </div>
-            }
+                <div className={!city ? 'intro-page-no-city' : 'box2'}>
+                    <IntroPage data-testid="intro-page"  />
+                </div>
+            </div>
+            {city && (
+                <div style={{ marginTop: "1.5rem" }}>
+                    <DisplayForecast data-testid="display-forecast-page" />
+                </div>
+            )}
         </CityContext.Provider>
     );
 };
