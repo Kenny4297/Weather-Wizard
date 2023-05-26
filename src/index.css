@@ -59,11 +59,9 @@ code {
     background-color: var(--red5);
     width: 50%;
     box-shadow: 0 0 10px var(--red1);
-    border: 2px solid blue;
 }
 
 .weather-section-no-city {
-    border: 2px solid red;
     height: 20rem;
     display: flex;
     justify-content: center;
@@ -289,7 +287,6 @@ code {
     .box1 {
         width: 20rem;
         height: 33rem !important;
-        /* border: 2px solid blue; */
     }
     .box2 {
         width: 100%;
