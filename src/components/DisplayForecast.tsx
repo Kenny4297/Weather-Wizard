@@ -165,7 +165,16 @@ const DisplayForecast: React.FC<DisplayForecastProps> = ({
         );
     } catch (error) {
         console.log(error);
-        return <p>Sorry, no forecast data available</p>;
+        return <p style={{
+            display: "flex",
+            color: "var(--green)",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "relative",
+            top: "5rem",
+            flexDirection: "column",
+            textAlign: "center",
+        }}>Sorry, no forecast data available</p>;
     }
 };
 
